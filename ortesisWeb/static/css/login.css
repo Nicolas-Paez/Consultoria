@@ -1,0 +1,103 @@
+/* styles.css */
+
+/* Estilos globales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Encabezado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header .logo {
+    width: 100px;
+    height: auto;
+}
+
+/* Mensaje de bienvenida */
+.welcome h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.form-container {
+    background-color: #05714a;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+}
+
+.toggle-button {
+    display: flex;
+    justify-content: space-between;
+    background-color: #747272;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+}
+
+.toggle-slider {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50px;
+    transition: left 0.3s ease;
+}
+
+.toggle-option {
+    width: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+.form .options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #046c50;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+}
