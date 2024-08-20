@@ -1,0 +1,64 @@
+/* Contenedor general del calendario */
+.calendar-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado del calendario */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botones de navegación */
+.nav-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #45a049;
+}
+
+/* Vista del calendario en cuadrícula */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+}
+
+/* Estilo para los nombres de los días */
+.day-name {
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Estilo para los días vacíos */
+.empty-day {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para los días con número */
+.day {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #d1e7dd;
+}

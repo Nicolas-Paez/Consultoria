@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev" class="nav-button">&#10094;</button>
+            <button id="today" class="nav-button">Hoy</button>
+            <h2 id="month-year">Agosto 2024</h2>
+            <button id="next" class="nav-button">&#10095;</button>
+            <div class="view-options">
+                <button id="day-view">Día</button>
+                <button id="week-view">Sem</button>
+                <button id="month-view">Mes</button>
+            </div>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <!-- Enlace al archivo JS -->
+    <script src="{% static 'js/calendar.js' %}"></script>
+</body>
+</html>
