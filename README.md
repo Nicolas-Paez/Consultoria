@@ -83,8 +83,45 @@ Todos los miembros del equipo trabajan directamente en la rama principal `origin
 6. **Revisión y Aprobación**:
    - Asegúrate de que todos los cambios estén revisados y aprobados por el equipo antes de hacer un push a `origin/main`. Coordina con los miembros del equipo para evitar conflictos y garantizar que el código esté listo para la integración.
 
+## Buenas Prácticas para Commits
+
+Escribir buenos mensajes de commit es crucial para mantener un historial de proyecto claro y comprensible. Aquí te presentamos 6 reglas para escribir un buen mensaje de commit:
+
+1. **Usa el Verbo Imperativo**:
+   - Usa verbos en presente (imperativo) como `Add`, `Change`, `Fix`, `Remove`. Esto describe claramente la acción que realiza el commit. Ejemplo:
+     - Correcto: `Add new search feature`
+     - Incorrecto: `Added new search feature`
+
+2. **No Uses Punto Final ni Puntos Suspensivos**:
+   - Los mensajes de commit no deben terminar con puntos finales ni puntos suspensivos. Usa un formato limpio y directo. Ejemplo:
+     - Correcto: `Fix a problem with the topbar`
+     - Incorrecto: `Fix a problem with the topbar...`
+
+3. **Usa Máximo 50 Caracteres para el Mensaje de Commit**:
+   - Mantén los mensajes de commit concisos. Si necesitas explicar más, usa el cuerpo del mensaje de commit. Ejemplo:
+     - Correcto: `Add new search feature`
+     - Incorrecto: `Add new search feature and change typography to improve performance`
+
+4. **Añade Todo el Contexto Necesario en el Cuerpo del Mensaje**:
+   - Para mensajes que requieren más detalle, usa el cuerpo del mensaje de commit para proporcionar contexto adicional. Utiliza un editor de texto si es necesario para escribir un mensaje claro.
+
+5. **Usa un Prefijo para Tus Commits para Hacerlos Más Semánticos**:
+   - Añade prefijos para clasificar los commits. Por ejemplo:
+     - `feat: add new search feature`
+     - `fix: remove wrong color`
+   - Esto facilita la lectura y el seguimiento del historial de cambios.
+   - Estos serían los prefijos:
+
+     - `feat`: Una nueva característica para el usuario.
+     - `fix`: Arregla un bug que afecta al usuario.
+     - `perf`: Cambios que mejoran el rendimiento del sitio.
+     - `build`: Cambios en el sistema de build, tareas de despliegue o instalación.
+     - `ci`: Cambios en la integración continua.
+     - `docs`: Cambios en la documentación.
+     - `refactor`: Refactorización del código como cambios de nombre de variables o funciones.
+     - `style`: Cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario.
+     - `test`: Añade tests o refactoriza uno existente.
+
 ## Notas Adicionales
 - **Mantén Tu Rama Actualizada**: Es crucial mantener tu copia local actualizada con los últimos cambios de `origin/main` para evitar conflictos.
 - **Pruebas**: Realiza pruebas exhaustivas antes de enviar tus cambios para asegurar que no introduzcan errores o problemas en el proyecto.
-
-
