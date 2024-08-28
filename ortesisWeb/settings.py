@@ -76,8 +76,12 @@ WSGI_APPLICATION = "ortesisWeb.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "HOST": "localhost",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "ortesisweb",
+        "USER": "postgres",
+        "PASSWORD": "",
+        "PORT": "5432",
     }
 }
 
