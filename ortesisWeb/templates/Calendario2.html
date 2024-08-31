@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Calendario</title>
-    <link rel="stylesheet" href="Calendario2.css">
+    <link rel="stylesheet" href="{% static 'css/Calendario2.css' %}">
 </head>
 <body>
     <div class="contenedor-calendario">
@@ -36,6 +38,6 @@
             </tbody>
         </table>
     </div>
-    <script src="Calendario2.js"></script>
+    <script src="{% static 'js/Calendario2.js' %}"></script>
 </body>
 </html>

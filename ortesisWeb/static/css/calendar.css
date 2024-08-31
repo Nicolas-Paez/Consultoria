@@ -1,11 +1,20 @@
+body {
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+}
+
 /* Contenedor general del calendario */
 .calendar-container {
-    width: 80%;
-    margin: 20px auto;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0 , 0, 0, 0.5);
+    padding: 22px;
+    width: 900px;
 }
 
 /* Encabezado del calendario */
@@ -13,20 +22,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
-
+.month-header {
+    font-size: 1.5em;
+    text-align: center;
+    flex-grow: 1;
+    padding: 10px 20px;
+    text-decoration-thickness: 1.5px;
+}
 /* Botones de navegación */
 .nav-button {
-    background-color: #4CAF50;
+    background-color: rgb(25, 100, 79);
+    border: 1.5px solid white;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 14px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .nav-button:hover {
-    background-color: #45a049;
+    background-color: rgb(25, 100, 79);
+    color: white;
 }
 
 /* Vista del calendario en cuadrícula */
@@ -39,20 +56,25 @@
 
 /* Estilo para los nombres de los días */
 .day-name {
-    background-color: #ddd;
+    background-color: #ffffff;
     padding: 10px;
     text-align: center;
     font-weight: bold;
 }
 
+/* Colorear Sábado y Domingo en rojo */
+.weekend {
+    color: red;
+}
+
 /* Estilo para los días vacíos */
 .empty-day {
-    background-color: #f9f9f9;
+    background-color: #f1efef;
 }
 
 /* Estilo para los días con número */
 .day {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding: 10px;
     text-align: center;
     cursor: pointer;
@@ -61,4 +83,31 @@
 
 .day:hover {
     background-color: #d1e7dd;
+}
+
+/* Hacer que las celdas de los días sean cuadradas */
+.day, .empty-day, .day-name {
+    width: 100%;
+    padding-bottom: 35%;
+    position: relative;
+    box-sizing: border-box;
+    align-content: center;
+    border: 1px solid #ccc; /* Líneas de la cuadrícula */
+    
+}
+
+.day span, .empty-day span, .day-name span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+
+}
+
+/* Indicar el día actual */
+.today {
+    background-color:rgb(25, 100, 79); /* Color de fondo para el día actual */
+    color: white; /* Color de texto para el día actual */
+    border-radius: 0%; /* Opcional: hacer el día actual circular */
 }

@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
 
+        // Establecer el día actual al primero del mes para evitar problemas de salto de mes
+        currentDate.setDate(1);
+
         // Actualizar el encabezado del calendario con el mes y año actuales
         monthYearLabel.textContent = `${getMonthName(month)} ${year}`;
 
@@ -19,26 +22,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function generateMonthView(year, month) {
-        // Obtener el primer día del mes y el número total de días en el mes
-        const firstDay = new Date(year, month, 1).getDay();
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-        let calendarHTML = '<div class="calendar-grid">';
+        //Lunes como primer dia de la semana
+        const startDay = (firstDayOfMonth + 6) % 7;
 
-        // Nombres de los días de la semana
-        const dayNames = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-        dayNames.forEach(day => {
-            calendarHTML += `<div class="day-name">${day}</div>`;
+        let calendarHTML = '<div class="calendar-grid">';
+        const dayNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+
+        dayNames.forEach((day, index) => {
+            const className = index >= 5 ? 'day-name weekend' : 'day-name';
+            calendarHTML += `<div class="${className}">${day}</div>`;
         });
 
-        // Crear los días vacíos antes del primer día del mes
-        for (let i = 0; i < firstDay; i++) {
-            calendarHTML += `<div class="empty-day"></div>`;
+        // Día desde el mes anterior que completa el primer lunes
+        const prevMonthDays = new Date(year, month, 0).getDate();
+        for (let i = startDay; i > 0; i--) {
+            calendarHTML += `<div class="empty-day"><span>${prevMonthDays - i + 1}</span></div>`;
         }
 
-        // Crear los días del mes
+        // Días del mes actual
         for (let day = 1; day <= daysInMonth; day++) {
-            calendarHTML += `<div class="day">${day}</div>`;
+            const isToday = (day === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth());
+            const className = isToday ? 'day today' : 'day';
+            calendarHTML += `<div class="${className}"><span>${day}</span></div>`;
+        }
+
+        // Días del mes siguiente para vista de 6 semanas en todos los meses
+        let nextMonthDay = 1;
+        const totalCells = startDay + daysInMonth;
+        for (let i = totalCells; i < 42; i++) {
+            calendarHTML += `<div class="empty-day"><span>${nextMonthDay++}</span></div>`;
         }
 
         calendarHTML += '</div>';
@@ -53,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return monthNames[monthIndex];
     }
 
-    // Listeners para los botones de navegación
     prevButton.addEventListener('click', function () {
         currentDate.setMonth(currentDate.getMonth() - 1);
         updateCalendar();
@@ -69,6 +83,5 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCalendar();
     });
 
-    // Inicializar el calendario con la fecha actual
     updateCalendar();
 });

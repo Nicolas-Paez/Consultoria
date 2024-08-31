@@ -6,3 +6,7 @@ def login_view(request):
 def calendar_view(request):
     # Lógica para el calendario
     return render(request, 'calendar.html')
+
+def calendar_view2(request):
+    # Lógica para el calendario
+    return render(request, 'Calendario2.html')
