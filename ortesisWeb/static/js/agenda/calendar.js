@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
 
-        // Establecer el día actual al primero del mes para evitar problemas de salto de mes
-        currentDate.setDate(1);
-
         // Actualizar el encabezado del calendario con el mes y año actuales
         monthYearLabel.textContent = `${getMonthName(month)} ${year}`;
 
@@ -22,38 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function generateMonthView(year, month) {
-        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-        //Lunes como primer dia de la semana
-        const startDay = (firstDayOfMonth + 6) % 7;
-
         let calendarHTML = '<div class="calendar-grid">';
-        const dayNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 
+        const dayNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
         dayNames.forEach((day, index) => {
             const className = index >= 5 ? 'day-name weekend' : 'day-name';
             calendarHTML += `<div class="${className}">${day}</div>`;
         });
 
-        // Día desde el mes anterior que completa el primer lunes
-        const prevMonthDays = new Date(year, month, 0).getDate();
-        for (let i = startDay; i > 0; i--) {
-            calendarHTML += `<div class="empty-day"><span>${prevMonthDays - i + 1}</span></div>`;
+        for (let i = 0; i < firstDay; i++) {
+            calendarHTML += `<div class="empty-day"></div>`;
         }
 
-        // Días del mes actual
         for (let day = 1; day <= daysInMonth; day++) {
             const isToday = (day === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth());
             const className = isToday ? 'day today' : 'day';
-            calendarHTML += `<div class="${className}"><span>${day}</span></div>`;
-        }
-
-        // Días del mes siguiente para vista de 6 semanas en todos los meses
-        let nextMonthDay = 1;
-        const totalCells = startDay + daysInMonth;
-        for (let i = totalCells; i < 42; i++) {
-            calendarHTML += `<div class="empty-day"><span>${nextMonthDay++}</span></div>`;
+            calendarHTML += `<div class="${className}">${day}</div>`;
         }
 
         calendarHTML += '</div>';

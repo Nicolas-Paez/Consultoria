@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OrtesisWeb{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    {% block extra_head %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="logos">
+                    <img src="{% static 'icons/hospital.svg' %}" alt="Logo logo_hospital">
+                    <img src="{% static 'icons/ua.svg' %}" alt="Logo UA">
+            </div>
+            <hr class="divider">
+            <div class="profile">
+                <img src="{% static 'icons/therapist.svg' %}" alt="Icono terapeuta">
+                <p>DR. VICENTE SALINAS</p>
+            </div>
+            <hr class="divider">
+            <ul class="menu">
+                <li>
+                    <a href="#">
+                        <img src="{% static 'icons/user-profile.svg' %}" alt="Perfil terapeuta">
+                        Mi perfil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="{% static 'icons/list-users.svg' %}" alt="Listado de pacientes">
+                        Listado de pacientes
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="{% static 'icons/calendar.svg' %}" alt="Agenda terapeuta" >
+                        Agenda
+                    </a>
+                </li>
+            </ul>
+            <hr class="divider">
+            <div class="logout">
+                <a href="#">
+                    <img src="{% static 'icons/log-out.svg' %}" alt="Cerrar sesión" >
+                    Salir
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="notification-icon">
+                    <a href="#">
+                        <img src="{% static 'icons/notification.svg' %}" alt="notificacion" >
+                    </a>
+                </div>
+            </header>
+
+            <main class="content">
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+    {% block extra_js %}
+    {% endblock %}
+</body>
+
+</html>

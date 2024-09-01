@@ -88,7 +88,7 @@ body {
 /* Hacer que las celdas de los días sean cuadradas */
 .day, .empty-day, .day-name {
     width: 100%;
-    padding-bottom: 35%;
+    padding-bottom: 30%;
     position: relative;
     box-sizing: border-box;
     align-content: center;
