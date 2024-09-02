@@ -14,3 +14,12 @@ def calendar_view2(request):
 def base_view(request):
     # Lógica para el calendario
     return render(request, 'base.html')
+
+def perfil_view(request):
+    return render(request, 'perfil.html')
+
+def pacientes_view(request):
+    return render(request, 'paciente.html')
+
+def agenda_view(request):
+    return render(request, 'agenda.html')
