@@ -4,4 +4,6 @@ ortesisWeb/__pycache__/urls.cpython-312.pyc
 ortesisWeb/__pycache__/settings.cpython-312.pyc
 ortesisWeb/__pycache__/__init__.cpython-312.pyc
 ortesisWeb/settings.py
-
+.gitignore
+*.pyc
+__pycache__/
