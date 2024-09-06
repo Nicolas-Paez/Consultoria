@@ -1,4 +1,3 @@
-/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -9,30 +8,25 @@ body {
     background-color: #f7f7f7;
 }
 
-/* Contenedor general del calendario */
 .calendar-container {
-    background-color: white;
-    border-radius: 5px;
-    padding: 20px;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
 }
 
-/* Encabezado del calendario */
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-.month-header {
-    font-size: 1.5em;
-    text-align: center;
-    flex-grow: 1;
+    margin-bottom: 10px;
 }
 
-/* Botones de navegación */
+.week-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+
 .nav-button {
     background-color: #25a18e;
     border: none;
@@ -42,41 +36,13 @@ body {
     border-radius: 5px;
 }
 
-.nav-button:hover {
-    background-color: #1d907a;
-}
-
-/* Estilos para la vista mensual */
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin-top: 20px;
-}
-
-.day-name, .day, .empty-day {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-.weekend {
-    color: red;
-}
-
-.today {
-    background-color: #25a18e;
-    color: white;
-}
-
-/* Estilos para la vista semanal */
 .week-view {
-    height: 50%;
     width: 100%;
     border-collapse: collapse;
 }
 
-.week-view th, .week-view td {
+.week-view th,
+.week-view td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
@@ -100,4 +66,14 @@ body {
 .time-slot {
     font-size: 14px;
     color: #666;
+}
+
+.appointment {
+    background-color: #ffcccc;
+    color: #333;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
 }
