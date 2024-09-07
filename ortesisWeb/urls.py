@@ -1,12 +1,12 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from ortesisWeb.views import *
 
 urlpatterns = [
-    path('', base_view, name='home'),
+    path('base/', base_view, name='home'),
+    path('', include('autenticacion.urls')),
     path("admin/", admin.site.urls),
-    path('login/', login_view, name='login'),
     path('calendar/', calendar_view, name='agenda/calendar'),
     path('calendar2/', calendar_view2, name='Calendario2'),
     path('base/', base_view, name='base'),
