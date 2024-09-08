@@ -101,3 +101,96 @@ body {
     font-size: 14px;
     color: #666;
 }
+
+/* Estilos del pop-up */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="time"], input[type="date"], select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo de los botones */
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #008CAB;
+    color: white;
+    cursor: pointer;
+    width: 48%;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cancelarBtn {
+    background-color: #FF0000;
+    color: white;
+}
+
+#cancelarBtn:hover {
+    background-color: #FF0000;
+}
+
+#confirmarBtn {
+    background-color: #006A60;
+    color: white;
+}
+
+#confirmarBtn:hover {
+    background-color: #006A60;
+}
+
+.popup-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    height: 700px;
+    position: relative;
+    z-index: 2;
+}
+.popup-content h2 {
+    text-align: center;
+    margin: 20;
+    font-size: 24px;
+}
+
+#fechaSeleccionada {
+    display: none; /* Oculta el span */
+}
+
+/* Boton de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px;
+}

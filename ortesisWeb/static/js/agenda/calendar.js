@@ -157,4 +157,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inicializar el calendario con la vista mensual
     updateCalendar();
+
+    // Abrir el pop-up al hacer clic en un día del calendario
+const dias = document.querySelectorAll(".dia");
+dias.forEach(dia => {
+    dia.addEventListener("click", function() {
+        const fecha = this.getAttribute("data-fecha");
+        document.getElementById("fechaSeleccionada").textContent = fecha;
+        document.getElementById("fecha").value = fecha; // Asignar fecha al campo de fecha
+        document.getElementById("popup").style.display = "block";
+    });
+});
+
+// Cerrar el pop-up al hacer clic en la "X"
+document.getElementById("closePopup").addEventListener("click", function() {
+    document.getElementById("popup").style.display = "none";
+});
+
+// Cerrar el pop-up si se hace clic fuera del contenido
+window.addEventListener("click", function(event) {
+    if (event.target == document.getElementById("popup")) {
+        document.getElementById("popup").style.display = "none";
+    }
+});
+// Cerrar el pop-up al hacer clic en el botón "Cancelar"
+document.getElementById("cancelarBtn").addEventListener("click", function() {
+    document.getElementById("popup").style.display = "none";
+});
+// Agendar la cita
+document.getElementById("formCita").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const titulo = document.getElementById("titulo").value;
+    const paciente = document.getElementById("paciente").value;
+    const hora = document.getElementById("hora").value;
+    const fecha = document.getElementById("fecha").value;
+
+    alert(`Cita agendada para ${paciente} el ${fecha} a las ${hora}`);
+
+    // Cerrar el pop-up después de agendar la cita
+    document.getElementById("popup").style.display = "none";
+});
 });
