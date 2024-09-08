@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #008CAB;
     font-family: Jost, sans-serif;
@@ -6,113 +12,156 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-size: 16px;
+}
+
+.logo-top-left {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+}
+
+.logo-top-right {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
 }
 
 .login-contenedor {
     background-color: rgba(206, 206, 206, 0.1);
-    padding: 40px;
+    padding: 2.5rem;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
     text-align: center;
-    width: 350px;
+    width: 75vw;
+    max-width: 34.375rem;
+    height: 75vh;
+    max-height: 43.75rem;
     justify-self: center;
     align-self: center;
+    border: white 1px solid;
+    backdrop-filter: blur(80px);
 }
 
 .login-contenedor h2 {
     color: white;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    border-bottom: white 1px solid;
+    padding-bottom: 1.25rem;
+    font-weight: 600;
 }
 
-.input-group {
-    margin-bottom: 15px;
+.inputs-contenedor{
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0;
+}
+.input-login {
+    margin-bottom: 1.5rem;
     position: relative;
 }
 
-.input-group input {
+.input-login input {
     width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-}
-
-.input-group input[type="text"], 
-.input-group input[type="password"] {
-    background-color: #D8E9EE;
-    padding-left: 40px;
-}
-
-.input-group img {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-}
-
-.input-group label {
+    padding: 0.625rem;
+    border-radius: 50px;
+    border: white 1px solid;
+    height: 3.75rem;
     color: white;
-    font-size: 12px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.input-login input[type="text"], 
+.input-login input[type="password"] {
+    background-color: transparent;
+    padding-left: 2.5rem;
+}
+
+.input-login input[type="text"]::placeholder,
+.input-login input[type="password"]::placeholder {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
     text-align: left;
 }
 
-.actions {
+.input-login input[type="text"]:focus,
+.input-login input[type="password"]:focus {
+    outline: none;
+    border: white 3px solid;
+}
+
+.input-login img {
+    position: absolute;
+    right: 1.5rem;
+    top: 0.625rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.acciones {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 0.825rem;
+    font-size: 1.25rem;
+    padding: 0 1.25rem 2rem 1.25rem;
 }
 
-.actions label {
+.acciones label {
     color: white;
 }
 
-.actions a {
+.acciones a {
     color: white;
     text-decoration: none;
-    font-size: 12px;
 }
 
 .btn {
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
-    border: none;
-    padding: 10px;
+    border: white 1px solid;
+    padding: 0.625rem;
     width: 100%;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: black;
+    border: white 1px solid;
+    padding: 0.625rem;
+    width: 100%;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 .iconos-inferiores {
     border-top: white 1px solid;
-    margin-top: 30px;
-    padding-top: 20px;
+    padding-top: 1.25rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 0.625rem;
     justify-content: center;
     align-items: center;
 }
 
 .iconos-inferiores img {
-    width: 80px;
-    height: 80px;
+    width: 7rem;
+    height: 7rem;
+    align-self: center;
+    justify-self: center;
 }
 
 .iconos-inferiores .ortesis3{
-    padding-bottom: 20px;
+    padding-bottom: 25px;
+    width: 8rem;
+    height: 8rem;
 }
 
-.logo-top-left {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.logo-top-right {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
