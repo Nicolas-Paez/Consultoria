@@ -109,6 +109,49 @@ body {
     padding: 0 1.25rem 2rem 1.25rem;
 }
 
+/* Ocultar el checkbox original */
+.custom-checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilo personalizado para el checkbox */
+.custom-checkbox-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: rgba(206, 206, 206, 0.1); /* Color de fondo del checkbox */
+    border: 1px solid white; /* Color del borde */
+    border-radius: 2px; /* Bordes redondeados */
+    margin-right: 8px; /* Espacio entre checkbox y texto */
+}
+
+.custom-checkbox::after {
+    content: "";
+    position: absolute;
+    right: 3px;
+    bottom: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0; /* Ocultar checkmark por defecto */
+}
+
+/* Mostrar el checkmark cuando está seleccionado */
+.custom-checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
+    opacity: 1;
+}
+
 .acciones label {
     color: white;
 }
