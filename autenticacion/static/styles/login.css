@@ -120,7 +120,6 @@ body {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-    font-size: 16px;
 }
 
 .custom-checkbox {
@@ -159,6 +158,11 @@ body {
 .acciones a {
     color: white;
     text-decoration: none;
+}
+
+.acciones a:hover {
+    color: white;
+    text-decoration: underline;
 }
 
 .btn {
