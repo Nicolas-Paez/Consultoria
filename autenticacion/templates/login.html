@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantalla de Inicio de Sesión</title>
+    <!--     Fuente JOST    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--     Estilos CSS    -->
+    <link rel="stylesheet" href="{% static "css/normalize.css" %}">
     <link rel="stylesheet" href="{% static "styles/login.css" %}">
 </head>
 <body>
@@ -16,30 +22,30 @@
     <!-- Contenedor de login -->
     <div class="login-contenedor">
         <h2>Bienvenido/a</h2>
-
-        <div class="input-group">
-            <img src="user_icon.png" alt="Usuario">
-            <input type="text" placeholder="Ingrese su RUT" required>
+        <div class="inputs-contenedor">
+            <div class="input-login">
+                <input type="text" placeholder="Ingrese su RUT" required>
+                <img src="{% static "icons/icono_usuario.svg" %}" alt="Usuario">
+            </div>
+    
+            <div class="input-login">
+                <input type="password" placeholder="Contraseña" required>
+                <img src="{% static "icons/icono_password.svg" %}" alt="Contraseña">
+            </div>
+    
+            <div class="acciones">
+                <label class="custom-checkbox-label">
+                    <input type="checkbox">
+                    <span class="custom-checkbox"></span> Recuérdame
+                </label>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button class="btn">Iniciar sesión</button>
         </div>
-
-        <div class="input-group">
-            <img src="password_icon.png" alt="Contraseña">
-            <input type="password" placeholder="Contraseña" required>
-        </div>
-
-        <div class="actions">
-            <label>
-                <input type="checkbox"> Recuérdame
-            </label>
-            <a href="#">¿Olvidaste tu contraseña?</a>
-        </div>
-
-        <button class="btn">Iniciar sesión</button>
-
-        <div class="footer-icons">
-            <img src="icon1.png" alt="Icono Ortesis">
-            <img src="icon2.png" alt="Icono Ortesis">
-            <img src="icon3.png" alt="Icono Ortesis">
+        <div class="iconos-inferiores">
+            <img src="{% static "icons/ortesis1.svg" %} " alt="Icono Ortesis">
+            <img src="{% static "icons/ortesis2.svg" %} " alt="Icono Ortesis">
+            <img src="{% static "icons/ortesis3.svg" %} " alt="Icono Ortesis" class="ortesis3">
         </div>
     </div>
 
