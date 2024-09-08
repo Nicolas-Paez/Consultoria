@@ -6,15 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario</title>
-    <link rel="stylesheet" href="{% static 'css/agenda/calendar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 </head>
 
 <body>
     <div class="calendar-container">
         <div class="calendar-header">
-            <button id="prev" class="nav-button">&#10094;</button>
-            <button id="today" class="nav-button">Hoy</button>
-            <button id="next" class="nav-button">&#10095;</button>
+            <div class="button-container">
+                <button id="prev" class="nav-button">&#10094;</button>
+                <button id="today" class="nav-button">Hoy</button>
+                <button id="next" class="nav-button">&#10095;</button>
+            </div>
             <div class="month-header">
                 <h2 id="month-year">Agosto 2024</h2>
             </div>
@@ -24,12 +26,9 @@
             </div>
         </div>
         <div id="calendar"></div>
-
-            
-
     </div>
 
-    <div id="popup" class="popup"></div>
+    <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
             <h2>Agendar Cita <span id="fechaSeleccionada"></span></h2>
@@ -39,13 +38,8 @@
 
                 <label for="paciente">Paciente:</label>
                 <select id="paciente" name="paciente" required>
-                <option value="1">Seleccione el paciente que citará</option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5"></option>
+                    <option value="">Seleccione el paciente que citará</option>
                 </select><br><br>
-
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required><br><br>
 
@@ -53,7 +47,7 @@
                 <input type="time" id="hora" name="hora" required><br><br>
 
                 <label for="sala">Sala:</label>
-                <input type="text" id="sala" name="sala"required><br><br>
+                <input type="text" id="sala" name="sala" required><br><br>
 
                 <label for="detalle">Detalle:</label>
                 <input type="text" id="detalle" name="detalle" required><br><br>
@@ -66,7 +60,7 @@
         </div>
     </div>
 
-    <script src="{% static 'js/agenda/calendar.js' %}"></script>
+    <script src="{% static 'js/calendar.js' %}"></script>
 </body>
 
 </html>

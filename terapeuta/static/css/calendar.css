@@ -1,30 +1,36 @@
 /* Estilos generales */
 body {
+    overflow: hidden;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f7f7f7;
 }
 
 /* Contenedor general del calendario */
 .calendar-container {
     background-color: white;
     border-radius: 5px;
-    padding: 20px;
-    width: 90%;
+    padding-top: 150px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     max-width: 1200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 130px;
+    
+}
 /* Encabezado del calendario */
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
 }
 .month-header {
     font-size: 1.5em;
@@ -32,26 +38,47 @@ body {
     flex-grow: 1;
 }
 
+.view-options {
+    display: flex;
+    justify-content: center;
+    width: 130px;
+}
 /* Botones de navegación */
 .nav-button {
-    background-color: #25a18e;
+    background-color: #008CAB;
     border: none;
     color: white;
-    padding: 10px;
+    padding: 12px;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 2px;
 }
 
 .nav-button:hover {
-    background-color: #1d907a;
+    background-color: #399fb6;
 }
 
 /* Estilos para la vista mensual */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    grid-template-rows: repeat(7, 55px);
+    gap: 2px;
     margin-top: 20px;
+}
+
+.day {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+.day:hover {
+    background-color: #82b2bd; 
+    border-color: #399fb6; 
 }
 
 .day-name, .day, .empty-day {
@@ -65,52 +92,69 @@ body {
 }
 
 .today {
-    background-color: #25a18e;
+    background-color: #008CAB;
     color: white;
 }
 
-/* Estilos para la vista semanal */
+/* Ajustes generales para la vista semanal */
+
+.week-view-container {
+    height: 450px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+}
+
 .week-view {
-    height: 50%;
     width: 100%;
     border-collapse: collapse;
 }
 
-.week-view th, .week-view td {
+.week-view th {
+    background-color: #008CAB;
+    color: white;
     padding: 10px;
     text-align: center;
+    font-size: 15px;
     border: 1px solid #ddd;
 }
 
-.week-view th {
-    background-color: #25a18e;
-    color: white;
-}
-
+/* Separación de los días */
 .week-view td {
-    height: 60px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    height: 40px;
+    transition: background-color 0.3s ease;
 }
 
+/* Efecto hover sobre las celdas de las horas */
 .week-view td:hover {
-    background-color: #d1e7dd;
+    background-color: #82b2bd; 
+    border-color: #399fb6;
 }
 
-.time-slot {
-    font-size: 14px;
-    color: #666;
+/* Resalta la columna de las horas */
+.week-view .time-slot {
+    background-color: #f7f7f7;
+    color: #333;
+    font-weight: bold;
+    font-size: 10px;
+    width: 80px;
 }
 
 /* Estilos del pop-up */
 .popup {
-    display: none;
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100; 
+    overflow-y: auto; 
 }
 form {
     display: flex;
@@ -172,9 +216,8 @@ button {
     padding: 20px;
     border-radius: 8px;
     width: 400px;
-    height: 700px;
     position: relative;
-    z-index: 2;
+    z-index: 101;
 }
 .popup-content h2 {
     text-align: center;
@@ -193,4 +236,15 @@ button {
     right: 20px;
     cursor: pointer;
     font-size: 24px;
+}
+
+/* Vista semanal adicional */
+.appointment {
+    background-color: #ffcccc;
+    color: #333;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
 }

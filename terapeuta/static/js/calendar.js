@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const calendar = document.getElementById('calendar');
     const weekViewButton = document.getElementById('week-view');
     const monthViewButton = document.getElementById('month-view');
-
+    const popup = document.getElementById('popup');
+    const closePopupButton = document.getElementById('closePopup');
+    
     let currentDate = new Date();
     let currentView = 'month';  // 'month' o 'week'
 
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let day = 1; day <= daysInMonth; day++) {
             const isToday = (day === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth());
             const className = isToday ? 'day today' : 'day';
-            calendarHTML += `<div class="${className}">${day}</div>`;
+            calendarHTML += `<div class="${className}" data-fecha="${day}/${month + 1}/${year}">${day}</div>`;
         }
 
         const totalCells = adjustedFirstDay + daysInMonth;
@@ -60,9 +62,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         calendarHTML += '</div>';
         calendar.innerHTML = calendarHTML;
+
+        // Añadir el evento de clic a cada día
+        document.querySelectorAll(".day").forEach(day => {
+            day.addEventListener("click", function () {
+                const selectedDate = this.getAttribute("data-fecha");
+                document.getElementById("fechaSeleccionada").textContent = selectedDate;
+                document.getElementById("fecha").value = selectedDate; // Asigna la fecha al campo de fecha del formulario
+                popup.style.display = "block"; // Muestra el popup
+            });
+        });
     }
 
-    // Vista semanal
+    // Vista semanal con scrollbar y eventos para abrir el popup
     function generateWeekView() {
         const startOfWeek = getStartOfWeek(currentDate);
         const endOfWeek = new Date(startOfWeek);
@@ -72,31 +84,46 @@ document.addEventListener('DOMContentLoaded', function () {
         monthYearLabel.textContent = weekRange;
 
         let calendarHTML = `
-            <table class="week-view">
-                <thead>
-                    <tr>
-                        <th>Hora</th>
-                        <th>Lunes</th>
-                        <th>Martes</th>
-                        <th>Miércoles</th>
-                        <th>Jueves</th>
-                        <th>Viernes</th>
-                        <th>Sábado</th>
-                        <th>Domingo</th>
-                    </tr>
-                </thead>
-                <tbody>`;
+            <div class="week-view-container">
+                <table class="week-view">
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
 
+        // Genera las horas de 8:00 AM a 8:00 PM
         for (let hour = 8; hour <= 20; hour++) {
-            calendarHTML += `<tr><td>${hour}:00</td>`;
+            calendarHTML += `<tr><td class="time-slot">${hour}:00</td>`;
             for (let day = 0; day < 7; day++) {
-                calendarHTML += `<td></td>`;
+                calendarHTML += `<td class="week-hour" data-hour="${hour}:00" data-day="${day}"></td>`;
             }
             calendarHTML += '</tr>';
         }
 
-        calendarHTML += '</tbody></table>';
+        calendarHTML += '</tbody></table></div>';
         calendar.innerHTML = calendarHTML;
+
+        // Añadir evento para que al hacer clic en una celda de hora se abra el popup
+        document.querySelectorAll(".week-hour").forEach(hourCell => {
+            hourCell.addEventListener("click", function () {
+                const selectedHour = this.getAttribute("data-hour");
+                const selectedDay = this.getAttribute("data-day");
+
+                // Asigna la fecha y la hora seleccionadas al popup
+                document.getElementById("fechaSeleccionada").textContent = `${selectedHour}, Día ${parseInt(selectedDay) + 1}`;
+                document.getElementById("hora").value = selectedHour; // Asigna la hora al campo del formulario
+                popup.style.display = "block"; // Muestra el popup
+            });
+        });
     }
 
     function getStartOfWeek(date) {
@@ -155,46 +182,18 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCalendar();
     });
 
+    // Cerrar el pop-up al hacer clic en el botón de cerrar
+    closePopupButton.addEventListener("click", function () {
+        popup.style.display = "none";
+    });
+
+    // Cerrar el pop-up si se hace clic fuera del contenido
+    window.addEventListener("click", function (event) {
+        if (event.target === popup) {
+            popup.style.display = "none";
+        }
+    });
+
     // Inicializar el calendario con la vista mensual
     updateCalendar();
-
-    // Abrir el pop-up al hacer clic en un día del calendario
-const dias = document.querySelectorAll(".dia");
-dias.forEach(dia => {
-    dia.addEventListener("click", function() {
-        const fecha = this.getAttribute("data-fecha");
-        document.getElementById("fechaSeleccionada").textContent = fecha;
-        document.getElementById("fecha").value = fecha; // Asignar fecha al campo de fecha
-        document.getElementById("popup").style.display = "block";
-    });
-});
-
-// Cerrar el pop-up al hacer clic en la "X"
-document.getElementById("closePopup").addEventListener("click", function() {
-    document.getElementById("popup").style.display = "none";
-});
-
-// Cerrar el pop-up si se hace clic fuera del contenido
-window.addEventListener("click", function(event) {
-    if (event.target == document.getElementById("popup")) {
-        document.getElementById("popup").style.display = "none";
-    }
-});
-// Cerrar el pop-up al hacer clic en el botón "Cancelar"
-document.getElementById("cancelarBtn").addEventListener("click", function() {
-    document.getElementById("popup").style.display = "none";
-});
-// Agendar la cita
-document.getElementById("formCita").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const titulo = document.getElementById("titulo").value;
-    const paciente = document.getElementById("paciente").value;
-    const hora = document.getElementById("hora").value;
-    const fecha = document.getElementById("fecha").value;
-
-    alert(`Cita agendada para ${paciente} el ${fecha} a las ${hora}`);
-
-    // Cerrar el pop-up después de agendar la cita
-    document.getElementById("popup").style.display = "none";
-});
 });
