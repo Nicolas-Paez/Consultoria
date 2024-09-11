@@ -1,0 +1,13 @@
+.terapeutas-lista {
+    padding: 20px;
+}
+.busqueda {
+    margin-bottom: 20px;
+}
+.terapeuta-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

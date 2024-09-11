@@ -10,4 +10,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('perfil/', perfil_view, name='perfil'),
     path('pacientes/', pacientes_view, name='pacientes'),
+    path('recepcionista/', include('recepcionista.urls')),
 ]
