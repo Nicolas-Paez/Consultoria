@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="calendar-container">
         <div class="calendar-header">
             <div class="button-container">
@@ -28,11 +29,11 @@
         <div id="calendar"></div>
     </div>
 
-    <div id="popup" class="popup">
+    <div id="popup_agendar" class="popup">
         <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
             <h2>Agendar Cita <span id="fechaSeleccionada"></span></h2>
-            <form id="formCita" method="POST" action="{% url 'agendar_cita' %}">
+            <form id="formCita" method="POST" action="{% url 'agendar_cita' %}" on submit = "return mostrarConfirmacion();">
                 {% csrf_token %}
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" required><br><br>
@@ -58,6 +59,15 @@
                     <button type="submit" id="confirmarBtn">Confirmar</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id="popup_confirmar" class="popup">
+        <div class="popup-content">
+            <h2>Confirmar Cita</h2>
+            <p>¿Estás seguro de que deseas guardar esta cita?</p>
+            <button id="confirmar" onclick="confirmar()">Confirmar</button>
+            <button id="cancelar" onclick="cancelar()">Cancelar</button>
         </div>
     </div>
 
