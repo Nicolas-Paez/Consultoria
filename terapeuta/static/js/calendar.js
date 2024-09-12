@@ -6,10 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const calendar = document.getElementById('calendar');
     const weekViewButton = document.getElementById('week-view');
     const monthViewButton = document.getElementById('month-view');
-    const popup_agendar = document.getElementById('popup_agendar');
+    const popup = document.getElementById('popup');
     const closePopupButton = document.getElementById('closePopup');
-    const formCita = document.getElementById('formCita');
-    const popupConfirmar = document.getElementById('popup_confirmar');
     
     let currentDate = new Date();
     let currentView = 'month';  // 'month' o 'week'
@@ -21,15 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             generateWeekView();
         }
-    }
-    
-
-    formCita.addEventListener('submit', mostrarConfirmacion());
-
-    function mostrarConfirmacion() {
-        // Mostrar el popup de confirmación (popup_confirmar)
-        popupConfirmar.style.display = 'none';
-        return false; // Detener el envío del formulario temporalmente
     }
 
     // Vista mensual
@@ -80,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const selectedDate = this.getAttribute("data-fecha");
                 document.getElementById("fechaSeleccionada").textContent = selectedDate;
                 document.getElementById("fecha").value = selectedDate; // Asigna la fecha al campo de fecha del formulario
-                popup_agendar.style.display = "block"; // Muestra el popup
+                popup.style.display = "block"; // Muestra el popup
             });
         });
     }
@@ -132,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Asigna la fecha y la hora seleccionadas al popup
                 document.getElementById("fechaSeleccionada").textContent = `${selectedHour}, Día ${parseInt(selectedDay) + 1}`;
                 document.getElementById("hora").value = selectedHour; // Asigna la hora al campo del formulario
-                popup_agendar.style.display = "block"; // Muestra el popup
+                popup.style.display = "block"; // Muestra el popup
             });
         });
     }
@@ -195,13 +184,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Cerrar el pop-up al hacer clic en el botón de cerrar
     closePopupButton.addEventListener("click", function () {
-        popup_agendar.style.display = "none";
+        popup.style.display = "none";
     });
 
     // Cerrar el pop-up si se hace clic fuera del contenido
     window.addEventListener("click", function (event) {
         if (event.target === popup) {
-            popup_agendar.style.display = "none";
+            popup.style.display = "none";
         }
     });
 
