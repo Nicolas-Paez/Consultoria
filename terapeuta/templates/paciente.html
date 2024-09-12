@@ -3,7 +3,19 @@
 {% block title %}Pacientes{% endblock %}
 
 {% block content %}
-<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
-    <h1 style="font-size: 48px; font-weight: bold;">Pacientes</h1>
+<div class="container">
+    <header class="header">
+        <h1>Pacientes</h1>
+        <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar">
+    </header>
+    <div class="li-container">
+        <ul>
+            <!-- Lista de pacientes -->
+        </ul>
+    </div>
+    <div class="empty">
+        <p>No hay pacientes ingresados</p>
+    </div>
 </div>
+<script src="paciente.js"></script>
 {% endblock %}
