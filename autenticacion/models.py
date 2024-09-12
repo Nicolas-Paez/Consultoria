@@ -9,4 +9,4 @@ class Usuario(AbstractUser):
     
     rol = models.CharField(max_length=20, choices=Roles.choices, default=Roles.RECEPCIONISTA)
     rut = models.CharField(max_length=12, unique=True)
-    email = models.EmailField(unique=True)
+    cotrasena = models.CharField(max_length=100)
