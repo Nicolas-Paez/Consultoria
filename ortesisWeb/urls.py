@@ -6,6 +6,7 @@ from ortesisWeb.views import *
 urlpatterns = [
     path('base/', base_view, name='home'),
     path('', include('autenticacion.urls')),
+    path('', include('administrador.urls')),
     path('', include('terapeuta.urls')),
     path("admin/", admin.site.urls),
     path('perfil/', perfil_view, name='perfil'),
