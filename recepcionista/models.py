@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Recepcionista(models.Model):
+    usuario = models.ForeignKey('autenticacion.Usuario', on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=200)
     fecha_ingreso = models.DateField()
