@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="terapeutas-lista">
+    <h2>Terapeutas Activos</h2>
+    <form method="get" action="{% url 'listar_terapeutas_activos' %}">
+        <div class="busqueda">
+            <input type="text" name="q" placeholder="Buscar por Nombre o RUT" value="{{ request.GET.q }}">
+            <button type="submit">Filtrar</button>
+        </div>
+    </form>
+    <div class="lista">
+        {% for terapeuta in terapeuta %}
+        <div class="terapeuta-card">
+            <p><strong>{{ terapeuta.nombre }}</strong> | {{ terapeuta.rut }}</p>
+            <p>Especialidad: {{ terapeuta.especialidad }}</p>
+            <p>Fecha de Ingreso: {{ terapeuta.fecha_ingreso }}</p>
+        </div>
+        {% empty %}
+        <p>No se encontraron terapeutas activos.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
