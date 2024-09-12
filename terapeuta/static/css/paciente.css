@@ -19,6 +19,13 @@ body {
     color: black;
 }
 
+.header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: black;
+    margin-inline-end: 100px;
+}
+
 /* Estilos para la barra de búsqueda */
 .search-bar {
     padding: 8px;
