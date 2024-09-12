@@ -32,12 +32,13 @@
         <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
             <h2>Agendar Cita <span id="fechaSeleccionada"></span></h2>
-            <form id="formCita">
+            <form id="formCita" method="POST" action="{% url 'agendar_cita' %}">
+                {% csrf_token %}
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" required><br><br>
 
                 <label for="paciente">Paciente:</label>
-                <select id="paciente" name="paciente" required>
+                <select id="paciente" name="paciente">
                     <option value="">Seleccione el paciente que citará</option>
                 </select><br><br>
                 <label for="fecha">Fecha:</label>
