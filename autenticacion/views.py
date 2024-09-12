@@ -12,11 +12,13 @@ class Login(FormView):
     success_url = reverse_lazy('redireccionamiento')
 
     def form_valid(self, form):
-        usuario = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+        rut = form.cleaned_data['rut']
+        password = form.cleaned_data['password']
+        usuario = authenticate(rut=rut, password=password)
         if usuario is not None:
             login(self.request, usuario)
             return redirect(self.get_success_url())
-        return super().form_valid(form)
+        return super().form_invalid(form)
 
 class Redireccionamiento(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
