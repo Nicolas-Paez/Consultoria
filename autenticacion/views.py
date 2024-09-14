@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from .forms import RutLoginForm
 
-def login(request):
+def login_usuario(request):
     if request.method == 'POST':
         form = RutLoginForm(request.POST)
         if form.is_valid():
@@ -47,7 +47,7 @@ def redireccionamiento_segun_rol(user, role):
         return redirect('listar_terapeutas_activos')
     return redirect('login')  # Redirige en caso de no encontrar un rol
 
-def logout(request):
+def logout_usuario(request):
     logout(request)
     return redirect('login')
 
