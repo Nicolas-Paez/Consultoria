@@ -137,3 +137,9 @@ EMAIL_POST = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER ='tu-email@gmail.com'
 EMAIL_HOST_PASSWORD ='tu-contraseña-o-contraseña-de-aplicación'
+
+# Configuración de autenticación
+AUTHENTICATION_BACKENDS = [
+    'autenticacion.backends.RutAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Mantén el backend predeterminado
+]
