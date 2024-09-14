@@ -51,3 +51,6 @@ def redireccionamiento_segun_rol(user, role):
 def logout(request):
     logout(request)
     return redirect('login')
+
+def acceso_denegado(request):
+    return render(request, 'acceso_denegado.html', {'message': 'No tienes permisos para acceder a esta página'})
