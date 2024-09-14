@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -46,3 +47,7 @@ def redireccionamiento_segun_rol(user, role):
     elif role.name == 'Recepcionista':
         return redirect('listar_terapeutas_activos')
     return redirect('login')  # Redirige en caso de no encontrar un rol
+
+def logout(request):
+    logout(request)
+    return redirect('login')
