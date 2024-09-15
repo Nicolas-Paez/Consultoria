@@ -6,6 +6,15 @@ from django.contrib.auth.models import Group
 from .forms import RutLoginForm
 
 def login_usuario(request):
+    # Verificar si el usuario ya está autenticado
+    if request.user.is_authenticated:
+        grupos = request.user.groups.all()
+        
+        if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
+            return redireccionamiento_segun_rol(request.user, grupos.first())
+        elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
+            return redirect('elegir_rol')
+        
     if request.method == 'POST':
         form = RutLoginForm(request.POST)
         if form.is_valid():
