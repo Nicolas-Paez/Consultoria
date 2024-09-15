@@ -11,17 +11,25 @@ def login_usuario(request):
         if form.is_valid():
             rut = form.cleaned_data['rut']
             password = form.cleaned_data['password']
+            remember_me = form.cleaned_data.get('remember_me', False)
             user = authenticate(request, rut=rut, password=password)
             
             if user is not None:
                 login(request, user)
-                # Verificar roles del usuario
-                roles = user.profile.roles.all()
+
+                # Configurar la duración de la sesión
+                if remember_me is True:
+                    request.session.set_expiry(1209600)  # 14 días
+                else:
+                    request.session.set_expiry(0)  # Expira al cerrar el navegador
+
+                # Verificar roles del usuario a través de grupos
+                grupos = user.groups.all()
                 
-                if roles.count() == 1:  # Si el usuario tiene un solo rol
-                    return redireccionamiento_segun_rol(user, roles.first())
-                elif roles.count() > 1:  # Si tiene múltiples roles, mostrar opciones
-                    return render(request, 'elegir_rol.html', {'roles': roles})
+                if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
+                    return redireccionamiento_segun_rol(user, grupos.first())
+                elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
+                    return render(request, 'elegir_rol.html', {'roles': grupos})
             else:
                 return render(request, 'login.html', {'form': form, 'error': 'Credenciales incorrectas'})
     else:
@@ -30,12 +38,20 @@ def login_usuario(request):
 
 @login_required
 def elegir_rol(request):
-    if request.method == 'POST':
-        role = request.POST.get('role')
-        group = Group.objects.get(name=role)
-        return redireccionamiento_segun_rol(request.user, group)
+    grupos = request.user.groups.all()
+    if not grupos.exists():
+        return redirect('acceso_denegado')  # Si el usuario no tiene roles, redirigir a acceso denegado
     
-    return render(request, 'elegir_rol.html', {'roles': request.user.profile.roles.all()})
+    if 'role' in request.GET:
+        role_name = request.GET['role']
+        try:
+            group = Group.objects.get(name=role_name)
+            if group in grupos:
+                return redireccionamiento_segun_rol(request.user, group)
+        except Group.DoesNotExist:
+            return redirect('acceso_denegado')  # Si el grupo no existe, redirigir a acceso denegado
+
+    return render(request, 'elegir_rol.html', {'roles': grupos})
 
 def redireccionamiento_segun_rol(user, role):
     """Redirige según el rol"""

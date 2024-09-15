@@ -143,3 +143,7 @@ AUTHENTICATION_BACKENDS = [
     'autenticacion.backends.RutAuthBackend',
     'django.contrib.auth.backends.ModelBackend',  # Mantén el backend predeterminado
 ]
+
+# Configuración para la duración de la sesión
+SESSION_COOKIE_AGE = 1209600  # 14 días en segundos
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
