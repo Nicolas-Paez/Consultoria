@@ -63,6 +63,32 @@ body {
     font-weight: 600;
 }
 
+/* Contenedor para el mensaje de error */
+.mensaje-error {
+    background-color: #f8d7da;  /* Rojo claro para indicar un error */
+    color: #721c24;             /* Color del texto más oscuro */
+    border: 0.0625em solid #f5c6cb;  /* Borde de color rojo suave */
+    border-radius: 0.25em;         /* Bordes redondeados */
+    padding: 0.625em;              /* Espacio alrededor del texto */
+    font-size: 0.875em;            /* Tamaño de letra */
+    font-weight: 500;           /* Texto ligeramente en negrita */
+    text-align: center;         /* Centrar el texto */
+}
+
+/* Opcional: animación de entrada para el mensaje de error */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.mensaje-error {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 .inputs-contenedor{
     justify-content: center;
     align-items: center;

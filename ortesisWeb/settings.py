@@ -84,7 +84,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "ortesisweb",
         "USER": "postgres",
-        "PASSWORD": "Falaciado1#.",
+        "PASSWORD": "1234",
         "PORT": "5432",
     }
 }
@@ -137,3 +137,13 @@ EMAIL_POST = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER ='tu-email@gmail.com'
 EMAIL_HOST_PASSWORD ='tu-contraseña-o-contraseña-de-aplicación'
+
+# Configuración de autenticación
+AUTHENTICATION_BACKENDS = [
+    'autenticacion.backends.RutAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Mantén el backend predeterminado
+]
+
+# Configuración para la duración de la sesión
+SESSION_COOKIE_AGE = 1209600  # 14 días en segundos
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
