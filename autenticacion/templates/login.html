@@ -18,6 +18,13 @@
     <div class="login-contenedor">
         <h2>Bienvenido/a</h2>
 
+        <!-- Mensaje de error -->
+        {% if error %}
+            <div class="mensaje-error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
         <!-- Formulario de inicio de sesión -->
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
