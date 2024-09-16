@@ -14,5 +14,5 @@ h3 {
 .inputs-contenedor{
     justify-content: center;
     align-items: center;
-    margin: 1em 0; !important;
+    margin: 1em 0; /* important */
 }
