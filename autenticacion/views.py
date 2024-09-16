@@ -2,7 +2,7 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from .forms import RutLoginForm
 
 def login_usuario(request):
@@ -24,29 +24,31 @@ def login_usuario(request):
             user = authenticate(request, rut=rut, password=password)
             
             if user is not None:
-                if user == 'inactive':
+                # Usuario autenticado correctamente
+                login(request, user)
+
+                # Configuración de la duración de la sesión
+                if remember_me is True:
+                    request.session.set_expiry(1209600)  # Duración de 14 días
+                else:
+                    request.session.set_expiry(0)  # Expira al cerrar el navegador
+
+                # Verificar roles del usuario a través de grupos
+                grupos = user.groups.all()
+                
+                if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
+                    return redireccionamiento_segun_rol(user, grupos.first())
+                elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
+                    return render(request, 'elegir_rol.html', {'roles': grupos})
+            else:
+                # Las credenciales son incorrectas o la cuenta está desactivada
+                user = User.objects.filter(profile__rut=rut).first() # Buscar usuario por RUT
+                if user and not user.is_active: # Si el usuario existe y está desactivado
                     # Usuario está desactivado
                     return render(request, 'login.html', {'form': form, 'error': 'Su cuenta está desactivada. Contacte al administrador.'})
                 else:
-                    # Usuario autenticado correctamente
-                    login(request, user)
-
-                    # Configuración de la duración de la sesión
-                    if remember_me is True:
-                        request.session.set_expiry(1209600)  # Duración de 14 días
-                    else:
-                        request.session.set_expiry(0)  # Expira al cerrar el navegador
-
-                    # Verificar roles del usuario a través de grupos
-                    grupos = user.groups.all()
-                    
-                    if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
-                        return redireccionamiento_segun_rol(user, grupos.first())
-                    elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
-                        return render(request, 'elegir_rol.html', {'roles': grupos})
-            else:
-                # Credenciales incorrectas
-                return render(request, 'login.html', {'form': form, 'error': 'Credenciales incorrectas'})
+                    # Credenciales incorrectas
+                    return render(request, 'login.html', {'form': form, 'error': 'Credenciales incorrectas'})
     else:
         form = RutLoginForm()
     return render(request, 'login.html', {'form': form})

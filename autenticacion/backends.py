@@ -6,7 +6,7 @@ class RutAuthBackend(ModelBackend):
         try:
             user = User.objects.get(profile__rut=rut)  # Busca el usuario por el RUT
             if not user.is_active:
-                return 'inactive'  # Usuario está desactivado
+                return None  # Usuario está desactivado
             if user.check_password(password):  # Verifica la contraseña
                 return user
         except User.DoesNotExist:
