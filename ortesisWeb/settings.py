@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "autenticacion",
     "terapeuta",
     "recepcionista",
+    "administrador",
 ]
 
 MIDDLEWARE = [

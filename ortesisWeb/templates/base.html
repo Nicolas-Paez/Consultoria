@@ -8,6 +8,7 @@
     <title>{% block title %}OrtesisWeb{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base/menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recepcionista.css' %}">
     <link rel="stylesheet" href="{% static 'css/paciente.css' %}">
     {% block extra_head %}
     {% endblock %}
@@ -83,6 +84,10 @@
             // Agregar la clase 'active' al enlace clicado
             event.target.classList.add('active');
           });
+        });
+        document.querySelector('.filtro-btn').addEventListener('click', function() {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.classList.toggle('active');
         });
       </script>
 </body>
