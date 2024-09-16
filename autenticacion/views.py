@@ -24,22 +24,28 @@ def login_usuario(request):
             user = authenticate(request, rut=rut, password=password)
             
             if user is not None:
-                login(request, user)
-
-                # Configurar la duración de la sesión
-                if remember_me is True:
-                    request.session.set_expiry(1209600)  # 14 días
+                if user == 'inactive':
+                    # Usuario está desactivado
+                    return render(request, 'login.html', {'form': form, 'error': 'Su cuenta está desactivada. Contacte al administrador.'})
                 else:
-                    request.session.set_expiry(0)  # Expira al cerrar el navegador
+                    # Usuario autenticado correctamente
+                    login(request, user)
 
-                # Verificar roles del usuario a través de grupos
-                grupos = user.groups.all()
-                
-                if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
-                    return redireccionamiento_segun_rol(user, grupos.first())
-                elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
-                    return render(request, 'elegir_rol.html', {'roles': grupos})
+                    # Configuración de la duración de la sesión
+                    if remember_me is True:
+                        request.session.set_expiry(1209600)  # Duración de 14 días
+                    else:
+                        request.session.set_expiry(0)  # Expira al cerrar el navegador
+
+                    # Verificar roles del usuario a través de grupos
+                    grupos = user.groups.all()
+                    
+                    if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
+                        return redireccionamiento_segun_rol(user, grupos.first())
+                    elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
+                        return render(request, 'elegir_rol.html', {'roles': grupos})
             else:
+                # Credenciales incorrectas
                 return render(request, 'login.html', {'form': form, 'error': 'Credenciales incorrectas'})
     else:
         form = RutLoginForm()
