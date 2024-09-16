@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Confirmación</title>
+    <link rel="stylesheet" href="ConfirmPopup.css">
+</head>
+<body>
+    <form id="miFormulario">
+        <!--formulario-->
+        <button type="button" id="guardarBtn">Guardar</button>
+    </form>
+
+    <!--Popup de confirmacion-->
+    <div id="popupConfirmacion" class="popup">
+        <div class="popup-content">
+            <p class = "tituloPopup">¿Confirmar cambios?</p>
+            <p class = "mensajePopup">Se desvinculará el paciente 
+                asignado al terapeuta, deberá reasignar un nuevo terapeuta.</p>
+            <button id="cancelarBtn">Cancelar</button>
+            <button id="confirmarBtn">Confirmar Cambios</button>
+        </div>
+    </div>
+
+    <script src="ConfirmPopup.js"></script>
+</body>
+</html>
