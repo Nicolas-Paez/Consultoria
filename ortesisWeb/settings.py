@@ -84,7 +84,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "ortesisweb",
         "USER": "postgres",
-        "PASSWORD": "",
+        "PASSWORD": "Falaciado1#.",
         "PORT": "5432",
     }
 }
