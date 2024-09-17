@@ -89,6 +89,37 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Contenedor de la lista de errores */
+.errorlist {
+    list-style-type: none; /* Eliminar el estilo de lista predeterminado */
+    padding: 0; /* Eliminar el relleno del contenedor */
+    margin: 0; /* Eliminar márgenes */
+}
+
+/* Estilos para los mensajes de error dentro de cada li */
+.errorlist li {
+    background-color: #f8d7da;  /* Rojo claro para indicar un error */
+    color: #721c24;             /* Color del texto más oscuro */
+    border: 0.0625em solid #f5c6cb;  /* Borde de color rojo suave */
+    border-radius: 0.25em;       /* Bordes redondeados */
+    padding: 0.625em;            /* Espacio alrededor del texto */
+    font-size: 0.875em;          /* Tamaño de letra */
+    font-weight: 500;            /* Texto ligeramente en negrita */
+    text-align: center;          /* Centrar el texto */
+    margin-top: 1.5em;      /* Espacio entre mensajes de error */
+    animation: fadeIn 0.5s ease-in-out; /* Aplicar la animación */
+}
+
+/* Animación de entrada para el mensaje de error */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .inputs-contenedor{
     justify-content: center;
     align-items: center;

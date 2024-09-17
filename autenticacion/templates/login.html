@@ -38,9 +38,11 @@
             <div class="inputs-contenedor">
                 <!-- Input para el RUT -->
                 <div class="input-login">
-                    {{ form.rut.errors }}
                     <input type="text" name="rut" id="id_rut" placeholder="Ingrese su RUT" required>
                     <img src="{% static 'icons/icono_usuario.svg' %}" alt="Usuario">
+                    <div class="mensaje-error-input">
+                        {{ form.rut.errors }}
+                    </div>
                 </div>
 
                 <!-- Input para la contraseña -->
