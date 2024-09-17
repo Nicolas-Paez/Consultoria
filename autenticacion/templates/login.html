@@ -39,7 +39,7 @@
                 <!-- Input para el RUT -->
                 <div class="input-login">
                     {{ form.rut.errors }}
-                    <input type="text" name="rut" placeholder="Ingrese su RUT" required>
+                    <input type="text" name="rut" id="id_rut" placeholder="Ingrese su RUT" required>
                     <img src="{% static 'icons/icono_usuario.svg' %}" alt="Usuario">
                 </div>
 
@@ -70,6 +70,8 @@
             <img src="{% static 'icons/ortesis3.svg' %}" alt="Icono Ortesis" class="ortesis3">
         </div>
     </div>
-
 </body>
+
+<script src="{% static 'scripts/formatear-rut.js' %}"></script>
+
 </html>
