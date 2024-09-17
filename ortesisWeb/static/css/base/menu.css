@@ -16,6 +16,19 @@ body {
     position: relative;
     z-index: 1
 }
+
+.sidebar_recepcionista {
+    width: 250px;
+    background-color: #373D58;
+    box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1
+}
+
 .divider {
     border: none;
     border-top: 1px solid rgb(255, 255, 255);
