@@ -5,7 +5,7 @@ body {
     height: 100vh;
 }
 
-.sidebar {
+.sidebar_terapeuta {
     width: 250px;
     background-color: #008CAB;
     box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
