@@ -1,11 +1,11 @@
-{% extends 'base_recpcionista.html' %}
+{% extends 'base_recepcionista.html' %}
 {% load static %}
 
 {% block content %}
 <div class="terapeutas-container">
     <div class="header">
         <h2>Terapeutas</h2>
-        <form method="get" action="{% url 'listar_terapeutas_activos' %}" class="busqueda-form">
+        <form method="get" action="{% url 'recepcionista_terapeutas_activos' %}" class="busqueda-form">
             <div class="busqueda-input">
                 <input type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
             </div>

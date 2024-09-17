@@ -3,7 +3,7 @@ from terapeuta.models import Terapeuta
 from autenticacion.decorators import role_required
 
 @role_required('Recepcionista')
-def listar_terapeutas_activos(request):
+def recepcionista_terapeutas_activos(request):
     query = request.GET.get('q', '')
     if query:
         terapeuta = Terapeuta.objects.filter(
@@ -16,4 +16,9 @@ def listar_terapeutas_activos(request):
     else:
         terapeuta = Terapeuta.objects.filter(estado='Activo')
 
-    return render(request, 'terapeuta.html', {'terapeuta': terapeuta})
+    return render(request, 'recepcionista_terapeutas_activos.html', {'terapeuta': terapeuta})
+
+@role_required('Recepcionista')
+def recepcionista_pacientes_activos(request):
+    return render(request, 'recepcionista_pacientes_activos.html')
+    

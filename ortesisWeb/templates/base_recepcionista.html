@@ -28,15 +28,15 @@
             <hr class="divider">
             <ul class="menu">
                 <li>
-                    <a href="{% url 'pacientes' %}" class="{% if request.path == 'pacientes/' %}active{% endif %}">
+                    <a href="{% url 'recepcionista_pacientes_activos' %}" class="{% if request.path == 'recepcionista_pacientes_activos/' %}active{% endif %}">
                         <img src="{% static 'icons/list-users.svg' %}" alt="Listado de pacientes">
                         Pacientes
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'agenda' %}" class="{% if request.path == 'agenda/' %}active{% endif %}">
-                        <img src="{% static 'icons/calendar.svg' %}" alt="Agenda terapeuta">
-                        Agenda
+                    <a href="{% url 'recepcionista_terapeutas_activos' %}" class="{% if request.path == 'recepcionista_terapeutas_activos/' %}active{% endif %}">
+                        <img src="{% static 'icons/calendar.svg' %}" alt="Listado de Terapeutas">
+                        Terapeutas
                     </a>
                 </li>
             </ul>
@@ -50,14 +50,6 @@
         </div>
 
         <div class="main-content">
-            <header class="header">
-                <div class="notification-icon">
-                    <a href="#">
-                        <img src="{% static 'icons/notification.svg' %}" alt="notificacion">
-                    </a>
-                </div>
-            </header>
-
             <main class="content">
                 {% block content %}
                 {% endblock %}
