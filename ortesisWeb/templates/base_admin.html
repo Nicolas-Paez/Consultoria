@@ -1,55 +1,52 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}OrtesisWeb{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base/menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/recepcionista.css' %}">
-    {% block extra_head %}
-    {% endblock %}
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="sidebar">
+        <div class="sidebar_administrador">
             <div class="logos">
-                <img src="{% static 'icons/hospital.svg' %}" alt="Logo logo_hospital">
-                <img src="{% static 'icons/ua.svg' %}" alt="Logo UA">
+                <img src="{% static 'images/logo_hospital_blanco.svg' %}" alt="Logo Hospital">
+                <img src="{% static 'images/logo_universidad_blanco.svg' %}" alt="Logo Universidad">
             </div>
             <hr class="divider">
             <div class="profile">
-                <img src="{% static 'icons/therapist.svg' %}" alt="Icono terapeuta">
-                <p>DR. VICENTE SALINAS</p>
+                <img src="{% static 'icons/shield_person.svg' %}" alt="Icono admin">
+                <p>ADMINISTRACIÓN</p>
             </div>
             <hr class="divider">
             <ul class="menu">
                 <li>
-                    <a href="{% url 'perfil' %}" class="{% if request.path == 'perfil/' %}active{% endif %}">
-                        <img src="{% static 'icons/user-profile.svg' %}" alt="Perfil terapeuta">
-                        Perfil
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'pacientes' %}" class="{% if request.path == 'pacientes/' %}active{% endif %}">
-                        <img src="{% static 'icons/list-users.svg' %}" alt="Listado de pacientes">
+                    <a href="{% url 'admin_pacientes' %}" class="{% if request.path == '/pacientes/' %}active{% endif %}">
+                        <img src="{% static 'icons/list-users.svg' %}" alt="Listado Pacientes">
                         Pacientes
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'agenda' %}" class="{% if request.path == 'agenda/' %}active{% endif %}">
-                        <img src="{% static 'icons/calendar.svg' %}" alt="Agenda terapeuta">
-                        Agenda
+                    <a href="{% url 'admin_terapeutas' %}" class="{% if request.path == '/terapeutas/' %}active{% endif %}">
+                        <img src="{% static 'icons/therapist.svg' %}" alt="Listado Terapeutas">
+                        Terapeutas
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_recepcionistas' %}" class="{% if request.path == '/recepcionistas/' %}active{% endif %}">
+                        <img src="{% static 'icons/Vector.svg' %}" alt="Listado Recepcionistas">
+                        Recepcionistas
                     </a>
                 </li>
             </ul>
             <hr class="divider">
             <div class="logout">
-                <a href="{% url 'logout' %}">
-                    <img src="{% static 'icons/log-out.svg' %}" alt="Cerrar sesión">
+                <a href="{% url 'login' %}" class="{% if request.path == '/login/' %}active{% endif %}">
+                    <img src="{% static 'icons/log-out.svg' %}" alt="Cerrar Sesión">
                     Salir
                 </a>
             </div>
@@ -59,7 +56,7 @@
             <header class="header">
                 <div class="notification-icon">
                     <a href="#">
-                        <img src="{% static 'icons/notification.svg' %}" alt="notificacion">
+                        <img src="{% static 'icons/notification.svg' %}" alt="Notificación">
                     </a>
                 </div>
             </header>
@@ -70,25 +67,6 @@
             </main>
         </div>
     </div>
-    {% block extra_js %}
-    {% endblock %}
-    <script>
-        const menuLinks = document.querySelectorAll('.menu a');
-      
-        menuLinks.forEach(link => {
-          link.addEventListener('click', (event) => {
-            // Remover la clase 'active' de todos los enlaces
-            menuLinks.forEach(link => link.classList.remove('active'));
-      
-            // Agregar la clase 'active' al enlace clicado
-            event.target.classList.add('active');
-          });
-        });
-        document.querySelector('.filtro-btn').addEventListener('click', function() {
-            const dropdown = document.querySelector('.dropdown');
-            dropdown.classList.toggle('active');
-        });
-      </script>
+    {% block extra_js %}{% endblock %}
 </body>
-
 </html>

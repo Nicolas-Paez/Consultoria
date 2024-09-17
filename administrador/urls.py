@@ -3,4 +3,9 @@ from . import views
 
 urlpatterns = [
     path('administrador/gestion_terapeutas/', views.gestion_terapeutas, name='gestion_terapeutas'),
+    path('base_admin/', views.base_admin_view, name='base_admin'),
+    path('admin_pacientes/', views.admin_pacientes, name='admin_pacientes'),
+    path('admin_recepcionistas/', views.admin_recepcionistas, name='admin_recepcionistas'),
+    path('admin_terapeutas/',views.admin_terapeutas, name='admin_terapeutas'),
+    path('logout/', views.logout_view, name='logout'),  # Para cerrar sesión
 ]
