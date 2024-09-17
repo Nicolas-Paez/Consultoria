@@ -84,7 +84,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "ortesisweb",
         "USER": "postgres",
-        "PASSWORD": "1234",
+        "PASSWORD": "692001",
         "PORT": "5432",
     }
 }
@@ -135,8 +135,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_POST = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER ='tu-email@gmail.com'
-EMAIL_HOST_PASSWORD ='tu-contraseña-o-contraseña-de-aplicación'
+EMAIL_HOST_USER ='vicente.menaalbornoz@gmail.com'
+EMAIL_HOST_PASSWORD ='wpfp vmlv mcam wjjp'
 
 # Configuración de autenticación
 AUTHENTICATION_BACKENDS = [
