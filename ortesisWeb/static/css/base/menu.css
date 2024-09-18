@@ -216,7 +216,7 @@ body {
 
 /* Estado Activo General */
 .menu li a.active {
-    background-color: rgb(25, 100, 79);
+    background-color:rgb(25, 100, 79);
     font-weight: bold;
 }
 
@@ -237,4 +237,83 @@ body {
 .sidebar_administrador .menu li a:hover,
 .sidebar_administrador .menu li a.active {
     color: rgb(0, 16, 88); /* Cambia color del texto y el ícono */
+}
+
+
+/* AGREGAR PACIENTE (RECEPCIONISTA) */
+
+
+.container {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    grid-column: 1 / 3;
+}
+
+.buttons {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar {
+    background-color: #F05454;
+    color: white;
+}
+
+.btn-continuar {
+    background-color: #2E8B57;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.icon-arrow {
+    margin-left: 10px;
+}
+
+.back-arrow {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
 }

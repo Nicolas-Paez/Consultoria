@@ -21,4 +21,10 @@ def recepcionista_terapeutas_activos(request):
 @role_required('Recepcionista')
 def recepcionista_pacientes_activos(request):
     return render(request, 'recepcionista_pacientes_activos.html')
+
+@role_required('Recepcionista')
+def agregar_paciente(request):
+    return render(request, 'agregar_paciente.html')
+
+
     
