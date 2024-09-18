@@ -3,27 +3,34 @@
 
 {% block content %}
 <div class="terapeutas-container">
+    <div class="header_right">
+        <button class="agregar-paciente-btn">
+            <span class="icono">+</span> Agregar Paciente
+        </button>
+    </div> 
     <div class="header">
         <h2>Terapeutas</h2>
         <form method="get" action="{% url 'recepcionista_terapeutas_activos' %}" class="busqueda-form">
             <div class="busqueda-input">
                 <input type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
             </div>
-            <div class="dropdown">
-                <button type="button" class="filtro-btn">
-                    Filtrar <span class="flecha">▼</span>
-                </button>
-                <div class="dropdown-content">
-                    <label>
-                        <input type="checkbox" name="filtro" value="fecha_ingreso"> Fecha de Ingreso
-                    </label>
-                    <label>
-                        <input type="checkbox" name="filtro" value="especialidad"> Especialidad
-                    </label>
-                </div>
-            </div>
-        </form>                
+            
+        </form>
     </div>
+    <div class="header_right">
+        <button type="button" class="filtro-btn">
+            Filtrar <span class="flecha">▼</span>
+        </button>
+        <div class="dropdown-content">
+            <label>
+                <input type="checkbox" name="filtro" value="fecha_ingreso"> Fecha de Ingreso
+            </label>
+            <label>
+                <input type="checkbox" name="filtro" value="especialidad"> Especialidad
+            </label>
+        </div>
+    </div>
+
 
     <!-- Encabezado de la lista de terapeutas -->
     <div class="lista-terapeutas">
