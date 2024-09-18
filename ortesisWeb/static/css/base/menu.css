@@ -5,6 +5,7 @@ body {
     height: 100vh;
 }
 
+/* Sidebar Terapeuta */
 .sidebar_terapeuta {
     width: 250px;
     background-color: #008CAB;
@@ -14,10 +15,33 @@ body {
     align-items: center;
     padding: 20px 0;
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 
-.sidebar_administrador{
+.sidebar_terapeuta .menu li a {
+    color: #ffffff; /* Estado inactivo */
+}
+
+.sidebar_terapeuta .menu li a:hover {
+    background-color: #ffffff;
+    color: #008CAB; /* Hover - Activo */
+}
+
+.sidebar_terapeuta .menu li a:hover img {
+    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
+}
+
+.sidebar_terapeuta .menu li a.active {
+    background-color: #ffffff;
+    color: #008CAB;
+}
+
+.sidebar_terapeuta .menu li a.active img {
+    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
+}
+
+/* Sidebar Administrador */
+.sidebar_administrador {
     width: 250px;
     background-color: #001058;
     box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
@@ -26,9 +50,32 @@ body {
     align-items: center;
     padding: 20px 0;
     position: relative;
-    z-index: 1    
+    z-index: 1;
 }
 
+.sidebar_administrador .menu li a {
+    color: #ffffff; /* Estado inactivo */
+}
+
+.sidebar_administrador .menu li a:hover {
+    background-color: #ffffff;
+    color: #001058; /* Hover - Activo */
+}
+
+.sidebar_administrador .menu li a:hover img {
+    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
+}
+
+.sidebar_administrador .menu li a.active {
+    background-color: #ffffff;
+    color: #001058;
+}
+
+.sidebar_administrador .menu li a.active img {
+    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
+}
+
+/* Sidebar Recepcionista */
 .sidebar_recepcionista {
     width: 250px;
     background-color: #373D58;
@@ -38,9 +85,32 @@ body {
     align-items: center;
     padding: 20px 0;
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 
+.sidebar_recepcionista .menu li a {
+    color: #ffffff; /* Estado inactivo */
+}
+
+.sidebar_recepcionista .menu li a:hover {
+    background-color: #ffffff;
+    color: #373D58; /* Hover - Activo */
+}
+
+.sidebar_recepcionista .menu li a:hover img {
+    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
+}
+
+.sidebar_recepcionista .menu li a.active {
+    background-color: #ffffff;
+    color: #373D58;
+}
+
+.sidebar_recepcionista .menu li a.active img {
+    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
+}
+
+/* Divider and Logos */
 .divider {
     border: none;
     border-top: 1px solid rgb(255, 255, 255);
@@ -51,16 +121,17 @@ body {
 .logos {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 80%;
     margin-bottom: 20px;
 }
 
-.logos img{
+.logos img {
     width: 60px;
     height: 60px;
 }
 
+/* Profile Section */
 .profile {
     display: flex;
     align-items: center;
@@ -79,7 +150,7 @@ body {
     color: #ffffff;
 }
 
-
+/* Menu Styles */
 .menu {
     list-style: none;
     padding: 0;
@@ -100,22 +171,14 @@ body {
     align-items: center;
     font-size: 16px;
     border-radius: 12px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, filter 0.3s ease;
 }
 
 .menu li a img {
     width: 25px;
     height: 25px;
     margin-right: 14px;
-}
-
-.menu li a:hover {
-    background-color: rgb(255, 255, 255);
-    color: #008CAB;
-}
-
-.menu li a img:hover {
-    color: #008CAB
+    transition: filter 0.3s ease;
 }
 
 .logout {
@@ -144,14 +207,34 @@ body {
     color: white;
 }
 
+/* Content Section */
 .content {
     flex-grow: 1;
     background-color: #fff;
     padding: 20px;
 }
 
-
+/* Estado Activo General */
 .menu li a.active {
-    background-color:rgb(25, 100, 79);
+    background-color: rgb(25, 100, 79);
     font-weight: bold;
+}
+
+/* Icon and Text Wrapper */
+.icon-text-wrapper {
+    display: flex;
+    align-items: center;
+    color: inherit; /* Hereda el color del enlace */
+}
+
+.icon-text-wrapper img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    fill: currentColor; /* Usa currentColor para heredar el color */
+}
+
+.sidebar_administrador .menu li a:hover,
+.sidebar_administrador .menu li a.active {
+    color: rgb(0, 16, 88); /* Cambia color del texto y el ícono */
 }
