@@ -1,0 +1,29 @@
+.contenedor-boton {
+    display: flex;
+    margin-bottom: 20px;
+    right: 20px;
+}
+
+.boton-agregar-terapeuta {
+    background-color: #001058;
+    color: #fff;
+    border: none;
+    padding: 3px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-agregar-terapeuta img {
+    width: 34px;
+    height: 34px;
+}
+
+.boton-agregar-terapeuta:hover {
+    background-color: #002080; /* Un color ligeramente más claro para el hover */
+}
