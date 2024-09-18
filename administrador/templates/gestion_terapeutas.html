@@ -12,6 +12,11 @@
 
 {% block content %}
     <div class="contenedor-boton">
-        <button class="boton-agregar-terapeuta">Agregar Terapeuta<img src="{% static 'icons/plus.svg' %}"></button>
+        <button id="boton-agregar-terapeuta" >Agregar Terapeuta<img src="{% static 'icons/plus.svg' %}"></button>
     </div>
+    <script>
+        document.getElementById("boton-agregar-terapeuta").addEventListener("click", function(){
+            window.location.href = "{% url 'agregar_terapeuta' %}";
+        });
+    </script>
 {% endblock %}
