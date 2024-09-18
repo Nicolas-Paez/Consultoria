@@ -2,12 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="terapeutas-container">
-    <div class="header_right">
-        <button class="agregar-paciente-btn">
-            <span class="icono">+</span> Agregar Paciente
-        </button>
-    </div> 
+<div class="recepcionista-container">  
     <div class="header">
         <h2>Terapeutas</h2>
         <form method="get" action="{% url 'recepcionista_terapeutas_activos' %}" class="busqueda-form">
