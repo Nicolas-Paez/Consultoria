@@ -1,10 +1,9 @@
 from django.db import models
-
+from autenticacion.models import User
 class Administrador(models.Model):
-    nombre = models.CharField(max_length=100)
-    rut = models.CharField(max_length=12)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     fecha_ingreso = models.DateField()
     estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('Inactivo', 'Inactivo')])
 
     def __str__(self):
-        return self.nombre
+        return f"{self.user.first_name} {self.user.last_name}"

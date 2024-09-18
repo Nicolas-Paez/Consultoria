@@ -26,6 +26,12 @@ body {
     margin-inline-end: 100px;
 }
 
+/* Estilos para el contenedor de la búsqueda */
+.search-container {
+    position: relative;
+    width: 700px; /* Ajusta el tamaño según sea necesario */
+}
+
 /* Estilos para la barra de búsqueda */
 .search-bar {
     padding: 8px;
@@ -41,12 +47,22 @@ body {
     border-color: #4CAF50;
 }
 
+/* Icono de búsqueda */
+.search-icon {
+    position: absolute;
+    right: 10px; /* Ajusta el espacio del icono */
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente el icono */
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px;
+}
+
 /* Estilos para el contenedor de la lista */
 .li-container {
     margin-bottom: 20px;
 }
 
-/* Estilos para el mensaje de vacio */
+/* Estilos para el mensaje de vacío */
 .empty {
     color: #666;
 }

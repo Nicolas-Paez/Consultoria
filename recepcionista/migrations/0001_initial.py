@@ -15,25 +15,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Terapeuta',
+            name='Recepcionista',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('especialidad', models.CharField(max_length=100)),
                 ('fecha_ingreso', models.DateField()),
                 ('estado', models.CharField(choices=[('Activo', 'Activo'), ('Inactivo', 'Inactivo')], max_length=10)),
                 ('user', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='citas',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('titulo', models.CharField(max_length=50)),
-                ('fecha', models.DateField()),
-                ('hora', models.TimeField()),
-                ('sala', models.CharField(max_length=50)),
-                ('detalle', models.CharField(max_length=100)),
-                ('id_terapeuta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='terapeuta.terapeuta')),
             ],
         ),
     ]

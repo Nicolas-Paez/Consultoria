@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Terapeuta(models.Model):
-    nombre = models.CharField(max_length=100)
-    rut = models.CharField(max_length=12)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     especialidad = models.CharField(max_length=100)
     fecha_ingreso = models.DateField()
     estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('Inactivo', 'Inactivo')])
 
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
 
 class citas(models.Model):
     id_terapeuta = models.ForeignKey(Terapeuta, on_delete=models.CASCADE)

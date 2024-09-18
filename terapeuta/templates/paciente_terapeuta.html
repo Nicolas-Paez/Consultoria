@@ -1,0 +1,34 @@
+{% extends 'base_terapeuta.html' %}
+
+{% load static %}
+
+{% block title %}Pacientes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="header">
+        <h1>Pacientes</h1>
+        <!-- Contenedor para la barra de búsqueda y el icono -->
+        <div class="search-container">
+            <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar">
+            <img src="{% static 'icons/Lupa.svg' %}" alt="Lupa" class="search-icon">
+        </div>>
+    </header>
+    <div class="header">
+        <h2>Nombre</h2>
+        <h2>Rut</h2>
+        <h2>Edad</h2>
+        <h2>Tratamiento</h2>
+    </div>
+    <div class="li-container">
+        <ul>
+            <!-- Lista de pacientes -->
+        </ul>
+    </div>
+    <div class="empty">
+        <p>No hay pacientes ingresados</p>
+    </div>
+</div>
+<link rel="stylesheet" href="{% static 'css/paciente_terapeuta.css' %}">
+<script src="{% static 'js/paciente_terapeuta.js' %}"></script>
+{% endblock %}

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from terapeuta.models import Terapeuta
+from autenticacion.decorators import role_required
 
+@role_required('Recepcionista')
 def listar_terapeutas_activos(request):
     query = request.GET.get('q', '')
     if query:
