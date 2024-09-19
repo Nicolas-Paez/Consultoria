@@ -16,4 +16,4 @@ def listar_terapeutas_activos(request):
     else:
         terapeuta = Terapeuta.objects.filter(estado='Activo')
 
-    return render(request, 'terapeuta.html', {'terapeuta': terapeuta})
+    return render(request, 'terapeutas.html', {'terapeuta': terapeuta})

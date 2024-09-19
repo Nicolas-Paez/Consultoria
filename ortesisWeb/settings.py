@@ -133,10 +133,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_POST = 587
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER ='vicente.menaalbornoz@gmail.com'
-EMAIL_HOST_PASSWORD ='06092001xd'
+EMAIL_HOST_PASSWORD ='wpfp vmlv mcam wjjp'
+
+# Definir el emisor predeterminado como no-reply
+DEFAULT_FROM_EMAIL = 'no-reply@ortesisweb.com'
+
+#enviará correos a la consola local de momento para probar
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #enviará correos a la consola local de momento para probar
+
 
 # Configuración de autenticación
 AUTHENTICATION_BACKENDS = [
