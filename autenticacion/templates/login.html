@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla de Inicio de Sesión</title>
+    <title>Inicio de Sesión</title>
+    <!--     Fuente JOST    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--     Estilos CSS    -->
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'styles/login.css' %}">
 </head>
@@ -33,9 +38,11 @@
             <div class="inputs-contenedor">
                 <!-- Input para el RUT -->
                 <div class="input-login">
-                    {{ form.rut.errors }}
-                    <input type="text" name="rut" placeholder="Ingrese su RUT" required>
+                    <input type="text" name="rut" id="id_rut" placeholder="Ingrese su RUT" required>
                     <img src="{% static 'icons/icono_usuario.svg' %}" alt="Usuario">
+                    <div class="mensaje-error-input">
+                        {{ form.rut.errors }}
+                    </div>
                 </div>
 
                 <!-- Input para la contraseña -->
@@ -65,6 +72,8 @@
             <img src="{% static 'icons/ortesis3.svg' %}" alt="Icono Ortesis" class="ortesis3">
         </div>
     </div>
-
 </body>
+
+<script src="{% static 'js/formatear-rut.js' %}"></script>
+
 </html>

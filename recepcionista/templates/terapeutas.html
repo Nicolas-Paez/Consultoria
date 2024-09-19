@@ -1,0 +1,53 @@
+{% extends 'base_recepcionista.html' %}
+{% load static %}
+
+{% block content %}
+<div class="terapeutas-container">
+    <div class="header">
+        <h2>Terapeutas</h2>
+        <form method="get" action="{% url 'listar_terapeutas_activos' %}" class="busqueda-form">
+            <div class="busqueda-input">
+                <input type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
+            </div>
+            <div class="dropdown">
+                <button type="button" class="filtro-btn">
+                    Filtrar <span class="flecha">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    <label>
+                        <input type="checkbox" name="filtro" value="fecha_ingreso"> Fecha de Ingreso
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filtro" value="especialidad"> Especialidad
+                    </label>
+                </div>
+            </div>
+        </form>                
+    </div>
+
+    <!-- Encabezado de la lista de terapeutas -->
+    <div class="lista-terapeutas">
+        <div class="header-lista">
+            <span><strong>Nombre</strong></span>
+            <span><strong>Rut</strong></span>
+            <span><strong>Estado</strong></span>
+            <span><strong>Especialidad</strong></span>
+            <span><strong>Fecha de Ingreso</strong></span>
+        </div>
+        
+        <!-- Lista de terapeutas -->
+        {% for terapeuta in terapeuta %}
+        <div class="terapeuta-card">
+            <span>{{ terapeuta.nombre }}</span>
+            <span>{{ terapeuta.rut }}</span>
+            <span class="estado-activo">{{ terapeuta.estado }}</span>
+            <span>{{ terapeuta.especialidad }}</span>
+            <span>{{ terapeuta.fecha_ingreso }}</span>
+            <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta">
+        </div>
+        {% empty %}
+        <p>No se encontraron terapeutas activos.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

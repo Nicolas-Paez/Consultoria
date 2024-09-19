@@ -14,6 +14,8 @@ from .forms import SendMailForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.views import View
+from django.contrib.auth.models import Group, User
+from .forms import RutLoginForm
 
 def login_usuario(request):
     # Verificar si el usuario ya está autenticado
@@ -34,29 +36,31 @@ def login_usuario(request):
             user = authenticate(request, rut=rut, password=password)
             
             if user is not None:
-                if user == 'inactive':
+                # Usuario autenticado correctamente
+                login(request, user)
+
+                # Configuración de la duración de la sesión
+                if remember_me is True:
+                    request.session.set_expiry(1209600)  # Duración de 14 días
+                else:
+                    request.session.set_expiry(0)  # Expira al cerrar el navegador
+
+                # Verificar roles del usuario a través de grupos
+                grupos = user.groups.all()
+                
+                if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
+                    return redireccionamiento_segun_rol(user, grupos.first())
+                elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
+                    return render(request, 'elegir_rol.html', {'roles': grupos})
+            else:
+                # Las credenciales son incorrectas o la cuenta está desactivada
+                user = User.objects.filter(profile__rut=rut).first() # Buscar usuario por RUT
+                if user and not user.is_active: # Si el usuario existe y está desactivado
                     # Usuario está desactivado
                     return render(request, 'login.html', {'form': form, 'error': 'Su cuenta está desactivada. Contacte al administrador.'})
                 else:
-                    # Usuario autenticado correctamente
-                    login(request, user)
-
-                    # Configuración de la duración de la sesión
-                    if remember_me is True:
-                        request.session.set_expiry(1209600)  # Duración de 14 días
-                    else:
-                        request.session.set_expiry(0)  # Expira al cerrar el navegador
-
-                    # Verificar roles del usuario a través de grupos
-                    grupos = user.groups.all()
-                    
-                    if grupos.count() == 1:  # Si el usuario pertenece a un solo grupo
-                        return redireccionamiento_segun_rol(user, grupos.first())
-                    elif grupos.count() > 1:  # Si pertenece a múltiples grupos, mostrar opciones
-                        return render(request, 'elegir_rol.html', {'roles': grupos})
-            else:
-                # Credenciales incorrectas
-                return render(request, 'login.html', {'form': form, 'error': 'Credenciales incorrectas'})
+                    # Credenciales incorrectas
+                    return render(request, 'login.html', {'form': form, 'error': 'Credenciales incorrectas'})
     else:
         form = RutLoginForm()
     return render(request, 'login.html', {'form': form})
@@ -98,7 +102,7 @@ def redireccionamiento_segun_rol(user, role):
     elif role.name == 'Terapeuta':
         return redirect('agenda')
     elif role.name == 'Recepcionista':
-        return redirect('listar_terapeutas_activos')
+        return redirect('base_recepcionista')
     return redirect('login')  # Redirige en caso de no encontrar un rol
 
 def logout_usuario(request):

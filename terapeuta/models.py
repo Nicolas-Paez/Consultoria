@@ -9,3 +9,11 @@ class Terapeuta(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
+
+class citas(models.Model):
+    id_terapeuta = models.ForeignKey(Terapeuta, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=50)
+    fecha = models.DateField()
+    hora = models.TimeField()
+    sala = models.CharField(max_length=50)
+    detalle = models.CharField(max_length=100)
