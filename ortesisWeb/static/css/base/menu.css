@@ -1,34 +1,74 @@
-body {
+html, body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
+    padding: 0;
+    height: 100%; /* Asegura que el cuerpo tenga una altura del 100% */
 }
 
-/* Sidebar Terapeuta */
-.sidebar_terapeuta {
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: row; /* Coloca las sidebars y el contenido en una fila */
+    min-height: 100vh; /* Asegura que el cuerpo tenga al menos la altura del viewport */
+    overflow: hidden; /* Oculta el scroll del body */
+}
+
+.sidebar_terapeuta,
+.sidebar_administrador,
+.sidebar_recepcionista {
     width: 250px;
-    background-color: #008CAB;
+    background-color: #008CAB; /* Cambiar el color según sea necesario */
     box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    position: relative;
+    position: fixed;
+    top: 0; /* Asegura que la sidebar esté en la parte superior */
+    bottom: 0; /* Asegura que la sidebar se extienda hasta el fondo */
     z-index: 1;
+    overflow-y: auto; /* Permite el scroll interno si el contenido es más alto que la pantalla */
 }
 
-.sidebar_terapeuta .menu li a {
-    color: #ffffff; /* Estado inactivo */
+.sidebar_administrador {
+    background-color: #001058; /* Color específico para la sidebar de administrador */
 }
 
+.sidebar_recepcionista {
+    background-color: #373D58; /* Color específico para la sidebar de recepcionista */
+}
+
+.content {
+    margin-left: 250px; /* Espacio para la sidebar */
+    padding: 20px;
+    width: calc(100% - 250px); /* Asegura que el contenido ocupe el espacio restante */
+    box-sizing: border-box;
+    overflow-y: auto; /* Permite el scroll vertical si el contenido excede la altura del viewport */
+}
+
+/* Estado Activo General */
+.menu li a.active {
+    background-color: rgb(25, 100, 79);
+    font-weight: bold;
+}
+
+/* Icon and Text Wrapper */
+.icon-text-wrapper {
+    display: flex;
+    align-items: center;
+    color: inherit; /* Hereda el color del enlace */
+}
+
+.icon-text-wrapper img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    fill: currentColor; /* Usa currentColor para heredar el color */
+}
+
+/* Sidebar Styles - Hover and Active States */
 .sidebar_terapeuta .menu li a:hover {
     background-color: #ffffff;
     color: #008CAB; /* Hover - Activo */
-}
-
-.sidebar_terapeuta .menu li a:hover img {
-    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
 }
 
 .sidebar_terapeuta .menu li a.active {
@@ -36,25 +76,12 @@ body {
     color: #008CAB;
 }
 
-.sidebar_terapeuta .menu li a.active img {
+.sidebar_terapeuta .menu li a:hover img {
     filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
 }
 
-/* Sidebar Administrador */
-.sidebar_administrador {
-    width: 250px;
-    background-color: #001058;
-    box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    position: relative;
-    z-index: 1;
-}
-
-.sidebar_administrador .menu li a {
-    color: #ffffff; /* Estado inactivo */
+.sidebar_terapeuta .menu li a.active img {
+    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
 }
 
 .sidebar_administrador .menu li a:hover {
@@ -62,34 +89,17 @@ body {
     color: #001058; /* Hover - Activo */
 }
 
-.sidebar_administrador .menu li a:hover img {
-    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
-}
-
 .sidebar_administrador .menu li a.active {
     background-color: #ffffff;
     color: #001058;
 }
 
-.sidebar_administrador .menu li a.active img {
+.sidebar_administrador .menu li a:hover img {
     filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
 }
 
-/* Sidebar Recepcionista */
-.sidebar_recepcionista {
-    width: 250px;
-    background-color: #373D58;
-    box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    position: relative;
-    z-index: 1;
-}
-
-.sidebar_recepcionista .menu li a {
-    color: #ffffff; /* Estado inactivo */
+.sidebar_administrador .menu li a.active img {
+    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
 }
 
 .sidebar_recepcionista .menu li a:hover {
@@ -97,13 +107,13 @@ body {
     color: #373D58; /* Hover - Activo */
 }
 
-.sidebar_recepcionista .menu li a:hover img {
-    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
-}
-
 .sidebar_recepcionista .menu li a.active {
     background-color: #ffffff;
     color: #373D58;
+}
+
+.sidebar_recepcionista .menu li a:hover img {
+    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
 }
 
 .sidebar_recepcionista .menu li a.active img {
@@ -207,42 +217,7 @@ body {
     color: white;
 }
 
-/* Content Section */
-.content {
-    flex-grow: 1;
-    background-color: #fff;
-    padding: 20px;
-}
-
-/* Estado Activo General */
-.menu li a.active {
-    background-color:rgb(25, 100, 79);
-    font-weight: bold;
-}
-
-/* Icon and Text Wrapper */
-.icon-text-wrapper {
-    display: flex;
-    align-items: center;
-    color: inherit; /* Hereda el color del enlace */
-}
-
-.icon-text-wrapper img {
-    margin-right: 10px;
-    width: 25px;
-    height: 25px;
-    fill: currentColor; /* Usa currentColor para heredar el color */
-}
-
-.sidebar_administrador .menu li a:hover,
-.sidebar_administrador .menu li a.active {
-    color: rgb(0, 16, 88); /* Cambia color del texto y el ícono */
-}
-
-
 /* AGREGAR PACIENTE (RECEPCIONISTA) */
-
-
 .container {
     padding: 40px;
     max-width: 800px;
