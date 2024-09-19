@@ -9,7 +9,7 @@
     </div>
     <h1>Agregar Paciente</h1>
     
-    <form>
+    <form id="formularioPaciente">
         <div>
             <label for="nombres">Nombres</label>
             <input type="text" id="nombres" name="nombres" placeholder="Ingrese los nombres del paciente">
@@ -62,12 +62,13 @@
 
         <div class="buttons">
             <button type="button" class="btn btn-cancelar">Cancelar</button>
-            <button type="submit" class="btn btn-continuar">
+            <button type="button" class="btn btn-continuar" onclick="guardarDatosYContinuar()">
                 Continuar <span class="icon-arrow">&#8594;</span>
             </button>
         </div>
     </form>
 </div>
+
+<script src="{% static 'js/guardar_datos.js' %}"></script>
+
 {% endblock %}
-
-

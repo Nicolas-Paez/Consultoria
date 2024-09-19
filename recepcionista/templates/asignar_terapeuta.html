@@ -4,7 +4,7 @@
 {% block content %}
 <div class="recepcionista-container">  
     <div class="header">
-        <h2>Terapeutas</h2>
+        <h2>Asignar Terapeuta</h2>
         <form method="get" action="{% url 'recepcionista_terapeutas_activos' %}" class="busqueda-form">
             <div class="busqueda-input">
                 <input type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
@@ -52,5 +52,4 @@
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base_recepcionista.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="header">
+        <!-- Flecha de regreso -->
+        <div class="back-arrow" onclick="window.location.href='{% url 'agregar_paciente' %}';">
+            &#8592;
+        </div>
+        <h1>Asignación de Terapeuta</h1>
+        <p>Seleccione el Terapeuta que será asignado para el paciente</p>
+
+        <!-- Filtro por especialidad -->
+        <div class="filter-container">
+            <button class="filter-button">Filtrar por especialidad &#9662;</button>
+        </div>
+    </div>
+
+    <!-- Tabla de terapeutas -->
+    <div class="therapist-list">
+        <div class="therapist-item">
+            <div class="therapist-info">
+                <div class="therapist-name">Vicente Salinas</div>
+                <div class="therapist-rut">12345678-9</div>
+                <div class="therapist-status">
+                    <span class="status available"></span> Disponible
+                </div>
+                <div class="therapist-specialty">Extremidad Superior</div>
+                <div class="therapist-date">
+                    <span class="calendar-icon">&#128197;</span> 21/03/2017
+                </div>
+            </div>
+        </div>
+
+        <div class="therapist-item">
+            <div class="therapist-info">
+                <div class="therapist-name">Armando Reyes</div>
+                <div class="therapist-rut">18234567-8</div>
+                <div class="therapist-status">
+                    <span class="status available"></span> Disponible
+                </div>
+                <div class="therapist-specialty">Articulaciones Superiores</div>
+                <div class="therapist-date">
+                    <span class="calendar-icon">&#128197;</span> 27/09/2018
+                </div>
+            </div>
+        </div>
+
+        <div class="therapist-item">
+            <div class="therapist-info">
+                <div class="therapist-name">Víctor Arriagada</div>
+                <div class="therapist-rut">20345678-5</div>
+                <div class="therapist-status">
+                    <span class="status partially-available"></span> Medianamente Disponible
+                </div>
+                <div class="therapist-specialty">Articulaciones Inferiores</div>
+                <div class="therapist-date">
+                    <span class="calendar-icon">&#128197;</span> 30/10/2020
+                </div>
+            </div>
+        </div>
+
+        <div class="therapist-item">
+            <div class="therapist-info">
+                <div class="therapist-name">Alberto Jiménez</div>
+                <div class="therapist-rut">17456789-0</div>
+                <div class="therapist-status">
+                    <span class="status unavailable"></span> No disponible
+                </div>
+                <div class="therapist-specialty">Extremidad Inferior</div>
+                <div class="therapist-date">
+                    <span class="calendar-icon">&#128197;</span> 05/11/2018
+                </div>
+            </div>
+        </div>
+
+        <div class="therapist-item">
+            <div class="therapist-info">
+                <div class="therapist-name">Rocío Vergara</div>
+                <div class="therapist-rut">20231444-5</div>
+                <div class="therapist-status">
+                    <span class="status available"></span> Disponible
+                </div>
+                <div class="therapist-specialty">Articulaciones Superiores</div>
+                <div class="therapist-date">
+                    <span class="calendar-icon">&#128197;</span> 26/04/2020
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
