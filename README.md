@@ -44,6 +44,10 @@ Este proyecto consiste en el desarrollo de una aplicación web para un centro ho
 3. **Configuración Adicional**:
    - Si el proyecto requiere configuraciones adicionales (como variables de entorno, bases de datos, etc.), consulta el archivo `README.md` para más detalles o sigue las instrucciones específicas proporcionadas en el proyecto.
 
+## Requisitos de PostgreSQL
+
+Para esta versión de Django (5.1), se debe usar PostgreSQL 13 o superior. La versión recomendada es PostgreSQL 16.4.
+
 ## Uso
 
 1. **Ejecutar el Servidor de Desarrollo**:
@@ -55,7 +59,7 @@ Este proyecto consiste en el desarrollo de una aplicación web para un centro ho
 
 ## Contribuciones
 
-Todos los miembros del equipo trabajan directamente en la rama principal `origin/main`. Por lo tanto, sigue estos pasos para contribuir:
+Para contribuir al proyecto, sigue estos pasos:
 
 1. **Clonar el Repositorio**:
    - Clona el repositorio a tu máquina local:
@@ -63,15 +67,17 @@ Todos los miembros del equipo trabajan directamente en la rama principal `origin
      git clone https://github.com/usuario/repositorio.git
      ```
 
-2. **Actualizar la Rama Principal**:
-   - Antes de hacer cambios, asegúrate de que tu rama local esté actualizada con la rama principal remota:
+2. **Crear una Rama Nueva**:
+   - Antes de hacer cambios, crea una rama nueva a partir de la rama principal `main` para trabajar en tu tarea o característica:
      ```bash
-     git checkout main
-     git pull origin main
+     git checkout -b nombre-de-la-rama
      ```
+   - Usa nombres descriptivos para la rama, por ejemplo:
+     - `feature/nueva-funcionalidad`
+     - `bugfix/corregir-error`
 
 3. **Realizar Cambios**:
-   - Realiza las modificaciones necesarias en tu entorno local.
+   - Realiza las modificaciones necesarias en tu entorno local en la rama que has creado.
 
 4. **Confirmar Cambios**:
    - Agrega tus cambios a la zona de preparación y confirma con un mensaje claro y descriptivo:
@@ -80,18 +86,73 @@ Todos los miembros del equipo trabajan directamente en la rama principal `origin
      git commit -m "Descripción de los cambios"
      ```
 
-5. **Sincronizar con la Rama Principal Remota**:
-   - Asegúrate de que tu rama local esté actualizada antes de hacer un push. Primero, realiza un pull para obtener los últimos cambios:
+5. **Actualizar Tu Rama**:
+   - Asegúrate de que tu rama esté actualizada con los últimos cambios de `main` antes de hacer un push:
      ```bash
      git pull origin main
      ```
-   - Luego, envía tus cambios al repositorio remoto:
+
+6. **Sincronizar con la Rama Principal Remota**:
+   - Envía tus cambios al repositorio remoto:
      ```bash
-     git push origin main
+     git push origin nombre-de-la-rama
      ```
 
-6. **Revisión y Aprobación**:
-   - Asegúrate de que todos los cambios estén revisados y aprobados por el equipo antes de hacer un push a `origin/main`. Coordina con los miembros del equipo para evitar conflictos y garantizar que el código esté listo para la integración.
+7. **Crear un Pull Request**:
+   - Ve a GitHub y crea un Pull Request (PR) para solicitar la integración de tus cambios en la rama `main`. Asegúrate de proporcionar una descripción clara del propósito del PR y cualquier información relevante.
+
+8. **Revisión y Aprobación**:
+   - Los miembros del equipo revisarán tu PR. Asegúrate de responder a los comentarios y realizar ajustes si es necesario. Una vez aprobado, tu PR será fusionado a la rama `main`.
+
+9. **Eliminar la Rama**:
+   - Después de que tu PR haya sido fusionado, puedes eliminar la rama que creaste para mantener el repositorio limpio:
+     ```bash
+     git branch -d nombre-de-la-rama
+     git push origin --delete nombre-de-la-rama
+     ```
+
+10. **Mantener la Rama Actualizada**:
+    - Si estás trabajando en una rama de larga duración, asegúrate de mantenerla actualizada con la rama `main` para evitar conflictos y asegurar la compatibilidad con los últimos cambios.
+
+## Buenas Prácticas para Ramas en Git
+
+Aquí están las convenciones para trabajar con ramas en Git:
+
+1. **Rama principal (`main` o `master`)**:
+   - **Propósito**: Rama estable y lista para producción.
+   - **Uso**: Solo se fusiona código probado y aprobado.
+
+2. **Ramas de características (`feature`)**:
+   - **Convención**: `feature/nueva-funcionalidad`
+   - **Uso**: Para nuevas funcionalidades.
+
+3. **Ramas de corrección de errores (`bugfix`)**:
+   - **Convención**: `bugfix/corregir-error`
+   - **Uso**: Para solucionar errores.
+
+4. **Ramas de desarrollo (`develop`)**:
+   - **Propósito**: Integrar trabajo en progreso antes de producción.
+   - **Uso**: Todas las características y correcciones antes de `main`.
+
+5. **Ramas de hotfix (`hotfix`)**:
+   - **Convención**: `hotfix/corregir-crash`
+   - **Uso**: Para correcciones críticas en producción.
+
+6. **Ramas de versión (`release`)**:
+   - **Convención**: `release/version`
+   - **Uso**: Preparar una nueva versión para producción.
+
+7. **Nombres descriptivos**:
+   - Nombres claros y concisos para cada rama.
+
+8. **Separación de contextos**:
+   - Mantén ramas específicas para cada tarea.
+
+9. **Eliminar ramas innecesarias**:
+   - Elimina ramas después de fusionarlas si ya no son necesarias.
+
+10. **Uso de Pull Requests**:
+    - Revisa el código antes de fusionar a `main` o `develop`.
 
 ## Buenas Prácticas para Commits
 

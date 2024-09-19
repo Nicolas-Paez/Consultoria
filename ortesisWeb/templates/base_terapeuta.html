@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/base/menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/recepcionista.css' %}">
-    <link rel="stylesheet" href="{% static 'css/paciente.css' %}">
     {% block extra_head %}
     {% endblock %}
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="sidebar">
+        <div class="sidebar_terapeuta">
             <div class="logos">
                 <img src="{% static 'icons/hospital.svg' %}" alt="Logo logo_hospital">
                 <img src="{% static 'icons/ua.svg' %}" alt="Logo UA">
@@ -49,7 +48,7 @@
             </ul>
             <hr class="divider">
             <div class="logout">
-                <a href="#">
+                <a href="{% url 'logout' %}">
                     <img src="{% static 'icons/log-out.svg' %}" alt="Cerrar sesión">
                     Salir
                 </a>
