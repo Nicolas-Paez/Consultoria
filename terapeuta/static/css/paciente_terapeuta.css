@@ -23,7 +23,18 @@ body {
     margin: 0;
     font-size: 20px;
     color: black;
-    margin-inline-end: 100px;
+}
+
+.header .rut {
+    flex-basis: 32%; /* Ancho específico para "Rut" */
+}
+
+.header .edad {
+    flex-basis: 9%; /* Ancho específico para "Edad" */
+}
+
+.header .tratamiento {
+    flex-basis: 36%; /* Ancho específico para "Tratamiento" */
 }
 
 /* Estilos para el contenedor de la búsqueda */
@@ -62,7 +73,59 @@ body {
     margin-bottom: 20px;
 }
 
-/* Estilos para el mensaje de vacío */
-.empty {
-    color: #666;
+.li-container ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilos para cada paciente */
+.paciente {
+    width: 1050px;
+    display: flex;
+    justify-content: space-between; /* Asegura que los datos se alineen de manera uniforme debajo de los h2 */
+    border: 1px solid #ccc;
+    padding: 20px;
+    padding-left: 5px;
+    margin-bottom: 7px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Usar flexbox para alinear los datos horizontalmente */
+.paciente-info {
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+    padding-left: 10px;
+}
+
+/* Estilos para los elementos dentro de la información del paciente */
+.paciente-info p {
+    flex: 1; /* Hace que cada elemento ocupe el mismo espacio */
+    margin: 0; /* Margen reducido entre los elementos */
+    font-size: 16px;
+    min-width: 255px; /* Ancho mínimo para que los textos no se encimen */
+}
+
+/* Estilos para el botón del icono de reportes */
+.report-button {
+    display: inline-block; /* Asegura que el botón se ajuste al tamaño del contenido */
+    background-color: transparent; /* Fondo transparente para que solo se vea el icono */
+    border: none; /* Sin borde para que se vea como un icono */
+    cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el botón */
+    padding: 0; /* Sin relleno adicional */
+}
+
+/* Estilos para el icono de reportes */
+.report-icon {
+    width: 28px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 28px; /* Mantén la proporción del icono con el ancho */
+    padding-right: 10px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .paciente-info {
+        flex-direction: column; /* En pantallas pequeñas, los datos se colocarán en una columna */
+    }
 }
