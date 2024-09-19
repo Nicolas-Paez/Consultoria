@@ -18,6 +18,10 @@ def admin_recepcionistas(request):
 def admin_terapeutas(request):
     return render (request,'admin_terapeutas.html')
 
+def agregar_paciente_admin(request):
+    # lógica de la vista
+    return render(request, 'agregar_paciente_admin.html')
+
 def logout_view(request):
     # Lógica para cerrar la sesión
     # Puedes usar Django's auth logout

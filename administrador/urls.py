@@ -8,4 +8,5 @@ urlpatterns = [
     path('admin_recepcionistas/', views.admin_recepcionistas, name='admin_recepcionistas'),
     path('admin_terapeutas/',views.admin_terapeutas, name='admin_terapeutas'),
     path('logout/', views.logout_view, name='logout'),  # Para cerrar sesión
+    path('agregar/', views.agregar_paciente_admin, name='agregar_paciente_admin'),
 ]
