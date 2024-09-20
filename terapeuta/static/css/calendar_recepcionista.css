@@ -45,7 +45,7 @@ body {
 }
 /* Botones de navegación */
 .nav-button {
-    background-color: #008CAB;
+    background-color: #373D58;
     border: none;
     color: white;
     padding: 12px;
@@ -92,7 +92,7 @@ body {
 }
 
 .today {
-    background-color: #008CAB;
+    background-color: #373D58;
     color: white;
 }
 
@@ -112,7 +112,7 @@ body {
 }
 
 .week-view th {
-    background-color: #008CAB;
+    background-color: #373D58;
     color: white;
     padding: 10px;
     text-align: center;
@@ -181,7 +181,7 @@ button {
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    background-color: #008CAB;
+    background-color: #373D58;
     color: white;
     cursor: pointer;
     width: 48%;
@@ -202,12 +202,12 @@ button {
 }
 
 #confirmarBtn {
-    background-color: #006A60;
+    background-color: #373D58;
     color: white;
 }
 
 #confirmarBtn:hover {
-    background-color: #006A60;
+    background-color: #373D58;
 }
 
 .popup-content {
@@ -253,5 +253,37 @@ button {
 .week-hour.working-hour {
     background-color: rgba(0, 128, 0, 0.2); /* Color de fondo para las horas de trabajo */
     border: 1px solid #008000; /* Borde para destacar más */
+}
+
+/*Calendar_asignar_paciente*/
+
+.buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Color del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #dc3545; /* Color del botón de cancelar */
+}
+
+.btn-continuar {
+    background-color: #373D58; /* Color del botón de continuar */
+}
+
+.btn:hover {
+    opacity: 0.9; /* Efecto de hover */
 }
 

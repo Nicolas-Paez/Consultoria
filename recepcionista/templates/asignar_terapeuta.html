@@ -9,9 +9,9 @@
             <div class="busqueda-input">
                 <input type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
             </div>
-            
         </form>
     </div>
+
     <div class="header_right">
         <button type="button" class="filtro-btn">
             Filtrar <span class="flecha">▼</span>
@@ -26,7 +26,6 @@
         </div>
     </div>
 
-
     <!-- Encabezado de la lista de terapeutas -->
     <div class="lista-terapeutas">
         <div class="header-lista">
@@ -39,14 +38,16 @@
         
         <!-- Lista de terapeutas -->
         {% for terapeuta in terapeuta %}
-        <div class="terapeuta-card">
-            <span>{{ terapeuta.nombre_completo }}</span>
-            <span>{{ terapeuta.rut }}</span>
-            <span class="estado-activo">{{ terapeuta.estado }}</span>
-            <span>{{ terapeuta.especialidad }}</span>
-            <span>{{ terapeuta.fecha_ingreso }}</span>
-            <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta">
-        </div>
+        <a href="{% url 'calendar_asignar_paciente' %}">
+            <div class="terapeuta-card">
+                <span>{{ terapeuta.nombre_completo }}</span>
+                <span>{{ terapeuta.rut }}</span>
+                <span class="estado-activo">{{ terapeuta.estado }}</span>
+                <span>{{ terapeuta.especialidad }}</span>
+                <span>{{ terapeuta.fecha_ingreso }}</span>
+                <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta">
+            </div>
+        </a>
         {% empty %}
         <p>No se encontraron terapeutas activos.</p>
         {% endfor %}

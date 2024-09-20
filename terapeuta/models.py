@@ -9,10 +9,10 @@ class Terapeuta(models.Model):
     estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('Inactivo', 'Inactivo')])
     disponibilidad = models.CharField(max_length=30, choices=[('Disponible', 'Disponible'), ('Medianamente Disponible', 'Medianamente Disponible'), ('No Disponible', 'No Disponible')])
     horas_trabajadas = models.FloatField(default=0)
-    
+    '''
     @property
     def nombre_completo(self):
-        return f"{self.user.first_name} {self.user.last_name}"
+        return f"{self.user.first_name} {self.user.last_name}"'''
 
 
 class citas(models.Model):
