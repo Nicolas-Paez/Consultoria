@@ -5,20 +5,23 @@
 <div class="terapeutas-container">
     <div class="header">
         <h2>Terapeutas</h2>
-        <form method="get" action="{% url 'listar_terapeutas_activos' %}" class="busqueda-form">
+        <form id="busqueda-form" method="get" action="{% url 'listar_terapeutas_activos' %}" class="busqueda-form">
             <div class="busqueda-input">
-                <input type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
+                <input id="busqueda" type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
+                <button type="submit" class="search-button">
+                    <img src="{% static 'icons/Search.svg' %}" alt="Buscar" />
+                </button>
             </div>
             <div class="dropdown">
                 <button type="button" class="filtro-btn">
                     Filtrar <span class="flecha">▼</span>
                 </button>
                 <div class="dropdown-content">
-                    <label>
-                        <input type="checkbox" name="filtro" value="fecha_ingreso"> Fecha de Ingreso
+                    <label class="dropdown-label">
+                        <input type="radio" name="orden" value="fecha_ingreso" class="hidden-input"> Fecha de Ingreso
                     </label>
-                    <label>
-                        <input type="checkbox" name="filtro" value="especialidad"> Especialidad
+                    <label class="dropdown-label">
+                        <input type="radio" name="orden" value="especialidad" class="hidden-input"> Especialidad
                     </label>
                 </div>
             </div>
@@ -36,18 +39,61 @@
         </div>
         
         <!-- Lista de terapeutas -->
-        {% for terapeuta in terapeuta %}
-        <div class="terapeuta-card">
-            <span>{{ terapeuta.nombre }}</span>
-            <span>{{ terapeuta.rut }}</span>
-            <span class="estado-activo">{{ terapeuta.estado }}</span>
-            <span>{{ terapeuta.especialidad }}</span>
-            <span>{{ terapeuta.fecha_ingreso }}</span>
-            <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta">
-        </div>
-        {% empty %}
-        <p>No se encontraron terapeutas activos.</p>
-        {% endfor %}
+{% for terapeuta in terapeutas %}
+<div class="terapeuta-card">
+    <span>{{ terapeuta.user.first_name }} {{ terapeuta.user.last_name }}</span>
+    <span>{{ terapeuta.user.profile.rut }}</span>
+    <span class="estado-activo">{{ terapeuta.estado }}</span>
+    <span>{{ terapeuta.especialidad }}</span>
+    <span>{{ terapeuta.fecha_ingreso|date:"d/m/Y" }}</span> <!-- Aquí se aplica el formato -->
+    <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta" class="terapeuta-imagen">
+</div>
+{% empty %}
+<p>No se encontraron terapeutas activos.</p>
+{% endfor %}
+
+<!-- Controles de paginación -->
+<div class="paginacion">
+    <div class="pagination-links">
+        {% if terapeutas.has_previous %}
+            <a href="?page=1&q={{ request.GET.q }}&orden={{ request.GET.orden|default:'user__first_name' }}">Primera</a>
+            <a href="?page={{ terapeutas.previous_page_number }}&q={{ request.GET.q }}&orden={{ request.GET.orden|default:'user__first_name' }}">Anterior</a>
+        {% endif %}
+
+        <span class="current-page">{{ terapeutas.number }}</span>
+
+        {% if terapeutas.has_next %}
+            <a href="?page={{ terapeutas.next_page_number }}&q={{ request.GET.q }}&orden={{ request.GET.orden|default:'user__first_name' }}">Siguiente</a>
+            <a href="?page={{ terapeutas.paginator.num_pages }}&q={{ request.GET.q }}&orden={{ request.GET.orden|default:'user__first_name' }}">Última</a>
+        {% endif %}
     </div>
 </div>
+
+<script>
+    document.getElementById('busqueda').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('busqueda-form').submit();
+        }
+    });
+
+    document.querySelector('.filtro-btn').addEventListener('click', function() {
+        const dropdown = document.querySelector('.dropdown-content');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.querySelectorAll('input[name="orden"]').forEach(input => {
+        input.addEventListener('change', function() {
+            const ordenValue = this.value;
+            const form = document.getElementById('busqueda-form');
+            const ordenInput = document.createElement('input');
+            ordenInput.type = 'hidden';
+            ordenInput.name = 'orden';
+            ordenInput.value = ordenValue;
+            form.appendChild(ordenInput);
+            form.submit(); // Envía el formulario para aplicar el filtro
+        });
+    });
+</script>
+
 {% endblock %}
