@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from autenticacion.decorators import role_required
 from .models import citas, Terapeuta
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 
 @role_required('Terapeuta')
 def agenda(request):

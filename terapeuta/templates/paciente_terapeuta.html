@@ -10,8 +10,8 @@
         <h1>Pacientes</h1>
         <!-- Contenedor para la barra de búsqueda y el icono -->
         <div class="search-container">
-            <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar">
-            <img src="{% static 'icons/Lupa.svg' %}" alt="Lupa" class="search-icon">
+            <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar" id="searchBar">
+            <img src="{% static 'icons/Lupa.svg' %}" alt="Lupa" class="search-icon" id="searchIcon">
         </div>>
     </header>
     <div class="header">
@@ -83,11 +83,16 @@
                     </a>
                 </div>
             </li>
-
         </ul>
     </div>
     <div class="empty">
         <!--<p>No hay pacientes ingresados</p>-->
+    </div>
+    <!-- Paginación -->
+    <div class="pagination">
+        <button id="prevPage">Anterior</button>
+        <span id="pageNumber">1</span>
+        <button id="nextPage">Siguiente</button>
     </div>
 </div>
 <link rel="stylesheet" href="{% static 'css/paciente_terapeuta.css' %}">
