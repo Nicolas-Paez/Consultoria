@@ -5,3 +5,7 @@ from autenticacion.decorators import role_required
 @role_required('Administrador')
 def gestion_terapeutas(request):
     return render(request, 'gestion_terapeutas.html')
+
+@role_required('Administrador')
+def agregar_terapeuta(request):
+    return render(request, 'agregar_terapeuta.html')

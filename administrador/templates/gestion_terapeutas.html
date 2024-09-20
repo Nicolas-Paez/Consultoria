@@ -1,9 +1,22 @@
 {% extends 'base_terapeuta.html' %}
 
+{% load static %}
+
 {% block title %}Gestión de terapeutas{% endblock %}
 
+{% block extra_head%}
+
+    <link rel="stylesheet" href="{% static 'styles/gestion_terapeutas.css' %}">
+
+{% endblock %}
+
 {% block content %}
-<label style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw">
-    Aquí va el contenido de la página de gestión de terapeutas
-</label>
+    <div class="contenedor-boton">
+        <button id="boton-agregar-terapeuta" >Agregar Terapeuta<img src="{% static 'icons/plus.svg' %}"></button>
+    </div>
+    <script>
+        document.getElementById("boton-agregar-terapeuta").addEventListener("click", function(){
+            window.location.href = "{% url 'agregar_terapeuta' %}";
+        });
+    </script>
 {% endblock %}

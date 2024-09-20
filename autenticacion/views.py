@@ -2,6 +2,18 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from .forms import RutLoginForm, SetPasswordForm
+from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth.views import PasswordResetConfirmView
+from django.urls import reverse_lazy
+from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormView
+from .forms import SendMailForm, SetPasswordForm
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.views import View
 from django.contrib.auth.models import Group, User
 from .forms import RutLoginForm
 
@@ -53,6 +65,19 @@ def login_usuario(request):
         form = RutLoginForm()
     return render(request, 'login.html', {'form': form})
 
+class SendMailConfirmView(View):
+    def get(self, request):
+        form = SendMailForm()
+        return render(request, 'password_reset_form.html', {'form': form})
+
+    def post(self, request):
+        form = SendMailForm(request.POST)
+        if form.is_valid():
+            # Lógica para enviar el correo
+            # ...
+            return render(request, 'password_reset_done.html')
+        return render(request, 'password_reset_form.html', {'form': form})
+
 @login_required
 def elegir_rol(request):
     grupos = request.user.groups.all()
@@ -86,3 +111,7 @@ def logout_usuario(request):
 
 def acceso_denegado(request):
     return render(request, 'acceso_denegado.html', {'message': 'No tienes permisos para acceder a esta página'})
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = SetPasswordForm
+    success_url = reverse_lazy('password_reset_complete')
