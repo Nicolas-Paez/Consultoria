@@ -17,6 +17,8 @@ from django.views import View
 from django.contrib.auth.models import Group, User
 from .forms import RutLoginForm
 
+# AUTENTICACION DE USUARIOS #
+
 def login_usuario(request):
     # Verificar si el usuario ya está autenticado
     if request.user.is_authenticated:
@@ -65,19 +67,6 @@ def login_usuario(request):
         form = RutLoginForm()
     return render(request, 'login.html', {'form': form})
 
-class SendMailConfirmView(View):
-    def get(self, request):
-        form = SendMailForm()
-        return render(request, 'password_reset_form.html', {'form': form})
-
-    def post(self, request):
-        form = SendMailForm(request.POST)
-        if form.is_valid():
-            # Lógica para enviar el correo
-            # ...
-            return render(request, 'password_reset_done.html')
-        return render(request, 'password_reset_form.html', {'form': form})
-
 @login_required
 def elegir_rol(request):
     grupos = request.user.groups.all()
@@ -112,6 +101,21 @@ def logout_usuario(request):
 def acceso_denegado(request):
     return render(request, 'acceso_denegado.html', {'message': 'No tienes permisos para acceder a esta página'})
 
+# VISTAS DE RECUPERACIÓN DE CONTRASEÑA #
+
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     form_class = SetPasswordForm
     success_url = reverse_lazy('password_reset_complete')
+
+class SendMailConfirmView(View):
+    def get(self, request):
+        form = SendMailForm()
+        return render(request, 'password_reset_form.html', {'form': form})
+
+    def post(self, request):
+        form = SendMailForm(request.POST)
+        if form.is_valid():
+            # Lógica para enviar el correo
+            # ...
+            return render(request, 'password_reset_done.html')
+        return render(request, 'password_reset_form.html', {'form': form})
