@@ -9,68 +9,53 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 40px; /* Espacio entre el título y la barra de búsqueda */
-    margin-top: 0;
-    margin-bottom: 7px; /* Espacio debajo del header */
-    padding-top: 10px;
-    position: relative;
-    top: -20px;
+    gap: 20px; /* Espacio entre el título y la barra de búsqueda */
+    margin: 10px 0;
+    padding: 10px;
 }
 
 .header h1 {
     margin: 0;
-    margin-bottom: 10px;
-    font-size: 40px;
+    font-size: 30px; /* Ajustado para pantallas pequeñas */
     color: black;
 }
 
 .header h2 {
     margin: 0;
-    margin-bottom: 2px; /* Espacio pequeño debajo de los h2 */
-    font-size: 20px;
+    font-size: 16px; /* Ajustado para pantallas pequeñas */
     color: black;
 }
 
-.header .rut {
-    flex-basis: 32%; /* Ancho específico para "Rut" */
-}
-
-.header .edad {
-    flex-basis: 9%; /* Ancho específico para "Edad" */
-}
-
+.header .rut,
+.header .edad,
 .header .tratamiento {
-    flex-basis: 36%; /* Ancho específico para "Tratamiento" */
+    flex: 1; /* Permitir que cada sección ocupe el mismo espacio */
 }
 
 /* Estilos para el contenedor de la búsqueda */
 .search-container {
     position: relative;
-    width: 700px; /* Ajusta el tamaño según sea necesario */
+    width: 100%; /* Ajustado para ser responsive */
 }
 
 /* Estilos para la barra de búsqueda */
 .search-bar {
     padding: 8px;
-    font-size: 16px;
+    font-size: 14px; /* Ajustado para pantallas pequeñas */
     background-color: #D9D9D9;
     border: 1px solid black;
     border-radius: 4px;
-    width: 700px;
-}
-
-.search-bar:focus {
-    outline: none;
-    border-color: #4CAF50;
+    width: 100%; /* Ajustado para ser responsive */
 }
 
 /* Icono de búsqueda */
 .search-icon {
     position: absolute;
-    right: 10px; /* Ajusta el espacio del icono */
+    background-color: #D9D9D9;
+    right: 10px;
     top: 50%;
-    transform: translateY(-50%); /* Centra verticalmente el icono */
-    width: 20px; /* Ajusta el tamaño del icono */
+    transform: translateY(-50%);
+    width: 20px;
     height: 20px;
 }
 
@@ -79,7 +64,7 @@ body {
     margin-bottom: 20px;
 }
 
-.li-container ul{
+.li-container ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -87,53 +72,121 @@ body {
 
 /* Estilos para cada paciente */
 .paciente {
-    width: 1050px;
+    width: 100%; /* Ajustado para ser responsive */
     display: flex;
-    justify-content: space-between; /* Asegura que los datos se alineen de manera uniforme debajo de los h2 */
+    justify-content: space-between;
     border: 1px solid #ccc;
     padding: 20px;
-    padding-left: 5px;
     margin-bottom: 7px;
     border-radius: 8px;
     background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Usar flexbox para alinear los datos horizontalmente */
 .paciente-info {
     display: flex;
-    justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+    justify-content: space-between;
     padding-left: 10px;
+    flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si es necesario */
 }
 
 /* Estilos para los elementos dentro de la información del paciente */
 .paciente-info p {
-    flex: 1; /* Hace que cada elemento ocupe el mismo espacio */
-    margin: 0; /* Margen reducido entre los elementos */
-    margin-top: 2px; /* Agregar un pequeño margen superior */
-    font-size: 16px;
-    min-width: 255px; /* Ancho mínimo para que los textos no se encimen */
+    flex: 1;
+    margin: 0;
+    margin-top: 2px;
+    font-size: 14px; /* Ajustado para pantallas pequeñas */
+    min-width: 100px; /* Ancho mínimo para textos */
 }
 
 /* Estilos para el botón del icono de reportes */
 .report-button {
-    display: inline-block; /* Asegura que el botón se ajuste al tamaño del contenido */
-    background-color: transparent; /* Fondo transparente para que solo se vea el icono */
-    border: none; /* Sin borde para que se vea como un icono */
-    cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el botón */
-    padding: 0; /* Sin relleno adicional */
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 /* Estilos para el icono de reportes */
 .report-icon {
-    width: 28px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 28px; /* Mantén la proporción del icono con el ancho */
+    width: 24px; /* Ajustado para pantallas pequeñas */
+    height: 24px;
     padding-right: 10px;
 }
 
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Colocar header en columna */
+        align-items: flex-start; /* Alinear a la izquierda */
+    }
+
+    .paciente {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    }
+
     .paciente-info {
-        flex-direction: column; /* En pantallas pequeñas, los datos se colocarán en una columna */
+        flex-direction: column; /* Colocar paciente info en columna */
+    }
+
+    .paciente-info p {
+        min-width: 100%; /* Asegura que los textos ocupen todo el ancho */
+    }
+}
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header {
+        gap: 30px; /* Espacio entre elementos */
+    }
+
+    .header h1 {
+        font-size: 36px; /* Tamaño de fuente más grande */
+    }
+
+    .header h2 {
+        font-size: 18px; /* Tamaño de fuente más grande */
+    }
+
+    .search-bar {
+        font-size: 16px; /* Tamaño de fuente más grande */
+    }
+
+    .paciente-info p {
+        font-size: 15px; /* Tamaño de fuente ajustado */
+    }
+}
+
+/* Ajustes para pantallas grandes (escritorios) */
+@media (min-width: 1025px) {
+    .header {
+        gap: 40px; /* Espacio más amplio entre elementos */
+    }
+
+    .header h1 {
+        font-size: 40px; /* Tamaño de fuente aún más grande */
+    }
+
+    .header h2 {
+        font-size: 20px; /* Tamaño de fuente aún más grande */
+    }
+
+    .search-bar {
+        font-size: 18px; /* Tamaño de fuente más grande */
+        width: 600px; /* Tamaño específico para pantallas grandes */
+    }
+
+    .paciente {
+        flex-direction: row; /* Asegura la alineación horizontal */
+    }
+
+    .paciente-info {
+        flex-direction: row; /* Asegura la alineación horizontal */
+    }
+
+    .paciente-info p {
+        font-size: 16px; /* Tamaño de fuente ajustado */
     }
 }

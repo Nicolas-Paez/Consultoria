@@ -84,4 +84,3 @@ document.getElementById('searchBar').addEventListener('keyup', filterPatients);
 
 // Evento para cuando se haga clic en el icono de la lupa
 document.getElementById('searchIcon').addEventListener('click', filterPatients);
-
