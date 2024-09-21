@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from autenticacion.models import Profile
-from .models import Terapeuta, Horario
+from terapeuta.models import Terapeuta, Horario
 from django.forms import inlineformset_factory
 
 class CrearTerapeutaForm(forms.ModelForm):
@@ -79,6 +79,6 @@ class CrearTerapeutaForm(forms.ModelForm):
 HorarioFormSet = inlineformset_factory(
     Terapeuta,
     Horario,
-    fields=('dia', 'hora_inicio', 'hora_termino'),
+    fields=('dia', 'hora_inicio', 'hora_final'),
     extra=7, # 7 días de la semana, lunes a domingo, de esta forma se crean 7 formularios para los horarios
 )
