@@ -17,16 +17,181 @@
     <form action="{% url 'agregar_terapeuta' %}" method="POST">
         {{ horario_formset.management_form }} <!-- Necesario para que Django pueda manejar el formset, contiene datos ocultos para gestionar el formset -->
         {% csrf_token %}
+        <h2 class="subtitulo1"> Datos del terapeuta </h2>
+
+        {% comment %} DATOS DEL TERAPEUTA COLUMNA IZQUIERDA {% endcomment %}
+
+        <div class="datos-columna-izquierda">
+
+            <!-- Campo RUT -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.rut.id_for_label }}">{{ terapeuta_form.rut.label }}</label>
+                {{ terapeuta_form.rut }}
+                <div class="error">{{ terapeuta_form.rut.errors }}</div>
+            </div>
+
+            <!-- Campo Nombre -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.first_name.id_for_label }}">{{ terapeuta_form.first_name.label }}</label>
+                {{ terapeuta_form.first_name }}
+                <div class="error">{{ terapeuta_form.first_name.errors }}</div>
+            </div>
+
+            <!-- Campo Apellido -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.last_name.id_for_label }}">{{ terapeuta_form.last_name.label }}</label>
+                {{ terapeuta_form.last_name }}
+                <div class="error">{{ terapeuta_form.last_name.errors }}</div>
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.email.id_for_label }}">{{ terapeuta_form.email.label }}</label>
+                {{ terapeuta_form.email }}
+                <div class="error">{{ terapeuta_form.email.errors }}</div>
+            </div>
+
+            <!-- Campo Contraseña -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.password.id_for_label }}">{{ terapeuta_form.password.label }}</label>
+                {{ terapeuta_form.password }}
+                <div class="error">{{ terapeuta_form.password.errors }}</div>
+            </div>
+
+            <!-- Campo Teléfono -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.telefono.id_for_label }}">{{ terapeuta_form.telefono.label }}</label>
+                {{ terapeuta_form.telefono }}
+                <div class="error">{{ terapeuta_form.telefono.errors }}</div>
+            </div>
+
+            <!-- Campo Fecha de Nacimiento -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.fecha_nacimiento.id_for_label }}">{{ terapeuta_form.fecha_nacimiento.label }}</label>
+                {{ terapeuta_form.fecha_nacimiento }}
+                <div class="error">{{ terapeuta_form.fecha_nacimiento.errors }}</div>
+            </div>
+
+            <!-- Campo Dirección -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.direccion.id_for_label }}">{{ terapeuta_form.direccion.label }}</label>
+                {{ terapeuta_form.direccion }}
+                <div class="error">{{ terapeuta_form.direccion.errors }}</div>
+            </div>
+
+            <!-- Campo Región -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.region.id_for_label }}">{{ terapeuta_form.region.label }}</label>
+                {{ terapeuta_form.region }}
+                <div class="error">{{ terapeuta_form.region.errors }}</div>
+            </div>
+
+            <!-- Campo Provincia -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.provincia.id_for_label }}">{{ terapeuta_form.provincia.label }}</label>
+                {{ terapeuta_form.provincia }}
+                <div class="error">{{ terapeuta_form.provincia.errors }}</div>
+            </div>
+
+            <!-- Campo Comuna -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.comuna.id_for_label }}">{{ terapeuta_form.comuna.label }}</label>
+                {{ terapeuta_form.comuna }}
+                <div class="error">{{ terapeuta_form.comuna.errors }}</div>
+            </div>
+
+        </div>
+
+        {% comment %} DATOS DEL TERAPEUTA COLUMNA DERECHA {% endcomment %}
+
+        <div class="datos-columna-derecha">
+
+            <!-- Campo Sexo -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.sexo.id_for_label }}">{{ terapeuta_form.sexo.label }}</label>
+                {{ terapeuta_form.sexo }}
+                <div class="error">{{ terapeuta_form.sexo.errors }}</div>
+            </div>
+
+            <!-- Campo Especialidad -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.especialidad.id_for_label }}">{{ terapeuta_form.especialidad.label }}</label>
+                {{ terapeuta_form.especialidad }}
+                <div class="error">{{ terapeuta_form.especialidad.errors }}</div>
+            </div>
+
+            <!-- Campo Fecha de Contratación -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.fecha_contratacion.id_for_label }}">{{ terapeuta_form.fecha_contratacion.label }}</label>
+                {{ terapeuta_form.fecha_contratacion }}
+                <div class="error">{{ terapeuta_form.fecha_contratacion.errors }}</div>
+            </div>
+
+            <!-- Campo Título -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.titulo.id_for_label }}">{{ terapeuta_form.titulo.label }}</label>
+                {{ terapeuta_form.titulo }}
+                <div class="error">{{ terapeuta_form.titulo.errors }}</div>
+            </div>
+
+            <!-- Campo Experiencia -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.experiencia.id_for_label }}">{{ terapeuta_form.experiencia.label }}</label>
+                {{ terapeuta_form.experiencia }}
+                <div class="error">{{ terapeuta_form.experiencia.errors }}</div>
+            </div>
+
+            <!-- Campo Presentación -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.presentacion.id_for_label }}">{{ terapeuta_form.presentacion.label }}</label>
+                {{ terapeuta_form.presentacion }}
+                <div class="error">{{ terapeuta_form.presentacion.errors }}</div>
+            </div>
+
+            <!-- Campo Correo de Contacto -->
+            <div class="form-group">
+                <label for="{{ terapeuta_form.correo_contacto.id_for_label }}">{{ terapeuta_form.correo_contacto.label }}</label>
+                {{ terapeuta_form.correo_contacto }}
+                <div class="error">{{ terapeuta_form.correo_contacto.errors }}</div>
+            </div>
+
+        </div>
         
-        <h2> Datos del terapeuta </h2>
-        {{ terapeuta_form.as_p }}
 
-        <h2> Horarios del terapeuta </h2>
-        {% for form in horario_formset %}
-            {{ form.as_p }}
-        {% endfor %}
+        <h2 class="subtitulo2"> Horarios del terapeuta </h2>
+        
+        <div class="datos-inferiores">
+            {% for form in horario_formset %}
+            
+                <!-- Campo Día -->
+                <div class="form-group">
+                    <label for="{{ form.dia.id_for_label }}">Día:</label>
+                    {{ form.dia }}
+                </div>
+                
+                <!-- Campo Hora de Inicio -->
+                <div class="form-group">
+                    <label for="{{ form.hora_inicio.id_for_label }}">Hora de inicio:</label>
+                    {{ form.hora_inicio }}
+                </div>
+                
+                <!-- Campo Hora de Fin -->
+                <div class="form-group">
+                    <label for="{{ form.hora_final.id_for_label }}">Hora de fin:</label>
+                    {{ form.hora_final }}
+                </div>
+        
+                {% if form.non_field_errors %}
+                    <div class="error">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
 
-        <button type="submit">Agregar terapeuta</button>
+            {% endfor %}
+        </div>
+        
+
+        <button class="boton-confirmar" type="submit">Agregar terapeuta</button>
     </form>
 </div>
 <script>
