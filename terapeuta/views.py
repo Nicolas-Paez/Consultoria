@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from autenticacion.decorators import role_required
-from .models import citas, Terapeuta
+from .models import Cita, Terapeuta
 from django.http import HttpResponse
 
 @role_required('Terapeuta')
@@ -23,7 +23,7 @@ def agendar_cita(request):
     
         terapeuta = Terapeuta.objects.get(id=1)
         
-        cita = citas(
+        cita = Cita(
             id_terapeuta = terapeuta,
             titulo = titulo,
             fecha = fecha,
