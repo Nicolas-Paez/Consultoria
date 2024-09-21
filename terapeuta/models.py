@@ -77,3 +77,12 @@ class Sesion(models.Model):
         terapeuta_nombre = f"{self.rutina.terapeuta.user.first_name} {self.rutina.terapeuta.user.last_name}" if self.rutina and self.rutina.terapeuta else "Sin terapeuta"
         paciente_nombre = f"{self.rutina.paciente.user.first_name} {self.rutina.paciente.user.last_name}" if self.rutina and self.rutina.paciente else "Sin paciente"
         return f"{terapeuta_nombre} - {paciente_nombre}"
+
+class Horario(models.Model):
+    terapeuta = models.ForeignKey(Terapeuta, on_delete=models.CASCADE, null=True, blank=True)
+    dia = models.CharField(max_length=50, choices=(("Lunes", "Lunes"), ("Martes", "Martes"), ("Miércoles", "Miércoles"), ("Jueves", "Jueves"), ("Viernes", "Viernes"), ("Sábado", "Sábado"), ("Domingo", "Domingo")))
+    hora_inicio = models.TimeField()
+    hora_final = models.TimeField()
+
+    def __str__(self):
+        return f"{self.terapeuta.user.first_name} {self.terapeuta.user.last_name} - {self.dia}"
