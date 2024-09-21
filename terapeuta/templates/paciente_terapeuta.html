@@ -1,0 +1,100 @@
+{% extends 'base_terapeuta.html' %}
+
+{% load static %}
+
+{% block title %}Pacientes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="header">
+        <h1>Pacientes</h1>
+        <!-- Contenedor para la barra de búsqueda y el icono -->
+        <div class="search-container">
+            <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar" id="searchBar">
+            <img src="{% static 'icons/Lupa.svg' %}" alt="Lupa" class="search-icon" id="searchIcon">
+        </div>>
+    </header>
+    <div class="header">
+        <h2>Nombre</h2>
+        <h2 class="rut">Rut</h2>
+        <h2 class="edad">Edad</h2>
+        <h2 class="tratamiento">Tratamiento</h2>
+    </div>
+    <div class="li-container">
+        <ul>
+            <!-- Lista de pacientes -->
+            <!-- Contenedor de cada paciente -->
+            <li class="paciente">
+                <div class="paciente-info">
+                    <p>Vicente Mena</p>
+                    <p>12345678-9</p>
+                    <p>30 años</p>
+                    <p>Fisioterapia</p>
+                    <a href="#" class="report-button">
+                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
+                    </a>
+                </div>
+            </li>
+
+            <li class="paciente">
+                <div class="paciente-info">
+                    <p>Cristobal Pardo</p>
+                    <p>98765432-1</p>
+                    <p>45 años</p>
+                    <p>Terapia ocupacional</p>
+                    <a href="#" class="report-button">
+                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
+                    </a>
+                </div>
+            </li>
+
+            <li class="paciente">
+                <div class="paciente-info">
+                    <p>Juan Pérez</p>
+                    <p>12345678-9</p>
+                    <p>30 años</p>
+                    <p>Fisioterapia</p>
+                    <a href="#" class="report-button">
+                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
+                    </a>
+                </div>
+            </li>
+    
+            <li class="paciente">
+                <div class="paciente-info">
+                    <p>Ana López</p>
+                    <p>98765432-1</p>
+                    <p>45 años</p>
+                    <p>Terapia ocupacional</p>
+                    <a href="#" class="report-button">
+                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
+                    </a>
+                </div>
+            </li>
+
+            <li class="paciente">
+                <div class="paciente-info">
+                    <p>Sebastián Baez</p>
+                    <p>98765432-1</p>
+                    <p>25 años</p>
+                    <p>Terapia ocupacional</p>
+                    <a href="#" class="report-button">
+                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="empty">
+        <!--<p>No hay pacientes ingresados</p>-->
+    </div>
+    <!-- Paginación -->
+    <div class="pagination">
+        <button id="prevPage">Anterior</button>
+        <span id="pageNumber">1</span>
+        <button id="nextPage">Siguiente</button>
+    </div>
+</div>
+<link rel="stylesheet" href="{% static 'css/paciente_terapeuta.css' %}">
+<script src="{% static 'js/paciente_terapeuta.js' %}"></script>
+{% endblock %}

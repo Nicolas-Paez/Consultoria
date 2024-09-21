@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from autenticacion.decorators import role_required
 from .models import Cita, Terapeuta
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 
 @role_required('Terapeuta')
 def agenda(request):
@@ -11,7 +12,7 @@ def perfil_view(request):
     return render(request, 'perfil.html')
 
 def pacientes_view(request):
-    return render(request, 'paciente.html')
+    return render(request, 'paciente_terapeuta.html')
 
 def agendar_cita(request):
     if request.method == 'POST':

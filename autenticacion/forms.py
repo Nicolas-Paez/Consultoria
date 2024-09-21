@@ -70,5 +70,4 @@ class PasswordResetForm(forms.Form):
         # Validación del dígito verificador
         if dv != verificador:
             raise forms.ValidationError('El dígito verificador del RUT no es válido.')
-
         return rut

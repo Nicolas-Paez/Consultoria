@@ -1,0 +1,139 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos del header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px; /* Espacio entre el título y la barra de búsqueda */
+    margin-top: 0;
+    margin-bottom: 7px; /* Espacio debajo del header */
+    padding-top: 10px;
+    position: relative;
+    top: -20px;
+}
+
+.header h1 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 40px;
+    color: black;
+}
+
+.header h2 {
+    margin: 0;
+    margin-bottom: 2px; /* Espacio pequeño debajo de los h2 */
+    font-size: 20px;
+    color: black;
+}
+
+.header .rut {
+    flex-basis: 32%; /* Ancho específico para "Rut" */
+}
+
+.header .edad {
+    flex-basis: 9%; /* Ancho específico para "Edad" */
+}
+
+.header .tratamiento {
+    flex-basis: 36%; /* Ancho específico para "Tratamiento" */
+}
+
+/* Estilos para el contenedor de la búsqueda */
+.search-container {
+    position: relative;
+    width: 700px; /* Ajusta el tamaño según sea necesario */
+}
+
+/* Estilos para la barra de búsqueda */
+.search-bar {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #D9D9D9;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 700px;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Icono de búsqueda */
+.search-icon {
+    position: absolute;
+    right: 10px; /* Ajusta el espacio del icono */
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente el icono */
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px;
+}
+
+/* Estilos para el contenedor de la lista */
+.li-container {
+    margin-bottom: 20px;
+}
+
+.li-container ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilos para cada paciente */
+.paciente {
+    width: 1050px;
+    display: flex;
+    justify-content: space-between; /* Asegura que los datos se alineen de manera uniforme debajo de los h2 */
+    border: 1px solid #ccc;
+    padding: 20px;
+    padding-left: 5px;
+    margin-bottom: 7px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Usar flexbox para alinear los datos horizontalmente */
+.paciente-info {
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+    padding-left: 10px;
+}
+
+/* Estilos para los elementos dentro de la información del paciente */
+.paciente-info p {
+    flex: 1; /* Hace que cada elemento ocupe el mismo espacio */
+    margin: 0; /* Margen reducido entre los elementos */
+    margin-top: 2px; /* Agregar un pequeño margen superior */
+    font-size: 16px;
+    min-width: 255px; /* Ancho mínimo para que los textos no se encimen */
+}
+
+/* Estilos para el botón del icono de reportes */
+.report-button {
+    display: inline-block; /* Asegura que el botón se ajuste al tamaño del contenido */
+    background-color: transparent; /* Fondo transparente para que solo se vea el icono */
+    border: none; /* Sin borde para que se vea como un icono */
+    cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el botón */
+    padding: 0; /* Sin relleno adicional */
+}
+
+/* Estilos para el icono de reportes */
+.report-icon {
+    width: 28px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 28px; /* Mantén la proporción del icono con el ancho */
+    padding-right: 10px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .paciente-info {
+        flex-direction: column; /* En pantallas pequeñas, los datos se colocarán en una columna */
+    }
+}
