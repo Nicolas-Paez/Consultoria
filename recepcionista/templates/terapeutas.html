@@ -18,7 +18,7 @@
                 </button>
                 <div class="dropdown-content">
                     <label class="dropdown-label">
-                        <input type="radio" name="orden" value="fecha_ingreso" class="hidden-input"> Fecha de Ingreso
+                        <input type="radio" name="orden" value="fecha_contratacion" class="hidden-input"> Fecha de Ingreso
                     </label>
                     <label class="dropdown-label">
                         <input type="radio" name="orden" value="especialidad" class="hidden-input"> Especialidad
@@ -43,9 +43,9 @@
 <div class="terapeuta-card">
     <span>{{ terapeuta.user.first_name }} {{ terapeuta.user.last_name }}</span>
     <span>{{ terapeuta.user.profile.rut }}</span>
-    <span class="estado-activo">{{ terapeuta.estado }}</span>
+    <span class="estado-activo">{{"Activo"}}</span>
     <span>{{ terapeuta.especialidad }}</span>
-    <span>{{ terapeuta.fecha_ingreso|date:"d/m/Y" }}</span> <!-- Aquí se aplica el formato -->
+    <span>{{ terapeuta.fecha_contratacion|date:"d/m/Y" }}</span> <!-- Aquí se aplica el formato -->
     <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta" class="terapeuta-imagen">
 </div>
 {% empty %}
