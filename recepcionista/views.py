@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def listar_terapeutas_activos(request):
     query = request.GET.get('q', '')
     orden = request.GET.get('orden', 'user__first_name')  # Valor por defecto para ordenación
-    valid_order_fields = ['user__first_name', 'user__last_name', 'user__profile__rut', 'especialidad', 'fecha_ingreso']
+    valid_order_fields = ['user__first_name', 'user__last_name', 'user__profile__rut', 'especialidad', 'fecha_contratacion']
     if orden not in valid_order_fields:
         orden = 'user__first_name'  # Restablecer a un valor por defecto si no es válido
 
@@ -19,10 +19,10 @@ def listar_terapeutas_activos(request):
             Q(user__first_name__icontains=query) | 
             Q(user__last_name__icontains=query) | 
             Q(user__profile__rut__icontains=query),
-            estado='Activo'
+            user__is_active=True  # Filtrar por usuarios activos
         ).order_by(orden)  # Aplicar ordenación
     else:
-        terapeutas = Terapeuta.objects.filter(estado='Activo').order_by(orden)  # Aplicar ordenación
+        terapeutas = Terapeuta.objects.filter(user__is_active=True).order_by(orden)  # Aplicar ordenación
 
     # Paginación
     paginator = Paginator(terapeutas, 5)  # 5 terapeutas por página
