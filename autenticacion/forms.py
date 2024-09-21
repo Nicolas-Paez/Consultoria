@@ -45,6 +45,7 @@ class PasswordResetForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError('Las contraseñas no coinciden.')
         return password2
+    
     def clean_rut(self):
         rut = self.cleaned_data.get('rut')
 
