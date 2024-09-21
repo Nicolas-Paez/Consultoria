@@ -15,34 +15,16 @@
         <h1>Agregar terapeuta</h1>
         <form action="{% url 'agregar_terapeuta' %}" method="POST">
             {% csrf_token %}
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" id="apellido" required>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo</label>
-                <input type="email" name="correo" id="correo" required>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" name="telefono" id="telefono" required>
-            </div>
-            <div class="form-group">
-                <label for="especialidad">Especialidad</label>
-                <input type="text" name="especialidad" id="especialidad" required>
-            </div>
-            <div class="form-group">
-                <label for="contrasena">Contraseña</label>
-                <input type="password" name="contrasena" id="contrasena" required>
-            </div>
-            <div class="form-group">
-                <label for="confirmar_contrasena">Confirmar contraseña</label>
-                <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" required>
-            </div>
+            
+            <h2> Datos del terapeuta </h2>
+            {{ terapeuta_form.as_p }}
+
+            <h2> Horarios del terapeuta </h2>
+            {{ horario_formset.management_form }} <!-- Necesario para que Django pueda manejar el formset, contiene datos ocultos para gestionar el formset -->
+            {% for form in horario_formset %}
+                {{ form.as_p }}
+            {% endfor %}
+
             <button type="submit">Agregar terapeuta</button>
         </form>
     </div>
