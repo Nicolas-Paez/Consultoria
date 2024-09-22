@@ -154,33 +154,44 @@
         <h2 class="subtitulo2"> Horarios del terapeuta </h2>
         
         <div class="datos-inferiores">
-            {% for form in horario_formset %}
-            
-                <!-- Campo Día -->
-                <div class="form-group">
-                    <label for="{{ form.dia.id_for_label }}">Día:</label>
-                    {{ form.dia }}
-                </div>
-                
-                <!-- Campo Hora de Inicio -->
-                <div class="form-group">
-                    <label for="{{ form.hora_inicio.id_for_label }}">Hora de inicio:</label>
-                    {{ form.hora_inicio }}
-                </div>
-                
-                <!-- Campo Hora de Fin -->
-                <div class="form-group">
-                    <label for="{{ form.hora_final.id_for_label }}">Hora de fin:</label>
-                    {{ form.hora_final }}
-                </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                        <th>Hora de Inicio</th>
+                        <th>Hora de Fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in horario_formset %}
+                        <tr>
+                            <!-- Campo Día -->
+                            <td>
+                                <label for="{{ form.dia.id_for_label }}">{{ form.dia.label }}</label>
+                                {{ form.dia }}
+                            </td>
+                            
+                            <!-- Campo Hora de Inicio -->
+                            <td>
+                                <label for="{{ form.hora_inicio.id_for_label }}">{{ form.hora_inicio.label }}</label>
+                                {{ form.hora_inicio }}
+                            </td>
+                            
+                            <!-- Campo Hora de Fin -->
+                            <td>
+                                <label for="{{ form.hora_final.id_for_label }}">{{ form.hora_final.label }}</label>
+                                {{ form.hora_final }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         
-                {% if form.non_field_errors %}
-                    <div class="error">
-                        {{ form.non_field_errors }}
-                    </div>
-                {% endif %}
-
-            {% endfor %}
+            {% if horario_formset.non_field_errors %}
+                <div class="error">
+                    {{ horario_formset.non_field_errors }}
+                </div>
+            {% endif %}
         </div>
         
 
