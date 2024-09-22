@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from autenticacion.decorators import role_required
-from .models import Cita, Terapeuta
+from .models import Cita, Terapeuta, Paciente
 from django.http import HttpResponse
 
 @role_required('Terapeuta')
@@ -11,7 +11,11 @@ def perfil_view(request):
     return render(request, 'perfil.html')
 
 def pacientes_view(request):
-    return render(request, 'paciente.html')
+    pacientes = Paciente.objects.all()
+    context = {
+        'pacientes': pacientes
+    }
+    return render(request, 'paciente.html', context)
 
 def agendar_cita(request):
     if request.method == 'POST':
