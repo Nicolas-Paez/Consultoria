@@ -29,8 +29,8 @@
 
 /* Ajustar el tamaño y color de la barra de búsqueda */
 .busqueda-input input[type="text"] {
-    width: 400px;
-    height: 22.5px;
+    width: 425px;
+    height: 18.5px;
     border: 2px solid #d9d9d9;
     border-radius: 0px;
     padding: 5px 10px;
@@ -39,25 +39,40 @@
     background-color: #d9d9d9;
 }
 
+/* Botón de búsqueda con ícono */
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search-button img {
+    width: 20px;
+    height: 20px;
+}
+
 /* Botón de filtro */
 .filtro-btn {
-    height: 40px;
-    padding: 5px 15px;
+    height: 30px;
+    padding: 0px 15px;
     background-color: #373d58;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
-    border: 2px solid #ccc;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6.5px;
 }
 
 /* Flecha hacia arriba/abajo */
 .flecha {
-    font-size: 14px;
+    font-size: 11px;
     transition: transform 0.3s ease;
 }
 
@@ -65,46 +80,44 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    text-align: center; /* Centrar el contenido del dropdown */
 }
 
-.dropdown-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 0 10px;
-    outline: none;
-}
-
+/* Estilo para el dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 10px;
     z-index: 1;
+    border: 1px solid #000; /* Borde negro */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
-.dropdown-content label {
+/* Alinear el texto de los filtros a la izquierda y ajustar el tamaño */
+.dropdown-label {
     display: block;
-    padding: 5px 0;
+    padding: 5px 10px;
     cursor: pointer;
+    text-align: left; /* Alinear a la izquierda */
+    font-size: 14px; /* Reducir el tamaño de fuente */
+    transition: background-color 0.3s;
 }
 
-.dropdown.active .dropdown-content {
-    display: block;
+.dropdown-label:hover {
+    background-color: #e0e0e0;
 }
 
-.dropdown.active .flecha {
-    transform: rotate(180deg); /* Girar flecha hacia arriba */
+.hidden-input {
+    display: none;
 }
 
 /* Estilo para la lista de terapeutas */
 .lista-terapeutas {
     width: 100%;
-    margin-top: 35px;
-    margin-left: 20px;
+    margin-top: 40px;
+    margin-left: -5px;
 }
 
 /* Estilo para la cabecera de la lista */
@@ -122,31 +135,16 @@
 /* Estilo para cada terapeuta */
 .terapeuta-card {
     display: grid;
-    grid-template-columns: 0.15fr 0.15fr 0.15fr 0.15fr 0.2fr 0.15fr;
+    grid-template-columns: 0.15fr 0.15fr 0.15fr 0.15fr 0.25fr 0.15fr;
     padding: 15px;
     background-color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border-radius: 10px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s ease;
     align-items: center;
     text-align: left;
     padding-left: 20px;
-}
-
-/* Efecto hover para cada terapeuta */
-.terapeuta-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Ajustes para que los textos de las columnas estén alineados correctamente */
-.terapeuta-card span, .header-lista span {
-    margin: 0;
-}
-
-/* Estilo para los textos */
-.terapeuta-card span {
-    color: #333;
 }
 
 /* Punto verde junto al estado activo */
@@ -160,25 +158,27 @@
 
 /* Imagen del terapeuta (Dr. Vicente Salinas) */
 .terapeuta-imagen {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 39px;
+    height: 40px;
+    border-radius: 0%;
     object-fit: cover;
 }
 
 /* Mejorar el aspecto del título */
 .header h2 {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: bold;
     color: #000000;
     margin-bottom: 40px;
-    text-align: center;
+    text-align: center; /* Alinear el título al centro */
 }
 
-/* Ajustes para que las columnas se mantengan alineadas */
-.header-lista {
-    background-color: #ffffff;
-    border-radius: 5px;
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px; /* Espaciado entre los elementos */
 }
 
 /*ASIGNAR TERAPEUTA*/
@@ -286,4 +286,30 @@ h1 {
 
 .calendar-icon {
     margin-right: 5px;
+}
+.pagination-links {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination-links a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 10px 15px; /* Aumentar el tamaño del botón */
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.pagination-links a:hover {
+    background-color: #007bff; /* Color de fondo al pasar el mouse */
+    color: white; /* Color del texto al pasar el mouse */
+}
+
+.current-page {
+    padding: 10px 15px; /* Aumentar el tamaño */
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background-color: #f1f1f1; /* Color de fondo */
+    font-weight: bold; /* Hacer el texto más destacado */
 }

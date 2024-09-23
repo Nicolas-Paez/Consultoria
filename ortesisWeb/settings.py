@@ -84,7 +84,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "ortesisweb",
         "USER": "postgres",
-        "PASSWORD": "Falaciado1#.",
+        "PASSWORD": "1234",
         "PORT": "5432",
     }
 }
@@ -133,10 +133,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_POST = 587
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER ='tu-email@gmail.com'
-EMAIL_HOST_PASSWORD ='tu-contraseña-o-contraseña-de-aplicación'
+EMAIL_HOST_USER ='vicente.menaalbornoz@gmail.com'
+EMAIL_HOST_PASSWORD ='wpfp vmlv mcam wjjp'
+
+# Definir el emisor predeterminado como no-reply
+DEFAULT_FROM_EMAIL = 'no-reply@ortesisweb.com'
+
+#enviará correos a la consola local de momento para probar
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #enviará correos a la consola local de momento para probar
+
 
 # Configuración de autenticación
 AUTHENTICATION_BACKENDS = [

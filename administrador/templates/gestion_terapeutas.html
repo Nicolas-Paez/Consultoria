@@ -1,9 +1,31 @@
 {% extends 'base_admin.html' %}
 
+<<<<<<< HEAD
 {% block title %}Terapeutas{% endblock %}
 
 {% block content %}
 <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
     <h1 style="font-size: 48px; font-weight: bold;">Terapeutas</h1>
 </div>
+=======
+{% load static %}
+
+{% block title %}Gestión de terapeutas{% endblock %}
+
+{% block extra_head%}
+
+    <link rel="stylesheet" href="{% static 'styles/gestion_terapeutas.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="contenedor-boton">
+        <button id="boton-agregar-terapeuta" >Agregar Terapeuta<img src="{% static 'icons/plus.svg' %}"></button>
+    </div>
+    <script>
+        document.getElementById("boton-agregar-terapeuta").addEventListener("click", function(){
+            window.location.href = "{% url 'agregar_terapeuta' %}";
+        });
+    </script>
+>>>>>>> main
 {% endblock %}
