@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from terapeuta.models import Terapeuta
+from terapeuta.models import Terapeuta, Paciente
 from autenticacion.models import Profile
 from autenticacion.decorators import role_required
 from django.db.models import Q
@@ -24,7 +24,8 @@ def recepcionista_terapeutas_activos(request):
 
 @role_required('Recepcionista')
 def recepcionista_pacientes_activos(request):
-    return render(request, 'recepcionista_pacientes_activos.html')
+    paciente = Paciente.objects.all()
+    return render(request, 'recepcionista_pacientes_activos.html', {'paciente': paciente})
 
 @role_required('Recepcionista')
 def agregar_paciente(request):
