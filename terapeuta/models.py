@@ -1,9 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
+from autenticacion.models import Profile
+from datetime import timedelta
+from django.utils import timezone
 
 class Terapeuta(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     especialidad = models.CharField(max_length=100)
+    fecha_ingreso = models.DateField(default=timezone.now)
+    estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('Inactivo', 'Inactivo')], default='Activo')
+    disponibilidad = models.CharField(max_length=30, choices=[('Disponible', 'Disponible'), ('Medianamente Disponible', 'Medianamente Disponible'), ('No Disponible', 'No Disponible')], default='Disponible')
+    horas_trabajadas = models.FloatField(default=0)
     fecha_contratacion = models.DateField()
     titulo = models.CharField(max_length=100, default="Sin título")
     experiencia = models.IntegerField(null=True, blank=True)
@@ -13,25 +20,36 @@ class Terapeuta(models.Model):
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
     
+from django.db import models
+
 class Paciente(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     terapeuta = models.ForeignKey(Terapeuta, on_delete=models.CASCADE, null=True, blank=True)
-    contacto_emergencia = models.CharField(max_length=100)
-    telefono_emergencia = models.CharField(max_length=12)
-    historial_medico = models.TextField()
-    medicamentos = models.CharField(max_length=500)
-    patologia = models.CharField(max_length=100)
-    alergias = models.CharField(max_length=100)
-    progreso = models.TextField()
-    dispositivo_ortesis = models.CharField(max_length=100)
-    actividad_fisica = models.CharField(max_length=100, choices=(("Sedentario", "Sedentario"), ("Moderado", "Moderado"), ("Activo", "Activo")))
-    peso = models.DecimalField(max_digits=5, decimal_places=2)
-    altura = models.DecimalField(max_digits=5, decimal_places=2)
-    imc = models.DecimalField(max_digits=5, decimal_places=2)
-    motivo_desvinculacion = models.CharField(max_length=500, choices=(("Terminó tratamiento", "Terminó tratamiento"), ("Cambio de terapeuta", "Cambio de terapeuta"), ("Otro", "Otro")))
+    rut = models.CharField(max_length=13)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    fecha_nacimiento = models.DateField()
+    sexo = models.CharField(max_length=10, choices=(("Masculino", "Masculino"), ("Femenino", "Femenino"), ("Otro", "Otro")))
+    telefono = models.CharField(max_length=13, null=True, blank=True)
+    email = models.CharField(max_length=254, null=True, blank=True)
+    contacto_emergencia = models.CharField(max_length=100, null=True, blank=True)
+    telefono_emergencia = models.CharField(max_length=12, null=True, blank=True)
+    historial_medico = models.TextField(null=True, blank=True)
+    medicamentos = models.CharField(max_length=500, null=True, blank=True)
+    patologia = models.CharField(max_length=100, null=True, blank=True)
+    alergias = models.CharField(max_length=100, null=True, blank=True)
+    progreso = models.TextField(null=True, blank=True)
+    dispositivo_ortesis = models.CharField(max_length=100, null=True, blank=True)
+    actividad_fisica = models.CharField(max_length=100, choices=(("Sedentario", "Sedentario"), ("Moderado", "Moderado"), ("Activo", "Activo")), null=True, blank=True)
+    peso = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0.0)
+    altura = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0.0)
+    imc = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0.0)
+    motivo_desvinculacion = models.CharField(max_length=500, choices=(("Terminó tratamiento", "Terminó tratamiento"), ("Cambio de terapeuta", "Cambio de terapeuta"), ("Otro", "Otro")), null=True, blank=True)
+    date_joined = models.DateField()
+    direccion = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}"
+        return f"{self.first_name} {self.last_name}"
+
 
 class Cita(models.Model):
     terapeuta = models.ForeignKey(Terapeuta, on_delete=models.CASCADE, null=True, blank=True)
@@ -41,11 +59,15 @@ class Cita(models.Model):
     hora = models.TimeField()
     sala = models.CharField(max_length=50)
     detalle = models.CharField(max_length=100)
-
     def __str__(self):
         terapeuta_nombre = f"{self.terapeuta.user.first_name} {self.terapeuta.user.last_name}" if self.terapeuta else "Sin terapeuta"
         paciente_nombre = f"{self.paciente.user.first_name} {self.paciente.user.last_name}" if self.paciente else "Sin paciente"
         return f"{terapeuta_nombre} - {paciente_nombre}"
+
+
+
+    
+
 
 class Rutina(models.Model):
     terapeuta = models.ForeignKey(Terapeuta, on_delete=models.CASCADE, null=True, blank=True)

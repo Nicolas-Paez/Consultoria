@@ -91,7 +91,7 @@ def redireccionamiento_segun_rol(user, role):
     elif role.name == 'Terapeuta':
         return redirect('agenda')
     elif role.name == 'Recepcionista':
-        return redirect('base_recepcionista')
+        return redirect('recepcionista_pacientes_activos')
     return redirect('login')  # Redirige en caso de no encontrar un rol
 
 def logout_usuario(request):
