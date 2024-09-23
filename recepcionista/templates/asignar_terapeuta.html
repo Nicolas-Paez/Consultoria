@@ -31,18 +31,18 @@
         <div class="header-lista">
             <span><strong>Nombre</strong></span>
             <span><strong>Rut</strong></span>
-            <span><strong>Estado</strong></span>
+            <span><strong>Disponibilidad</strong></span>
             <span><strong>Especialidad</strong></span>
             <span><strong>Fecha de Ingreso</strong></span>
         </div>
         
         <!-- Lista de terapeutas -->
         {% for terapeuta in terapeuta %}
-        <a href="{% url 'calendar_asignar_paciente' %}">
+        <a href="{% url 'calendar_asignar_paciente' terapeuta.id %}">
             <div class="terapeuta-card">
-                <span>{{ terapeuta.nombre_completo }}</span>
-                <span>{{ terapeuta.rut }}</span>
-                <span class="estado-activo">{{ terapeuta.estado }}</span>
+                <span>{{ terapeuta.user.first_name}} {{terapeuta.user.last_name }}</span>
+                <span>{{ terapeuta.user.profile.rut }}</span>
+                <span class="disponibilidad-disponible">{{ terapeuta.disponibilidad }}</span>
                 <span>{{ terapeuta.especialidad }}</span>
                 <span>{{ terapeuta.fecha_ingreso }}</span>
                 <img src="{% static 'icons/terapeuta.svg' %}" alt="Icono terapeuta">

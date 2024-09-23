@@ -9,4 +9,7 @@ urlpatterns = [
     path('admin_terapeutas/',views.admin_terapeutas, name='admin_terapeutas'),
     path('logout/', views.logout_view, name='logout'),  # Para cerrar sesión
     path('agregar/', views.agregar_paciente_admin, name='agregar_paciente_admin'),
+    path('administrador/agregar_terapeuta/', views.agregar_terapeuta, name='agregar_terapeuta'),
+    path('api/provincias/', views.provincias_api, name='provincias_api'),
+    path('api/comunas/', views.comunas_api, name='comunas_api'),
 ]

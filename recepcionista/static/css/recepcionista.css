@@ -156,6 +156,15 @@
     vertical-align: middle;
 }
 
+/* Punto verde junto al estado disponible */
+.terapeuta-card .disponibilidad-disponible::after {
+    content: '•';
+    color: #26bc00;
+    margin-left: 15px;
+    font-size: 40px;
+    vertical-align: middle;
+}
+
 /* Imagen del terapeuta (Dr. Vicente Salinas) */
 .terapeuta-imagen {
     width: 39px;

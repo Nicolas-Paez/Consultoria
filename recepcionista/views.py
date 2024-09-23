@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from terapeuta.models import Terapeuta
 from autenticacion.models import Profile
 from autenticacion.decorators import role_required
@@ -61,3 +61,16 @@ def listar_terapeutas_activos(request):
     page_obj = paginator.get_page(page_number)  # Obtener la página correspondiente
 
     return render(request, 'terapeutas.html', {'terapeutas': page_obj})
+
+def calendar_asignar_paciente(request, id):
+    terapeuta = get_object_or_404(Terapeuta, id=id)
+    horario_terapeuta = {
+        'lunes': {'inicio': 8, 'fin': 13},
+        'martes': {'inicio': 8, 'fin': 13},
+        'miercoles': {'inicio': 8, 'fin': 13},
+        'jueves': {'inicio': 8, 'fin': 13},
+        'viernes': {'inicio': 8, 'fin': 13},
+        'sabado': None,
+        'domingo': None,
+    }
+    return render(request, 'calendar_asignar_paciente.html', {'horario_terapeuta': horario_terapeuta})

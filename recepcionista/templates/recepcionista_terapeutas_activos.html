@@ -5,7 +5,7 @@
 <div class="recepcionista-container">  
     <div class="header">
         <h2>Terapeutas</h2>
-        <form id="busqueda-form" method="get" action="{% url 'listar_terapeutas_activos' %}" class="busqueda-form">
+        <form id="busqueda-form" method="get" action="{% url 'recepcionista_terapeutas_activos' %}" class="busqueda-form">
             <div class="busqueda-input">
                 <input id="busqueda" type="text" name="q" placeholder="Búsqueda por Nombre o Rut" value="{{ request.GET.q }}">
                 <button type="submit" class="search-button">

@@ -36,16 +36,3 @@ def agendar_cita(request):
         return redirect('agenda')
     return render(request, 'agenda.html')
 
-from django.shortcuts import render
-
-def calendar_asignar_paciente(request):
-    horario_terapeuta = {
-        'lunes': {'inicio': 8, 'fin': 13},
-        'martes': {'inicio': 8, 'fin': 13},
-        'miercoles': {'inicio': 8, 'fin': 13},
-        'jueves': {'inicio': 8, 'fin': 13},
-        'viernes': {'inicio': 8, 'fin': 13},
-        'sabado': None,
-        'domingo': None,
-    }
-    return render(request, 'calendar_asignar_paciente.html', {'horario_terapeuta': horario_terapeuta})
