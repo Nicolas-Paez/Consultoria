@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const closePopupButton = document.getElementById('closePopup');
     
     let currentDate = new Date();
-    let currentView = 'month';  // 'month' o 'week'
+    let currentView = 'week';  // 'month' o 'week'
 
     // Función para actualizar la vista del calendario
     function updateCalendar() {

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from terapeuta.models import Terapeuta, Paciente
+from terapeuta.models import Terapeuta, Paciente, Cita
 from autenticacion.models import Profile
 from autenticacion.decorators import role_required
 from django.db.models import Q
@@ -65,6 +65,7 @@ def listar_terapeutas_activos(request):
 
 def calendar_asignar_paciente(request, id):
     terapeuta = get_object_or_404(Terapeuta, id=id)
+    cita = Cita.objects.all()
     horario_terapeuta = {
         'lunes': {'inicio': 8, 'fin': 13},
         'martes': {'inicio': 8, 'fin': 13},
@@ -74,4 +75,5 @@ def calendar_asignar_paciente(request, id):
         'sabado': None,
         'domingo': None,
     }
-    return render(request, 'calendar_asignar_paciente.html', {'horario_terapeuta': horario_terapeuta})
+    return render(request, 'calendar_asignar_paciente.html', {'horario_terapeuta': horario_terapeuta, 'cita': cita})
+
