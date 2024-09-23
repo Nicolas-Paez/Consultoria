@@ -36,15 +36,21 @@
             <tbody>
                 {% for paciente in paciente %}
                 <tr>
-                    <td>{{ paciente.user.first_name }} {{ paciente.user.last_name }}</td>
-                    <td>{{ paciente.user.profile.rut }}</td>
+                    <td>{{ paciente.first_name }} {{ paciente.last_name }}</td>
+                    <td>{{ paciente.rut }}</td>
                     <td><span class="estado-activo">Activo</span></td> <!-- Ajusta el estado si es necesario -->
-                    <td>{{ paciente.terapeuta.user.first_name }} {{paciente.terapeuta.user.last_name}}</td> <!-- Ajusta para mostrar el terapeuta asignado -->
-                    <td>{{ paciente.user.date_joined }}</td>
+                    <td>
+                        {% if paciente.terapeuta %}
+                            {{ paciente.terapeuta.user.first_name }} {{ paciente.terapeuta.user.last_name }}
+                        {% else %}
+                            Sin terapeuta
+                        {% endif %}
+                    </td>                    
+                    <td>{{ paciente.date_joined }}</td>
                     <td class="text-end">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-2" title="Ver detalles">
+                        <a href="{% url 'mostrar_paciente' paciente.id %}" class="btn btn-outline-primary btn-sm me-2" title="Ver detalles">
                             <i class="bi bi-file-earmark-text"></i>
-                        </a>
+                        </a>                        
                         <a href="#" class="btn btn-outline-secondary btn-sm" title="Ver terapeuta">
                             <i class="bi bi-person"></i>
                         </a>

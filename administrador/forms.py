@@ -32,7 +32,7 @@ class CrearTerapeutaForm(forms.ModelForm):
     email = forms.EmailField(
         label='Correo electrónico', 
         required=True,
-        widget=forms.EmailInput(attrs={'class':'campo-formulario','placeholder': 'correoejemplo@ejemplos.com'})
+        widget=forms.EmailInput(attrs={'class':'campo-formulario','placeholder': 'correodejemplo@ejemplos.com'})
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class':'campo-formulario','placeholder': 'Contraseña'}), 

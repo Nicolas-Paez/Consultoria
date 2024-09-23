@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from terapeuta.models import Terapeuta, Paciente, Cita
 from autenticacion.models import Profile
 from autenticacion.decorators import role_required
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.utils import timezone
+
 
 @role_required('Recepcionista')
 def recepcionista_terapeutas_activos(request):
@@ -76,4 +78,68 @@ def calendar_asignar_paciente(request, id):
         'domingo': None,
     }
     return render(request, 'calendar_asignar_paciente.html', {'horario_terapeuta': horario_terapeuta, 'cita': cita})
+
+
+def formulario_agregar_paciente(request):
+    if request.method == 'POST':
+        # Campos obligatorios
+        nombres = request.POST['nombres']
+        apellidos = request.POST['apellidos']
+        rut = request.POST['rut']
+        fecha_nacimiento = request.POST['fecha_nacimiento']
+        sexo = request.POST['sexo']
+
+        # Campos opcionales (pueden ser nulos)
+        telefono = request.POST.get('telefono', None)
+        correo = request.POST.get('correo', None)
+        contacto_emergencia = request.POST.get('contacto_emergencia', None)
+        telefono_emergencia = request.POST.get('telefono_emergencia', None)
+        historial_medico = request.POST.get('historial_medico', None)
+        medicamentos = request.POST.get('medicamentos', None)
+        patologia = request.POST.get('patologia', None)
+        alergias = request.POST.get('alergias', None)
+        progreso = request.POST.get('progreso', None)
+        dispositivo_ortesis = request.POST.get('dispositivo_ortesis', None)
+        actividad_fisica = request.POST.get('actividad_fisica', None)
+        peso = request.POST.get('peso', None)
+        altura = request.POST.get('altura', None)
+        imc = request.POST.get('imc', None)
+        motivo_desvinculacion = request.POST.get('motivo_desvinculacion', None)
+
+        # Obtener la fecha y hora actuales
+        date_joined = timezone.now()
+
+        # Crear el objeto paciente
+        paciente = Paciente(
+            first_name=nombres,
+            last_name=apellidos,
+            rut=rut,
+            fecha_nacimiento=fecha_nacimiento,
+            sexo=sexo,
+            telefono=telefono,
+            email=correo,
+            contacto_emergencia=contacto_emergencia,
+            telefono_emergencia=telefono_emergencia,
+            historial_medico=historial_medico,
+            medicamentos=medicamentos,
+            patologia=patologia,
+            alergias=alergias,
+            progreso=progreso,
+            dispositivo_ortesis=dispositivo_ortesis,
+            actividad_fisica=actividad_fisica,
+            peso=peso,
+            altura=altura,
+            imc=imc,
+            motivo_desvinculacion=motivo_desvinculacion,
+            date_joined=date_joined  # Fecha de registro
+        )
+        paciente.save()
+
+        return redirect('recepcionista_pacientes_activos')
+
+    return render(request, 'agregar_paciente.html')
+
+def mostrar_paciente(request, paciente_id):
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+    return render(request, 'mostrar_paciente.html', {'paciente': paciente})
 

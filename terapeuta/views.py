@@ -15,7 +15,6 @@ def pacientes_view(request):
     return render(request, 'paciente.html')
 
 def agendar_cita(request):
-    pacientes = Paciente.objects.all()
     if request.method == 'POST':
         titulo = request.POST['titulo']
         paciente_id = request.POST['paciente']
@@ -40,7 +39,7 @@ def agendar_cita(request):
         cita.save()
         
         return redirect('agenda')
-    return render(request, 'agenda.html', {'pacientes':pacientes})
+    return render(request, 'agenda.html')
 
 def calendar(request):
     paciente = Paciente.objects.all()
