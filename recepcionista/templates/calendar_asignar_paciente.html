@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Terapeuta</title>
+    <link rel="stylesheet" href="{% static 'css/calendar_recepcionista.css' %}">
+</head>
+
+<body>
+    <div class="calendar-container">
+        <div class = "header">
+            <h2> Asignar Terapeuta </h2>
+        </div>
+        <div class="calendar-header">
+            <div class="button-container">
+                <button id="prev" class="nav-button">&#10094;</button>
+                <button id="today" class="nav-button">Hoy</button>
+                <button id="next" class="nav-button">&#10095;</button>
+            </div>
+            <div class="month-header">
+                <h2 id="month-year">Agosto 2024</h2>
+            </div>
+            <div class="view-options">
+                <button id="week-view" class="nav-button">Sem</button>
+                <button id="month-view" class="nav-button">Mes</button>
+            </div>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>Agendar Cita <span id="fechaSeleccionada"></span></h2>
+            <form id="formCita" method="POST" action="{% url 'agendar_cita' %}">
+                {% csrf_token %}
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required><br><br>
+
+                <label for="paciente">Paciente:</label>
+                <select id="paciente" name="paciente">
+                    <option value="">Seleccione el paciente que citará</option>
+                </select><br><br>
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required><br><br>
+
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required><br><br>
+
+                <label for="sala">Sala:</label>
+                <input type="text" id="sala" name="sala" required><br><br>
+
+                <label for="detalle">Detalle:</label>
+                <input type="text" id="detalle" name="detalle" required><br><br>
+
+            </form>
+        </div>
+    </div>
+    <div class="buttons">
+        <button type="button" class="btn btn-cancelar">Cancelar</button>
+        <button type="button" class="btn btn-continuar">
+            Continuar
+        </button>
+    </div>
+
+    <script 
+    src="{% static 'js/calendar_asignar_paciente.js' %}"
+    type="text/javascript">
+        const citas = JSON.parse('{{ citas|safe }}');
+    </script>
+</body>
+
+</html>

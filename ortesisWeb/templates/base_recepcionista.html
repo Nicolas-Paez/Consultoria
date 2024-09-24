@@ -22,19 +22,19 @@
             </div>
             <hr class="divider">
             <div class="profile">
-                <img src="{% static 'icons/therapist.svg' %}" alt="Icono terapeuta">
+                <img src="{% static 'icons/shield_person.svg' %}" alt="Icono terapeuta">
                 <p>VICENTE SALINAS</p>
             </div>
             <hr class="divider">
             <ul class="menu">
                 <li>
-                    <a href="{% url 'pacientes' %}" class="{% if request.path == 'pacientes/' %}active{% endif %}">
+                    <a href="{% url 'recepcionista_pacientes_activos' %}" class="{% if request.path == 'recepcionista_pacientes_activos/' %}active{% endif %}">
                         <img src="{% static 'icons/list-users.svg' %}" alt="Listado de pacientes">
                         Pacientes
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'terapeutas' %}" class="{% if request.path == 'terapeutas/' %}active{% endif %}">
+                    <a href="{% url 'recepcionista_terapeutas_activos' %}" class="{% if request.path == 'terapeutas/' %}active{% endif %}">
                         <img src="{% static 'icons/list-users.svg' %}" alt="Listado de Terapeutas">
                         Terapeutas
                     </a>
@@ -50,19 +50,12 @@
         </div>
 
         <div class="main-content">
-            <header class="header">
-                <div class="notification-icon">
-                    <a href="#">
-                        <img src="{% static 'icons/notification.svg' %}" alt="notificacion">
-                    </a>
-                </div>
-            </header>
-
             <main class="content">
                 {% block content %}
                 {% endblock %}
             </main>
         </div>
+
     </div>
     {% block extra_js %}
     {% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <!-- Flecha de regreso -->
+    <div class="back-arrow" onclick="window.location.href='{% url 'admin_pacientes' %}';">
+        &#8592;
+    </div>
+    <h1>Agregar Paciente</h1>
+    
+    <form>
+        <div>
+            <label for="nombres">Nombres</label>
+            <input type="text" id="nombres" name="nombres" placeholder="Ingrese los nombres del paciente">
+        </div>
+
+        <div>
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos del paciente">
+        </div>
+
+        <div>
+            <label for="rut">Rut</label>
+            <input type="text" id="rut" name="rut" placeholder="Sin puntos y con guión. Ej: 12345678-9">
+        </div>
+
+        <div>
+            <label for="telefono">Número de Teléfono</label>
+            <input type="text" id="telefono" name="telefono" placeholder="Ej: 912345678">
+        </div>
+
+        <div>
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="Ej: correo@example.cl">
+        </div>
+
+        <div>
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" name="edad" placeholder="Ingrese la edad del paciente">
+        </div>
+
+        <div>
+            <label for="sexo">Sexo</label>
+            <select id="sexo" name="sexo">
+                <option value="">Seleccionar Sexo</option>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="patologia">Patología</label>
+            <input type="text" id="patologia" name="patologia" placeholder="Ingrese la patología del paciente">
+        </div>
+
+        <div>
+            <label for="descripcion">Descripción de la Patología</label>
+            <textarea id="descripcion" name="descripcion" rows="5" placeholder="Ingrese una descripción de la patología (máximo 1000 caracteres)"></textarea>
+        </div>
+
+        <div class="buttons">
+            <button type="button" class="btn btn-cancelar">Cancelar</button>
+            <button type="submit" class="btn btn-continuar">
+                Continuar <span class="icon-arrow">&#8594;</span>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
