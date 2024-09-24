@@ -4,6 +4,7 @@ from autenticacion.decorators import role_required
 from .forms import CrearTerapeutaForm, HorarioFormSet
 from autenticacion.models import Provincia, Comuna
 from django.http import JsonResponse
+from terapeuta.models import Paciente
 
 # Create your views here.
 @role_required('Administrador')
@@ -14,8 +15,8 @@ def base_admin_view(request):
     return render(request, 'base_admin.html')
 
 def admin_pacientes(request):
-    # Lógica para listar o gestionar pacientes desde la vista del administrador
-    return render(request, 'admin_pacientes.html')
+    pacientes = Paciente.objects.all() 
+    return render(request, 'admin_pacientes.html',{'pacientes': pacientes})
 
 def admin_recepcionistas(request):
     # Lógica para listar o gestionar recepcionistas desde la vista del administrador

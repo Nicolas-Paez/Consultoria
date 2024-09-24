@@ -12,7 +12,7 @@
 
     <form class="busqueda-form">
         <div class="busqueda-input">
-            <input type="text" class="form-control" placeholder="Búsqueda por Nombre o Rut" aria-label="Buscar Paciente">
+            <input type="text" class="form-control" id="searchInput" placeholder="Búsqueda por Nombre o Rut" aria-label="Buscar Paciente">
         </div>
         <button class="filtro-btn" type="button">Filtrar</button>
     </form>
@@ -37,7 +37,7 @@
             <tbody>
                 {% for paciente in pacientes %}
                 <tr>
-                    <td>{{ paciente.nombres }} {{ paciente.apellidos }}</td>
+                    <td>{{ paciente.first_name }} {{ paciente.last_name }}</td>
                     <td>{{ paciente.rut }}</td>
                     <td><span class="badge bg-success">Activo</span></td> <!-- Ajusta el estado si es necesario -->
                     <td>{{ paciente.terapeuta.nombre }}</td> <!-- Ajusta para mostrar el terapeuta asignado -->
@@ -56,8 +56,14 @@
                     <td colspan="6" class="table-empty">No hay pacientes registrados.</td>
                 </tr>
                 {% endfor %}
+                <tr id="no-coincidencias" style="display: none;">
+                    <td colspan="6" class="table-empty">No se encontraron coincidencias.</td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/admin_buscador_paciente.js' %}"></script>
 {% endblock %}
