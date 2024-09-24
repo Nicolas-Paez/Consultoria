@@ -12,7 +12,8 @@ def perfil_view(request):
     return render(request, 'perfil.html')
 
 def pacientes_view(request):
-    return render(request, 'paciente.html')
+    pacientes = Paciente.objects.all() 
+    return render(request, 'paciente.html', {'pacientes': pacientes})
 
 def agendar_cita(request):
     if request.method == 'POST':

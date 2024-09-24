@@ -1,0 +1,107 @@
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.search-bar {
+    justify-content:flex-start;
+    margin-right: 350px;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-bar input {
+    display: flex;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 600px;
+}
+
+.search-button {
+    height: 30px;
+    margin-top: 2px;
+    background-color: #008CAB;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.search-button:hover {
+    background-color: #01a4c9;
+}
+
+.field-titles {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.title-item {
+    width: 20%;
+    text-align: left;
+}
+
+.patient-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.patient-item {
+    width: 20%;
+}
+
+.no-patients {
+    margin-top: 150px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #008CAB
+}
+
+.clipboard-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#error-message {
+    background-color: rgb(250, 128, 128);
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
