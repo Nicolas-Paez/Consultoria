@@ -1,0 +1,41 @@
+{% extends 'base_recepcionista.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-paciente">
+    <!-- Flecha de regreso -->
+    <div class="back-arrow" onclick="window.location.href='{% url 'recepcionista_pacientes_activos' %}';">
+        &#8592;
+    </div>
+
+    <h1>Información Paciente</h1>
+    
+    <div class="card-paciente">
+        <div class="datos-paciente">
+            <div class="columna">
+                <p><strong>Nombre:</strong> {{ paciente.first_name }} {{ paciente.last_name }}</p>
+                <p><strong>Sexo:</strong> {{ paciente.sexo }}</p>
+                <p><strong>Número de Teléfono:</strong> {{ paciente.telefono }}</p>
+                <p><strong>Patología:</strong> {{ paciente.patologia }}</p>
+                <p><strong>Estado:</strong> Activo</p>
+                <p><strong>Próxima Cita:</strong> 12/09/2024</p>
+            </div>
+
+            <div class="columna">
+                <p><strong>Rut:</strong> {{ paciente.rut }}</p>
+                <p><strong>Edad:</strong> 27</p>
+                <p><strong>Correo Electrónico:</strong> {{ paciente.email }}</p>
+                <p><strong>Descripción de la Patología:</strong></p>
+                <p>{{ paciente.historial_medico }}</p>
+                <p><strong>Terapeuta a Cargo:</strong> {% if paciente.terapeuta %}{{paciente.terapeuta.user.first_name}} {% else %} Sin Terapeuta {% endif %}</p>
+            </div>
+        </div>
+        
+        <div class="footer-card">
+            <button class="btn">Reasignar Terapeuta</button>
+            <button class="btn">Reagendar Cita</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

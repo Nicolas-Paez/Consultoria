@@ -40,6 +40,9 @@
                 <label for="paciente">Paciente:</label>
                 <select id="paciente" name="paciente">
                     <option value="">Seleccione el paciente que citará</option>
+                    {% for paciente in paciente %}
+                        <option value="{{ paciente.id }}">{{ paciente.user.first_name }} {{paciente.user.last_name}}</option> 
+                    {% endfor %}
                 </select><br><br>
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required><br><br>

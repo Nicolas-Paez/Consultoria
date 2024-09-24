@@ -1,22 +1,26 @@
 from django.shortcuts import render, redirect
 from autenticacion.decorators import role_required
-from .models import Cita, Terapeuta
+from .models import Cita, Terapeuta, Paciente
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 
 @role_required('Terapeuta')
 def agenda(request):
-    return render(request, 'agenda.html')
+    paciente = Paciente.objects.all()
+    return render(request, 'agenda.html', {'paciente':paciente})
 
 def perfil_view(request):
     return render(request, 'perfil.html')
 
 def pacientes_view(request):
     return render(request, 'paciente_terapeuta.html')
+    pacientes = Paciente.objects.all() 
+    return render(request, 'paciente.html', {'pacientes': pacientes})
 
 def agendar_cita(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
+        paciente_id = request.POST['paciente']
         fecha = request.POST['fecha']
         hora = request.POST['hora']
         sala = request.POST['sala']
@@ -24,9 +28,12 @@ def agendar_cita(request):
     
         terapeuta = Terapeuta.objects.get(id=1)
         
+        paciente_instance = Paciente.objects.get(id=paciente_id)
+        
         cita = Cita(
-            id_terapeuta = terapeuta,
+            terapeuta = terapeuta,
             titulo = titulo,
+            paciente = paciente_instance,
             fecha = fecha,
             hora = hora,
             sala = sala,
@@ -36,3 +43,9 @@ def agendar_cita(request):
         
         return redirect('agenda')
     return render(request, 'agenda.html')
+
+def calendar(request):
+    paciente = Paciente.objects.all()
+    print(paciente)
+    return render (request, 'calendar.html', {'paciente':paciente})
+
