@@ -133,13 +133,6 @@ body {
 
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
-    .paciente-info {
-        flex-direction: column; /* En pantallas pequeñas, los datos se colocarán en una columna */
-    }
-}
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 768px) {
     .header {
         flex-direction: column; /* Colocar header en columna */
         align-items: flex-start; /* Alinear a la izquierda */
@@ -197,7 +190,7 @@ body {
 
     .search-bar {
         font-size: 18px; /* Tamaño de fuente más grande */
-        width: 600px; /* Tamaño específico para pantallas grandes */
+        width: 700px; /* Tamaño específico para pantallas grandes */
     }
 
     .paciente {
