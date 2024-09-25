@@ -5,6 +5,7 @@
 {% block title %}Pacientes{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/paciente.css' %}">
+<meta name="csrf-token" content="{{ csrf_token }}">
 {% endblock %}
 {% block content %}
 <div class="main-container">
@@ -12,7 +13,8 @@
         <h1 class="title">PACIENTES</h1>
         <div class="search-bar">
             <div class="input-container">
-                <input type="text" id="searchInput" placeholder="Búsqueda por Nombre, Rut o Tratamiento" onkeypress="checkEnter(event)">
+                <input type="text" id="searchInput" placeholder="Búsqueda por Nombre, Rut o Tratamiento"
+                    onkeypress="checkEnter(event)">
                 <button class="search-button" type="button" onclick="filterCards()">
                     Buscar
                 </button>
@@ -25,6 +27,7 @@
         <div class="title-item">Rut</div>
         <div class="title-item">Edad</div>
         <div class="title-item">Tratamiento</div>
+        <div class="title-item">Estado</div>
     </div>
 
     <div id="patientsContainer">
@@ -35,9 +38,11 @@
             <div class="patient-item card-rut">{{ paciente.rut }}</div>
             <div class="patient-item">{{ paciente.fecha_nacimiento }} años</div>
             <div class="patient-item card-trat">{{ paciente.patologia }}</div>
-            <div class="patient-item">
-                <button class="clipboard-button"><i class="fa fa-clipboard"></i></button>
-            </div>
+            <div class="patient-item card-estado">{{ paciente.is_active }} </div>
+            <button class="status-button"
+                onclick="mostrarPopUp('{{ paciente.id }}', '{{ paciente.first_name }} {{ paciente.last_name }}', '{{ paciente.rut }}', '{{ paciente.patologia }}')">
+                Marcar como Inactivo
+            </button>
         </div>
         {% endfor %}
         {% else %}
@@ -51,7 +56,19 @@
         No se encontraron coincidencias con la búsqueda ingresada.
         <button onclick="closeErrorMessage()">Cerrar</button>
     </div>
+
+    <div id="popupModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="cerrarPopUp()">&times;</span>
+            <h2>¿Está seguro que desea desactivar este paciente?</h2>
+            <div id="popup-paciente-detalles">
+            </div>
+            <button id="confirmButton" onclick="confirmarDesactivacion()">Confirmar</button>
+            <button class="cancel-button" onclick="cerrarPopUp()">Cancelar</button>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
 
 {% block extra_js %}
