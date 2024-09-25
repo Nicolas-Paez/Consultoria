@@ -5,15 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asignar Terapeuta</title>
+    <title>Calendario</title>
     <link rel="stylesheet" href="{% static 'css/calendar_recepcionista.css' %}">
 </head>
 
 <body>
     <div class="calendar-container">
-        <div class = "header">
-            <h2> Asignar Terapeuta </h2>
-        </div>
         <div class="calendar-header">
             <div class="button-container">
                 <button id="prev" class="nav-button">&#10094;</button>
@@ -35,14 +32,25 @@
         <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
             <h2>Agendar Cita <span id="fechaSeleccionada"></span></h2>
-            <form id="formCita" method="POST" action="{% url 'agendar_cita' %}">
+            <form id="formCita" method="POST" action="{% url 'agendar_cita_recepcionista' %}">
                 {% csrf_token %}
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required><br><br>
+                <input type="text" id="titulo" name="titulo" required placeholder="Ingrese el título de la cita"><br><br>
+
+                <label for="terapeuta">Terapeuta:</label>
+                <select id="terapeuta" name="terapeuta" required>
+                    <option value="{{terapeuta_original.id}}" >{{terapeuta_original.user.first_name}} {{terapeuta_original.user.last_name}}</option>
+                    {% for terapeuta in terapeuta %}
+                        <option value="{{ terapeuta.id }}">{{ terapeuta.user.first_name }} {{terapeuta.user.last_name}}</option> 
+                    {% endfor %}
+                </select><br><br>
 
                 <label for="paciente">Paciente:</label>
-                <select id="paciente" name="paciente">
-                    <option value="">Seleccione el paciente que citará</option>
+                <select id="paciente" name="paciente" required>
+                    <option value="{{paciente_original.id}}">{{paciente_original.first_name}} {{paciente_original.last_name}}</option>
+                    {% for paciente in paciente %}
+                        <option value="{{ paciente.id }}">{{ paciente.first_name }} {{paciente.last_name}}</option> 
+                    {% endfor %}
                 </select><br><br>
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required><br><br>
@@ -51,20 +59,23 @@
                 <input type="time" id="hora" name="hora" required><br><br>
 
                 <label for="sala">Sala:</label>
-                <input type="text" id="sala" name="sala" required><br><br>
+                <input type="text" id="sala" name="sala" required placeholder="Ingrese la sala de la cita"><br><br>
 
                 <label for="detalle">Detalle:</label>
-                <input type="text" id="detalle" name="detalle" required><br><br>
+                <input type="text" id="detalle" name="detalle" required placeholder="Ingrese el detalle de la cita"><br><br>
 
+                <div class="botones">
+                    <button type="button" id="cancelarBtn">Cancelar</button>
+                    <button type="submit" id="confirmarBtn">Confirmar</button>
+                </div>
             </form>
         </div>
     </div>
-    <div class="buttons">
-        <button type="button" class="btn btn-cancelar">Cancelar</button>
-        <button type="button" class="btn btn-continuar">
-            Continuar
-        </button>
-    </div>
+
+    <script src="{% static 'js/calendar.js' %}"></script>
+</body>
+
+</html>
 
     <script 
     src="{% static 'js/calendar_asignar_paciente.js' %}"

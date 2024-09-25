@@ -8,13 +8,16 @@ def agenda(request):
     paciente = Paciente.objects.all()
     return render(request, 'agenda.html', {'paciente':paciente})
 
+@role_required('Terapeuta')
 def perfil_view(request):
     return render(request, 'perfil.html')
 
+@role_required('Terapeuta')
 def pacientes_view(request):
     pacientes = Paciente.objects.all() 
     return render(request, 'paciente.html', {'pacientes': pacientes})
 
+@role_required('Terapeuta')
 def agendar_cita(request):
     
     if request.user.is_authenticated:
