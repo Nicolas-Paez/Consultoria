@@ -46,6 +46,8 @@ class Paciente(models.Model):
     motivo_desvinculacion = models.CharField(max_length=500, choices=(("Terminó tratamiento", "Terminó tratamiento"), ("Cambio de terapeuta", "Cambio de terapeuta"), ("Otro", "Otro")), null=True, blank=True)
     date_joined = models.DateField()
     direccion = models.CharField(max_length=255, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

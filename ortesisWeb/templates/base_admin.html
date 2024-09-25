@@ -27,7 +27,7 @@
             <hr class="divider">
             <ul class="menu">
                 <li>
-                    <a href="{% url 'admin_pacientes' %}" class="{% if request.path == '/pacientes/' %}active{% endif %}">
+                    <a href="{% url 'listar_pacientes_activos' %}" class="{% if request.path == '/pacientes/' %}active{% endif %}">
                         <span class="icon-text-wrapper">
                             <img src="{% static 'icons/patient_list.svg' %}" alt="Listado Pacientes">
                             Pacientes
