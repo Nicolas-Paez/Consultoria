@@ -65,7 +65,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Añadir el evento de clic a cada día
         document.querySelectorAll(".day").forEach(day => {
-            day.addEventListener("click", function () {
+
+            day.addEventListenner('click', function(){
+                const selectedDate = this.getAttribute("data-fecha");
+                showSessions(selectedDate);
+            });
+            
+            // añade evento al hacer doble clic
+            day.addEventListener("dblclick", function () {
                 const selectedDate = this.getAttribute("data-fecha");
                 document.getElementById("fechaSeleccionada").textContent = selectedDate;
                 document.getElementById("fecha").value = selectedDate; // Asigna la fecha al campo de fecha del formulario
@@ -73,6 +80,45 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+    // Funcion para mostrar sesiones
+    function showSessions(selectedDate){
+        const sessionPopup = document.getElementById("session-popup");
+        const sessionDetails = document.getElementById("session-details");
+
+        // en caso de haber citas muestra detalles y hora
+        const sessionsForDate = appointments[selectedDate] || [];
+        sessionDetails.innerHTML = '';
+        if (sessionsForDate.lenght > 0) {
+            sessionsForDate.forEach(session => {
+                const sessionElement = document.createElement('div');
+                sessionElement.textContent = `Hora: ${session.time}, Detalles: ${session.details}`;
+                sessionDetails.appendChild(sessionElement);
+            });
+        }
+        // en caso de que no haya muestra ese mensaje 
+        else{
+            sessionDetails.textContent = 'No hay sesiones para este día';
+        }
+        // Mostrar el popup
+        sessionPopup.style.display = 'block';
+
+        const rect = this.getBoundingClientRect();
+        sessionPopup.style.top =`${rect.bottom + window.scrollY}px`;
+        sessionPopup.style.left = `${rect.left}px`;
+    }
+
+    // Cerrar popup al hacer clic en el botón
+    document.getElementById("closeSessionPopup").addEventListener("click", function(){
+        document.getElementById("session-popup").style.display = 'none';
+    });
+
+    // Cerrar popup si se clickea fuera
+    window.addEventListener("click", function(event){
+        const sessionPopup = document.getElementById("session-popup");
+        if (event.target === sessionPopup) {
+            sessionPopup.style.display = 'none';
+        }
+    });
 
     // Vista semanal con scrollbar y eventos para abrir el popup
     function generateWeekView() {

@@ -255,3 +255,12 @@ button {
     border: 1px solid #008000; /* Borde para destacar más */
 }
 
+/* popup de sesiones registradas */
+.session-popup{
+    position: absolute;
+    background: white;
+    border: 1px solid#ccc;
+    padding: 10px;
+    z-index: 1000;
+    width:200px;
+}
