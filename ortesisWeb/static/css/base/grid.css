@@ -49,6 +49,17 @@ main{
     color: white;
 }
 
+@media screen and (max-width: 1200px){
+    .contenedor-grid{
+        grid-template-areas: 
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+        grid-template-columns: 230px 1fr;
+        grid-template-rows: 1.5fr auto 0.125fr;
+    }
+}
+
 @media screen and (max-width: 768px){
     .contenedor-grid{
         grid-template-areas: 
