@@ -47,6 +47,8 @@ class Paciente(models.Model):
     date_joined = models.DateField()
     direccion = models.CharField(max_length=255, null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
