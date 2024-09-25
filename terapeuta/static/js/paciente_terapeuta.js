@@ -5,7 +5,6 @@ const empty = document.querySelector('.empty');
 
 addBtn.addEventListener("click", (e) => {
     e.preventDefault();     
-    
     const text = input.value;
 
     const li = document.createElement('li');
@@ -14,50 +13,6 @@ addBtn.addEventListener("click", (e) => {
 
     li.appendChild(p);
     ul.appendChild(li);
-})
-
-document.addEventListener('DOMContentLoaded', function () {
-    const patientsPerPage = 5; // Número de pacientes por página
-    const patients = document.querySelectorAll('.paciente'); // Seleccionar todos los pacientes
-    const totalPages = Math.ceil(patients.length / patientsPerPage); // Calcular total de páginas
-    let currentPage = 1; // Página inicial
-
-    // Función para mostrar los pacientes de la página actual
-    function showPage(page) {
-        const start = (page - 1) * patientsPerPage;
-        const end = start + patientsPerPage;
-
-        patients.forEach((patient, index) => {
-            // Mostrar u ocultar pacientes según la página
-            if (index >= start && index < end) {
-                patient.style.display = 'block'; // Mostrar
-            } else {
-                patient.style.display = 'none'; // Ocultar
-            }
-        });
-
-        // Actualizar el número de página
-        document.getElementById('pageNumber').textContent = page;
-    }
-
-    // Evento para el botón "Siguiente"
-    document.getElementById('nextPage').addEventListener('click', function () {
-        if (currentPage < totalPages) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    });
-
-    // Evento para el botón "Anterior"
-    document.getElementById('prevPage').addEventListener('click', function () {
-        if (currentPage > 1) {
-            currentPage--;
-            showPage(currentPage);
-        }
-    });
-
-    // Mostrar la primera página al cargar
-    showPage(currentPage);
 });
 
 // Función de búsqueda que será reutilizada
@@ -77,6 +32,10 @@ function filterPatients() {
             patient.style.display = 'none'; // Ocultar paciente si no coincide
         }
     });
+
+    // Mostrar la primera página después de aplicar el filtro
+    currentPage = 1; // Resetear a la primera página
+    showPage(currentPage); // Mostrar la primera página
 }
 
 // Evento para cuando se escriba en la barra de búsqueda (keyup)

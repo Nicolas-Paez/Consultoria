@@ -3,6 +3,8 @@ from autenticacion.decorators import role_required
 from .models import Cita, Terapeuta, Paciente
 from django.http import HttpResponse
 from django.core.paginator import Paginator
+from datetime import date
+
 
 @role_required('Terapeuta')
 def agenda(request):
@@ -12,10 +14,24 @@ def agenda(request):
 def perfil_view(request):
     return render(request, 'perfil.html')
 
+def calcular_edad(fecha_nacimiento):
+    hoy = date.today()
+    return hoy.year - fecha_nacimiento.year - ((hoy.month, hoy.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+
 def pacientes_view(request):
-    return render(request, 'paciente_terapeuta.html')
-    pacientes = Paciente.objects.all() 
-    return render(request, 'paciente.html', {'pacientes': pacientes})
+    pacientes_list = Paciente.objects.all()
+
+    for paciente in pacientes_list:
+        paciente.edad = calcular_edad(paciente.fecha_nacimiento)
+
+    total_pacientes = pacientes_list.count() # Cuenta la cantidad de pacientes
+
+    # Implementar la paginación
+    paginator = Paginator(pacientes_list, 5)  # Muestra 5 pacientes por página
+    page_number = request.GET.get('page')  # Obtiene el número de la página de la URL
+    pacientes = paginator.get_page(page_number)  # Obtiene los pacientes de la página actual
+
+    return render(request, 'paciente_terapeuta.html', {'pacientes': pacientes, 'total_pacientes': total_pacientes})
 
 def agendar_cita(request):
     if request.method == 'POST':

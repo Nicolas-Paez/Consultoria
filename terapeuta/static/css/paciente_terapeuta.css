@@ -131,6 +131,32 @@ body {
     padding-right: 10px;
 }
 
+.pagination {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente */
+    justify-content: center; /* Centra la paginación */
+    margin: 20px 0; /* Espaciado superior e inferior */
+}
+
+.prev-button, .next-button {
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.previous-icon, .next-icon {
+    width: 1em; /* Cambia a 1em o incluso 0.75em para un tamaño más pequeño */
+    height: auto; /* Mantiene la proporción del ícono */
+    vertical-align: middle; /* Alinea el ícono verticalmente en el centro */
+}
+
+
+/* Efecto hover para los íconos */
+.prev-button:hover .previous-icon, 
+.next-button:hover .next-icon {
+    transform: scale(1.1); /* Aumenta el tamaño del ícono al pasar el mouse */
+}
+
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
     .header {

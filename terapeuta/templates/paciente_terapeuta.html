@@ -7,12 +7,13 @@
 {% block content %}
 <div class="container">
     <header class="header">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <h1>Pacientes</h1>
         <!-- Contenedor para la barra de búsqueda y el icono -->
         <div class="search-container">
             <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar" id="searchBar">
             <img src="{% static 'icons/Lupa.svg' %}" alt="Lupa" class="search-icon" id="searchIcon">
-        </div>>
+        </div>
     </header>
     <div class="header">
         <h2>Nombre</h2>
@@ -23,77 +24,40 @@
     <div class="li-container">
         <ul>
             <!-- Lista de pacientes -->
-            <!-- Contenedor de cada paciente -->
+            <!-- Iterar sobre cada paciente -->
+            {% for paciente in pacientes %}
             <li class="paciente">
                 <div class="paciente-info">
-                    <p>Vicente Mena</p>
-                    <p>12345678-9</p>
-                    <p>30 años</p>
-                    <p>Fisioterapia</p>
+                    <p>{{ paciente.first_name }} {{ paciente.last_name }}</p>
+                    <p>{{ paciente.rut }}</p>
+                    <p>{{ paciente.edad }} años</p>
+                    <p>{{ paciente.patologia }}</p>
                     <a href="#" class="report-button">
                         <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
                     </a>
                 </div>
             </li>
-
-            <li class="paciente">
-                <div class="paciente-info">
-                    <p>Cristobal Pardo</p>
-                    <p>98765432-1</p>
-                    <p>45 años</p>
-                    <p>Terapia ocupacional</p>
-                    <a href="#" class="report-button">
-                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
-                    </a>
-                </div>
-            </li>
-
-            <li class="paciente">
-                <div class="paciente-info">
-                    <p>Juan Pérez</p>
-                    <p>12345678-9</p>
-                    <p>30 años</p>
-                    <p>Fisioterapia</p>
-                    <a href="#" class="report-button">
-                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
-                    </a>
-                </div>
-            </li>
-    
-            <li class="paciente">
-                <div class="paciente-info">
-                    <p>Ana López</p>
-                    <p>98765432-1</p>
-                    <p>45 años</p>
-                    <p>Terapia ocupacional</p>
-                    <a href="#" class="report-button">
-                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
-                    </a>
-                </div>
-            </li>
-
-            <li class="paciente">
-                <div class="paciente-info">
-                    <p>Sebastián Baez</p>
-                    <p>98765432-1</p>
-                    <p>25 años</p>
-                    <p>Terapia ocupacional</p>
-                    <a href="#" class="report-button">
-                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
-                    </a>
-                </div>
-            </li>
+            {% empty %}
+            <li>No hay pacientes ingresados.</li>
+            {% endfor %}
         </ul>
     </div>
-    <div class="empty">
-        <!--<p>No hay pacientes ingresados</p>-->
-    </div>
     <!-- Paginación -->
+    {% if total_pacientes > 5 %}
     <div class="pagination">
-        <button id="prevPage">Anterior</button>
-        <span id="pageNumber">1</span>
-        <button id="nextPage">Siguiente</button>
+        {% if pacientes.has_previous %}
+            <a href="?page={{ pacientes.previous_page_number }}" class="prev-button">
+                <img src="{% static 'icons/chevron-left-solid.svg' %}" alt="Back" class="report-icon">
+            </a>
+        {% endif %}
+        <span id="pageNumber">{{ pacientes.number }}</span>
+        {% if pacientes.has_next %}
+            <a href="?page={{ pacientes.next_page_number }}" class="next-button">
+                <img src="{% static 'icons/chevron-right-solid.svg' %}" alt="Next" class="report-icon">
+            </a>
+        {% endif %}
     </div>
+    {% endif %}
 </div>
 <link rel="stylesheet" href="{% static 'css/paciente_terapeuta.css' %}">
 <script src="{% static 'js/paciente_terapeuta.js' %}"></script>
