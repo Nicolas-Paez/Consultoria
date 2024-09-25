@@ -57,6 +57,18 @@ main{
         "main"
         "footer";
         grid-template-columns: 1fr;
-        grid-template-rows: 100px 0.5fr auto 0.125fr;
+        grid-template-rows: 150px 0.5fr auto 0.125fr;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .contenedor-grid{
+        grid-template-areas: 
+        "sidebar"
+        "header"
+        "main"
+        "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 150px 0.5fr auto 0.125fr;
     }
 }
