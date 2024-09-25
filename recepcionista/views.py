@@ -33,10 +33,10 @@ def recepcionista_pacientes_activos(request):
 def agregar_paciente(request):
     return render(request, 'agregar_paciente.html')
 
-@role_required('Recepcionista')
-def asignar_terapeuta(request):
+def asignar_terapeuta(request, id):
+    paciente = Paciente.objects.get(id=id)
     terapeuta = Terapeuta.objects.all()
-    return render(request, 'asignar_terapeuta.html', {'terapeuta': terapeuta})
+    return render(request, 'asignar_terapeuta.html', {'terapeuta': terapeuta, 'paciente': paciente})
 
 
     

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const monthViewButton = document.getElementById('month-view');
     const popup = document.getElementById('popup');
     const closePopupButton = document.getElementById('closePopup');
+    const cancelarBtn = document.getElementById('cancelarBtn')
     
     let currentDate = new Date();
     let currentView = 'month';  // 'month' o 'week'
@@ -193,6 +194,10 @@ document.addEventListener('DOMContentLoaded', function () {
             popup.style.display = "none";
         }
     });
+
+    cancelarBtn.addEventListener("click", function(){
+        popup.style.display = "none";
+    })
 
     // Inicializar el calendario con la vista mensual
     updateCalendar();
