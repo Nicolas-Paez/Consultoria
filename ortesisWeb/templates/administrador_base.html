@@ -22,7 +22,7 @@
 <body>
     <div class="contenedor-grid">
         <!-- Sidebar -->
-        <aside class="sidebar_terapeuta">
+        <aside class="sidebar_administrador">
             <div class="logos">
                 <img class="logo_hospital" src="{% static 'images/logo_hospital_blanco.svg' %}" alt="Logo logo_hospital">
                 <img class="logo_u" src="{% static 'images/logo_universidad_blanco.svg' %}" alt="Logo UA">
@@ -30,26 +30,28 @@
             <hr class="divider">
             <div class="profile">
                 <img src="{% static 'icons/therapist.svg' %}" alt="Icono terapeuta">
-                <p>DR. VICENTE SALINAS</p>
+                <div class="nombre_usuario">
+                    <p>{{ user.first_name|upper }} </p> <p>{{ user.last_name|upper }}</p>
+                </div>
             </div>
             <hr class="divider">
             <ul class="menu">
                 <li>
-                    <a href="{% url 'perfil' %}" class="{% if request.path == 'perfil/' %}active{% endif %}">
-                        <img src="{% static 'icons/user-profile.svg' %}" alt="Perfil terapeuta">
-                        Perfil
+                    <a href="{% url 'listar_pacientes_activos' %}" class="{% if request.path == '/pacientes/' %}active{% endif %}">
+                            <img src="{% static 'icons/patient_list.svg' %}" alt="Listado Pacientes">
+                            Pacientes
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'pacientes' %}" class="{% if request.path == 'pacientes/' %}active{% endif %}">
-                        <img src="{% static 'icons/list-users.svg' %}" alt="Listado de pacientes">
-                        Pacientes
+                    <a href="{% url 'gestion_terapeutas' %}" class="{% if request.path == '/terapeutas/' %}active{% endif %}">
+                            <img src="{% static 'icons/therapist.svg' %}" alt="Listado Terapeutas">
+                            Terapeutas
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'agenda' %}" class="{% if request.path == 'agenda/' %}active{% endif %}">
-                        <img src="{% static 'icons/calendar.svg' %}" alt="Agenda terapeuta">
-                        Agenda
+                    <a href="{% url 'admin_recepcionistas' %}" class="{% if request.path == '/recepcionistas/' %}active{% endif %}">
+                            <img src="{% static 'icons/Vector.svg' %}" alt="Listado Recepcionistas">
+                            Recepcionistas
                     </a>
                 </li>
             </ul>
@@ -64,12 +66,9 @@
 
         <!-- Header -->
         <header class="header">
-            {% block header %}{% endblock %}
-            <div class="notification-icon">
-                <a href="#">
-                    <img src="{% static 'icons/notification.svg' %}" alt="notificación">
-                </a>
-            </div>
+            {% block header %}
+            <!-- Aquí se cargará el contenido específico del header de cada página -->
+            {% endblock %}
         </header>
 
         <!-- Main Content -->
@@ -87,27 +86,11 @@
     
 
     <!-- JavaScript general -->
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <script>
-        const menuLinks = document.querySelectorAll('.menu a');
-    
-        menuLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            // Remover la clase 'active' de todos los enlaces
-            menuLinks.forEach(link => link.classList.remove('active'));
-    
-            // Agregar la clase 'active' al enlace clicado
-            event.target.classList.add('active');
-        });
-        });
-        document.querySelector('.filtro-btn').addEventListener('click', function() {
-            const dropdown = document.querySelector('.dropdown');
-            dropdown.classList.toggle('active');
-        });
-    </script>
+    <script src="{% static 'js/activeMenu.js' %}"></script>
     
     <!-- Bloque adicional para cargar scripts JS específicos -->
     {% block extra_js %}{% endblock %}
+
 </body>
 
 </html>

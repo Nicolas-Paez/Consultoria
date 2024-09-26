@@ -1,5 +1,5 @@
 /* Estilos generales */
-body {
+main {
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -21,14 +21,14 @@ body {
     margin-top: -2px;
     margin-bottom: 7px; /* Espacio debajo del header */
     padding-top: 0;
-    padding-left: 5px;
+    padding-left: 20px;
     position: relative;
     top: -20px;
 }
 
 .header h1 {
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 40px;
     color: black;
 }
@@ -70,7 +70,7 @@ body {
 
 .search-bar:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: black;
 }
 
 /* Icono de búsqueda */
@@ -92,7 +92,7 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    margin-left: 0;
+    margin-left: 12px;
 }
 
 /* Estilos para cada paciente */
@@ -139,17 +139,21 @@ body {
 
 /* Estilos para el icono de reportes */
 .report-icon {
-    width: 28px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 28px; /* Mantén la proporción del icono con el ancho */
-    padding-right: 10px;
+    position: relative;
+    right: 10px; /* Ajusta el espacio del icono */
+    transform: translateX(100%); /* Centra verticalmente el icono */
+    width: 28px; /* Ajusta el tamaño del icono */
+    height: 28px;
 }
 
 .pagination {
     display: flex;
-    align-items: center; /* Alinea los elementos verticalmente */
-    justify-content: center; /* Centra la paginación */
-    margin: 20px 0; /* Espaciado superior e inferior */
-    font-size: 14px; /* Disminuye el tamaño de la fuente general del paginador */
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    position: relative; /* Posiciona la paginación de manera relativa */
+    top: -10px; /* Desplaza la paginación hacia arriba */
+    margin: 0; /* Elimina el margen para evitar separación extra */
 }
 
 .prev-button, .next-button {
