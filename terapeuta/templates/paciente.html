@@ -1,0 +1,71 @@
+{% extends 'base_terapeuta.html' %}
+
+{% load static %}
+
+{% block title %}Pacientes{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paciente.css' %}">
+<meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock %}
+{% block content %}
+<div class="main-container">
+    <div class="header">
+        <h1 class="title">PACIENTES</h1>
+        <div class="search-bar">
+            <div class="input-container">
+                <input type="text" id="searchInput" placeholder="Búsqueda por Nombre, Rut o Tratamiento"
+                    onkeypress="checkEnter(event)">
+                <button class="search-button" type="button" onclick="filterCards()">
+                    Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="li-container">
+        <ul>
+            <!-- Lista de pacientes -->
+            <!-- Iterar sobre cada paciente -->
+            {% if pacientes %}
+            {% for paciente in pacientes %}
+            <li class="paciente">
+                <div class="paciente-info">
+                    <p>{{ paciente.first_name }} {{ paciente.last_name }}</p>
+                    <p>{{ paciente.rut }}</p>
+                    <p>{{ paciente.edad }} años</p>
+                    <p>{{ paciente.patologia }}</p>
+                    <a href="#" class="report-button">
+                        <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+            {% else %}
+            <div class="no-patients">
+                <p>No hay pacientes ingresados.</p>
+            </div>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div id="error-message" class="hidden">
+        No se encontraron coincidencias con la búsqueda ingresada.
+        <button onclick="closeErrorMessage()">Cerrar</button>
+    </div>
+
+    <div id="popupModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="cerrarPopUp()">&times;</span>
+            <h2>¿Está seguro que desea desactivar este paciente?</h2>
+            <div id="popup-paciente-detalles">
+            </div>
+            <button id="confirmButton" onclick="confirmarDesactivacion()">Confirmar</button>
+            <button class="cancel-button" onclick="cerrarPopUp()">Cancelar</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/paciente.js' %}"></script>
+{% endblock %}

@@ -31,7 +31,7 @@ def pacientes_view(request):
     page_number = request.GET.get('page')  # Obtiene el número de la página de la URL
     pacientes = paginator.get_page(page_number)  # Obtiene los pacientes de la página actual
 
-    return render(request, 'paciente_terapeuta.html', {'pacientes': pacientes, 'total_pacientes': total_pacientes})
+    return render(request, 'paciente.html', {'pacientes': pacientes, 'total_pacientes': total_pacientes})
 
 def cambiar_estado_paciente(request, id):
     if request.method == "POST":

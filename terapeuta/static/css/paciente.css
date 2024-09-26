@@ -63,9 +63,47 @@ body {
     margin-left: 15px;
 }
 
-.title-item {
-    width: 20%;
-    text-align: left;
+/* Estilos para el contenedor de la lista */
+.li-container {
+    margin-bottom: 20px;
+}
+
+.li-container ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+}
+
+/* Estilos para cada paciente */
+.paciente {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between; /* Asegura que los datos se alineen de manera uniforme debajo de los h2 */
+    border: 1px solid #ccc;
+    padding: 20px;
+    padding-left: 5px;
+    margin-left: 0;
+    margin-bottom: 7px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Usar flexbox para alinear los datos horizontalmente */
+.paciente-info {
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+    padding-left: 10px;
+}
+
+/* Estilos para los elementos dentro de la información del paciente */
+.paciente-info p {
+    flex: 1; /* Hace que cada elemento ocupe el mismo espacio */
+    margin: 0; /* Margen reducido entre los elementos */
+    margin-top: 2px; /* Agregar un pequeño margen superior */
+    font-size: 16px;
+    min-width: 205px; /* Ancho mínimo para que los textos no se encimen */
 }
 
 .patient-row {
