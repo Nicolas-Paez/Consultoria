@@ -4,7 +4,7 @@ from .models import Cita, Terapeuta, Paciente
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from datetime import date
-
+from django.http import JsonResponse
 
 @role_required('Terapeuta')
 def agenda(request):
@@ -32,6 +32,17 @@ def pacientes_view(request):
     pacientes = paginator.get_page(page_number)  # Obtiene los pacientes de la página actual
 
     return render(request, 'paciente_terapeuta.html', {'pacientes': pacientes, 'total_pacientes': total_pacientes})
+
+def cambiar_estado_paciente(request, id):
+    if request.method == "POST":
+        try:
+            paciente = Paciente.objects.get(id=id)
+            paciente.is_active = False 
+            paciente.save()
+            return JsonResponse({"status": "success", "message": "CAMBIO DE ESTADO EXITOSO"})
+        except Paciente.DoesNotExist:
+            return JsonResponse({"status": "error", "message": "Paciente no encontrado"}, status=404)
+    return JsonResponse({"status": "error", "message": "Método no permitido"}, status=405)
 
 def agendar_cita(request):
     if request.method == 'POST':
