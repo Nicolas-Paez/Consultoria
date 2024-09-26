@@ -5,9 +5,26 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 
 @role_required('Terapeuta')
+
 def agenda(request):
-    paciente = Paciente.objects.all()
-    return render(request, 'agenda.html', {'paciente':paciente})
+    # Obtener todas las citas y extraer las fechas
+    citas = Cita.objects.all()
+    fechas_citas = [cita.fecha for cita in citas]
+    
+    contexto = {
+        'paciente': Paciente.objects.all(),
+        'fechas_citas': fechas_citas,  # Agregar fechas de citas al contexto
+    }
+    
+    return render(request, 'agenda.html', contexto)
+
+
+def obtener_fechas_citas(request):
+    citas = Cita.objects.values_list('fecha', flat=True)  # Solo obtenemos la fecha de las citas
+    fechas_citas = list(citas)  # Convertimos a una lista para que sea serializable en JSON
+    return JsonResponse({'fechas_citas': fechas_citas})
+
+
 
 def perfil_view(request):
     return render(request, 'perfil.html')

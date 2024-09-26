@@ -194,6 +194,33 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Inicializar el calendario con la vista mensual
-    updateCalendar();
+    function destacarDiasConCita(fechasCitas) {
+    const diasDelCalendario = document.querySelectorAll('.day');
+
+    diasDelCalendario.forEach(dia => {
+        const fechaDia = dia.getAttribute('data-fecha');  // La fecha del día en formato "dd/mm/yyyy"
+        
+        // Formatear la fecha del calendario al formato "YYYY-MM-DD"
+        const [diaNum, mesNum, anio] = fechaDia.split('/');
+        const fechaFormateada = `${anio}-${mesNum.padStart(2, '0')}-${diaNum.padStart(2, '0')}`;
+        
+        // Si la fecha coincide con alguna fecha de cita, destacar el día
+        if (fechasCitas.includes(fechaFormateada)) {
+            dia.classList.add('dia-con-cita');
+        }
+    });
+}
+
+    fetch('/obtener-fechas-citas/')
+        .then(response => response.json())
+        .then(data => {
+            const fechasCitas = data.fechas_citas;  // Accedemos a las fechas del JSON recibido
+
+            // Llamar a la función que genera la vista del calendario mensual
+            updateCalendar();
+
+            // Llamar a la nueva función para destacar los días con citas
+            destacarDiasConCita(fechasCitas);
+        })
+        .catch(error => console.error('Error al obtener las fechas de citas:', error));
 });

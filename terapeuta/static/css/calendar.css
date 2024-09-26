@@ -1,13 +1,3 @@
-/* Estilos generales */
-body {
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 /* Contenedor general del calendario */
 .calendar-container {
     background-color: white;
@@ -254,4 +244,12 @@ button {
     background-color: rgba(0, 128, 0, 0.2); /* Color de fondo para las horas de trabajo */
     border: 1px solid #008000; /* Borde para destacar más */
 }
+
+.dia-con-cita {
+    background-color: #FFD700; /* Color dorado */
+    color: #333;
+    font-weight: bold;
+    border: 2px solid #FFA500; /* Borde destacado */
+}
+
 
