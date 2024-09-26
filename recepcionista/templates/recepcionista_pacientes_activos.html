@@ -1,5 +1,11 @@
-{% extends 'base_recepcionista.html' %}
+{% extends 'recepcionista_base.html' %}
 {% load static %}
+
+{% block title %}Pacientes activos{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/recepcionista.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="recepcionista-container">
