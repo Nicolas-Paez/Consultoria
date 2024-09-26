@@ -1,45 +1,39 @@
-const input = document.querySelector('input');
-const addBtn = document.querySelector('.btn-add');
-const ul = document.querySelector('ul');
-const empty = document.querySelector('.empty');
+function filtrarPacientes(event) {
+    event.preventDefault();  // Prevenir que el formulario se envíe y recargue la página
 
-addBtn.addEventListener("click", (e) => {
-    e.preventDefault();     
-    const text = input.value;
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const filasPacientes = document.querySelectorAll('tbody tr:not(#no-coincidencias)'); // Excluimos la fila de no coincidencias
 
-    const li = document.createElement('li');
-    const p = document.createElement('p');
-    p.textContent = text;
+    let bandera = false; // Bandera para saber si hay coincidencias
 
-    li.appendChild(p);
-    ul.appendChild(li);
-});
-
-// Función de búsqueda que será reutilizada
-function filterPatients() {
-    let searchQuery = document.getElementById('searchBar').value.toLowerCase(); // Obtener valor de búsqueda
-    let patients = document.querySelectorAll('.paciente'); // Seleccionar todos los pacientes
-
-    // Recorrer cada paciente para verificar si coincide con el valor de búsqueda
-    patients.forEach(function(patient) {
-        let name = patient.querySelector('p:nth-child(1)').textContent.toLowerCase();
-        let rut = patient.querySelector('p:nth-child(2)').textContent.toLowerCase();
-        let treatment = patient.querySelector('p:nth-child(4)').textContent.toLowerCase();
-
-        if (name.includes(searchQuery) || rut.includes(searchQuery) || treatment.includes(searchQuery)) {
-            patient.style.display = ''; // Mostrar paciente si coincide
+    filasPacientes.forEach((fila) => {
+        const nombre_paciente = fila.cells[0].textContent.toLowerCase();
+        const rut_paciente = fila.cells[1].textContent.toLowerCase();
+        
+        if (nombre_paciente.includes(searchInput) || rut_paciente.includes(searchInput)) {
+            fila.style.display = ''; // Mostrar la fila que coincida
+            bandera = true; // Si encontramos un resultado, actualizamos la bandera
         } else {
-            patient.style.display = 'none'; // Ocultar paciente si no coincide
+            fila.style.display = 'none'; // Ocultar la fila que no coincida
         }
     });
 
-    // Mostrar la primera página después de aplicar el filtro
-    currentPage = 1; // Resetear a la primera página
-    showPage(currentPage); // Mostrar la primera página
+    // Mostrar el mensaje de error si no hay coincidencias
+    const mensajeError = document.getElementById('no-coincidencias');
+    if (!bandera && searchInput !== '') {
+        mensajeError.style.display = 'table-row';
+    } else {
+        mensajeError.style.display = 'none';
+    }
 }
 
-// Evento para cuando se escriba en la barra de búsqueda (keyup)
-document.getElementById('searchBar').addEventListener('keyup', filterPatients);
+function verificarEnter(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); 
+        filtrarPacientes(event);
+    }
+}
+document.querySelector('.search-bar input').addEventListener('keypress', verificarEnter);
 
 // Evento para cuando se haga clic en el icono de la lupa
 document.getElementById('searchIcon').addEventListener('click', filterPatients);
