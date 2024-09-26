@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from autenticacion.decorators import role_required
 from .forms import CrearTerapeutaForm, HorarioFormSet
@@ -102,3 +102,9 @@ def comunas_api(request):
         return JsonResponse(list(comunas), safe=False)
     else:
         return JsonResponse([], safe=False)
+    
+@role_required('Administrador')
+def mostrar_paciente(request, paciente_id):
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+    return render(request, 'mostrar_paciente.html', {'paciente': paciente})
+
