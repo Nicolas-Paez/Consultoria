@@ -63,10 +63,86 @@
             </form>
         </div>
     </div>
+
+    <div id="popupCitas" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closePopupCitas" class="close">&times;</span>
+            <h2>Citas Agendadas</h2>
+            <div id="popup-content">
+            </div>
+            <button class="close-button"  id="closePopupCitas" onclick="cerrarPopupCitas()">Cerrar</button>
+        </div>
+    </div>
+    
     <script type="text/javascript">
-        // Pasar las fechas de las citas desde Django a JavaScript
-        const fechasCitas = {{ fechas_citas|safe }};
+        const citas = {{ fechas_citas|safe }};  // datos como JSON al frontend
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll(".day").forEach(day => {
+                day.addEventListener("click", function () {
+                    const selectedDate = this.getAttribute("data-fecha");
+                    const citasDelDia = obtenerCitasPorFecha(selectedDate);
+                    if (citasDelDia.length > 0) {
+                        mostrarPopupCitas(citasDelDia);
+                    } else {
+                        alert("No hay citas agendadas para este día.");
+                    }
+                });
+            });
+        
+            // Función para obtener citas de una fecha específica
+            function obtenerCitasPorFecha(fechaDia) {
+                const [dia, mes, anio] = fechaDia.split('/');
+                const fechaFormateada = `${anio}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+                return citas.filter(cita => cita.fecha === fechaFormateada);
+            }
+        
+            // Función para mostrar el popup con las citas
+            function mostrarPopupCitas(citasDelDia) {
+                const popupCitas = document.getElementById("popupCitas");
+                const popupCitasContent = document.getElementById("popup-content");
+        
+                // Limpiar el contenido previo
+                popupCitasContent.innerHTML = '';
+        
+                // Agregar las citas al popup
+                citasDelDia.forEach(cita => {
+                    const citaElement = document.createElement('div');
+                    citaElement.classList.add('cita-item');
+                    citaElement.innerHTML = `
+                        <p><strong>Título:</strong> ${cita.titulo}</p>
+                        <p><strong>Hora:</strong> ${cita.hora}</p>
+                        <p><strong>Descripción:</strong> ${cita.descripcion}</p>
+                    `;
+                    popupCitasContent.appendChild(citaElement);
+                });
+        
+                // Mostrar el popup con las citas
+                popupCitas.style.display = 'block';
+            }
+        
+            // Función para cerrar el popup cuando se presiona el botón de cerrar
+            document.getElementById("closePopupCitas").addEventListener("click", function () {
+                cerrarPopupCitas();
+            });
+        
+            // Función para cerrar el popup cuando se hace clic fuera del área del popup
+            window.addEventListener("click", function (event) {
+                const popupCitas = document.getElementById("popupCitas");
+                if (event.target === popupCitas) {
+                    cerrarPopupCitas();
+                }
+            });
+        
+            // Función para cerrar el popup
+            function cerrarPopupCitas() {
+                const popupCitas = document.getElementById("popupCitas");
+                popupCitas.style.display = 'none';
+            }
+        });
+        
     </script>
+
     <script src="{% static 'js/calendar.js' %}"></script>
 </body>
 

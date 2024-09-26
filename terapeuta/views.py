@@ -3,26 +3,34 @@ from autenticacion.decorators import role_required
 from .models import Cita, Terapeuta, Paciente
 from django.http import HttpResponse
 from django.http import JsonResponse
+import json
 
 @role_required('Terapeuta')
 
 def agenda(request):
-    # Obtener todas las citas y extraer las fechas
     citas = Cita.objects.all()
-    fechas_citas = [cita.fecha for cita in citas]
-    
-    contexto = {
-        'paciente': Paciente.objects.all(),
-        'fechas_citas': fechas_citas,  # Agregar fechas de citas al contexto
-    }
-    
-    return render(request, 'agenda.html', contexto)
+    citas_json = []
+    for cita in citas:
+        citas_json.append({
+            'fecha': cita.fecha.strftime('%Y-%m-%d'),
+            'titulo': cita.titulo,
+            'hora': cita.hora.strftime('%H:%M'), 
+            'descripcion': cita.detalle,
+        })
 
+    context = {
+        'paciente': Paciente.objects.all(),
+        'fechas_citas': json.dumps(citas_json)
+    }
+
+    return render(request, 'agenda.html', context)
 
 def obtener_fechas_citas(request):
-    citas = Cita.objects.values_list('fecha', flat=True)  # Solo obtenemos la fecha de las citas
-    fechas_citas = list(citas)  # Convertimos a una lista para que sea serializable en JSON
-    return JsonResponse({'fechas_citas': fechas_citas})
+    citas = Cita.objects.all()
+    citas_list = [{'fecha': str(cita.fecha), 'titulo': cita.titulo,} for cita in citas]
+    
+    return JsonResponse({'citas': citas_list})
+
 
 
 

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const monthViewButton = document.getElementById('month-view');
     const popup = document.getElementById('popup');
     const closePopupButton = document.getElementById('closePopup');
-    
+
     let currentDate = new Date();
     let currentView = 'month';  // 'month' o 'week'
 
@@ -19,9 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             generateWeekView();
         }
+        fetch('/obtener-fechas-citas/')
+            .then(response => response.json())
+            .then(data => {
+                const citas = data.citas;
+                console.log(citas);  // Verifica las fechas y horas recibidas
+                const fechasCitas = citas.map(cita => cita.fecha);  // Obtener solo las fechas de las citas
+
+                // Llamar a la función que destaca los días con citas
+                if (currentView === 'month') {
+                    destacarDiasConCita(fechasCitas);  // Destacar los días en la vista mensual
+                }
+                else {
+                    destacarHorasConCita(citas);  // Destacar las horas en la vista semanal
+                }
+            })
+            .catch(error => console.error('Error al obtener las fechas de citas:', error));
     }
 
-    // Vista mensual
+    // -------------------------- VISTA MENSUAL --------------------------
     function generateMonthView() {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
@@ -63,18 +79,71 @@ document.addEventListener('DOMContentLoaded', function () {
         calendarHTML += '</div>';
         calendar.innerHTML = calendarHTML;
 
-        // Añadir el evento de clic a cada día
+        //---------------------- Añadir el evento de clic a cada día ----------------------
+        // document.querySelectorAll(".day").forEach(day => {
+        //     day.addEventListener("click", function () {
+        //         const selectedDate = this.getAttribute("data-fecha");
+        //         document.getElementById("fechaSeleccionada").textContent = selectedDate;
+        //         document.getElementById("fecha").value = selectedDate; // Asigna la fecha al campo de fecha del formulario
+        //         popup.style.display = "block"; // Muestra el popup
+        //     });
+        // });
+
+        //---------------------- Añadir el evento de clic a cada día ----------------------
         document.querySelectorAll(".day").forEach(day => {
             day.addEventListener("click", function () {
                 const selectedDate = this.getAttribute("data-fecha");
                 document.getElementById("fechaSeleccionada").textContent = selectedDate;
-                document.getElementById("fecha").value = selectedDate; // Asigna la fecha al campo de fecha del formulario
-                popup.style.display = "block"; // Muestra el popup
+                document.getElementById("fecha").value = selectedDate;  // Asigna la fecha al campo de fecha del formulario
+
+                // Obtener las citas del día seleccionado
+                const citasDelDia = obtenerCitasPorFecha(selectedDate);
+
+                if (citasDelDia.length > 0) {
+                    mostrarPopupCitas(citasDelDia);  // Muestra el popup si hay citas
+                } else {
+                    popup.style.display = "block";  // Muestra el popup de forma estándar si no hay citas
+                }
             });
+            
         });
+
+        // Función para obtener las citas de un día específico
+        function obtenerCitasPorFecha(fechaDia) {
+            const [dia, mes, anio] = fechaDia.split('/');
+            const fechaFormateada = `${anio}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+
+            // Filtrar citas que coinciden con esta fecha
+            return citas.filter(cita => cita.fecha === fechaFormateada);
+        }
+
+        function mostrarPopupCitas(citasDelDia) {
+            const popupCitas = document.getElementById("popupCitas");
+            const popupCitasContent = document.getElementById("popup-content");
+
+            // Limpiar el contenido previo
+            popupCitasContent.innerHTML = '';
+
+            // Agregar las citas al popup
+            citasDelDia.forEach(cita => {
+                const citaElement = document.createElement('div');
+                citaElement.classList.add('cita-item');
+                citaElement.innerHTML = `
+                    <p><strong>Título:</strong> ${cita.titulo}</p>
+                    <p><strong>Hora:</strong> ${cita.hora}</p>
+                    <p><strong>Descripción:</strong> ${cita.descripcion}</p>
+                `;
+                popupCitasContent.appendChild(citaElement);
+            });
+
+            // Mostrar el popup con las citas
+            popupCitas.style.display = 'block';
+            
+        }
+        
     }
 
-    // Vista semanal con scrollbar y eventos para abrir el popup
+//------------------------------------VISTA SEMANAL------------------------------------
     function generateWeekView() {
         const startOfWeek = getStartOfWeek(currentDate);
         const endOfWeek = new Date(startOfWeek);
@@ -126,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+//------------------------------------FUNCIONES AUXILIARES------------------------------------
     function getStartOfWeek(date) {
         const dayOfWeek = date.getDay() === 0 ? 6 : date.getDay() - 1;
         const startOfWeek = new Date(date);
@@ -148,7 +218,50 @@ document.addEventListener('DOMContentLoaded', function () {
         return monthNames[monthIndex];
     }
 
-    // Event listeners para cambiar entre vistas
+//------------------------------------FUNCION DESTACAR CITAS------------------------------------
+    function destacarDiasConCita(fechasCitas) {
+        const diasDelCalendario = document.querySelectorAll('.day');
+
+        diasDelCalendario.forEach(dia => {
+            const fechaDia = dia.getAttribute('data-fecha');  // La fecha del día en formato "dd/mm/yyyy"
+
+            // Convertir la fecha del calendario al formato "YYYY-MM-DD" para comparar con las fechas de las citas
+            const [diaNum, mesNum, anio] = fechaDia.split('/');
+            const fechaFormateada = `${anio}-${mesNum.padStart(2, '0')}-${diaNum.padStart(2, '0')}`;
+
+            // Comparar la fecha formateada con las fechas de las citas
+            if (fechasCitas.includes(fechaFormateada)) {
+                dia.classList.add('dia-con-cita');  // Destacar el día con una clase CSS especial
+            }
+        });
+    }
+
+
+//------------------------------------FUNCION DESTACAR HORAS CON CITA------------------------------------
+    function destacarHorasConCita(citas) {
+        const horasSemana = document.querySelectorAll('.week-hour');
+
+        horasSemana.forEach(celda => {
+            const diaSemana = celda.getAttribute('data-day');
+            const horaDia = celda.getAttribute('data-hour');
+
+            // Calcular la fecha completa del día en la semana
+            const fechaInicioSemana = getStartOfWeek(currentDate);
+            const fechaCeldas = new Date(fechaInicioSemana);
+            fechaCeldas.setDate(fechaInicioSemana.getDate() + parseInt(diaSemana));
+
+            const fechaFormateada = `${fechaCeldas.getFullYear()}-${(fechaCeldas.getMonth() + 1).toString().padStart(2, '0')}-${fechaCeldas.getDate().toString().padStart(2, '0')}`;
+
+            // Comparar la fecha y la hora con las citas
+            citas.forEach(cita => {
+                if (cita.fecha === fechaFormateada && cita.hora.startsWith(horaDia)) {
+                    celda.classList.add('celda-con-cita');
+                }
+            });
+        });
+    }
+
+//------------------------------------EVENTOS DE LOS BOTONES------------------------------------
     prevButton.addEventListener('click', function () {
         if (currentView === 'month') {
             currentDate.setMonth(currentDate.getMonth() - 1);
@@ -169,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     todayButton.addEventListener('click', function () {
         currentDate = new Date();
-        updateCalendar();
+        updateCalendar();S
     });
 
     weekViewButton.addEventListener('click', function () {
@@ -182,45 +295,17 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCalendar();
     });
 
-    // Cerrar el pop-up al hacer clic en el botón de cerrar
+//------------------------------------CERRAR POPUP------------------------------------
     closePopupButton.addEventListener("click", function () {
         popup.style.display = "none";
     });
 
-    // Cerrar el pop-up si se hace clic fuera del contenido
+//------------------------------------CERRAR POPUP CITAS------------------------------------
     window.addEventListener("click", function (event) {
         if (event.target === popup) {
             popup.style.display = "none";
         }
     });
-
-    function destacarDiasConCita(fechasCitas) {
-    const diasDelCalendario = document.querySelectorAll('.day');
-
-    diasDelCalendario.forEach(dia => {
-        const fechaDia = dia.getAttribute('data-fecha');  // La fecha del día en formato "dd/mm/yyyy"
-        
-        // Formatear la fecha del calendario al formato "YYYY-MM-DD"
-        const [diaNum, mesNum, anio] = fechaDia.split('/');
-        const fechaFormateada = `${anio}-${mesNum.padStart(2, '0')}-${diaNum.padStart(2, '0')}`;
-        
-        // Si la fecha coincide con alguna fecha de cita, destacar el día
-        if (fechasCitas.includes(fechaFormateada)) {
-            dia.classList.add('dia-con-cita');
-        }
-    });
-}
-
-    fetch('/obtener-fechas-citas/')
-        .then(response => response.json())
-        .then(data => {
-            const fechasCitas = data.fechas_citas;  // Accedemos a las fechas del JSON recibido
-
-            // Llamar a la función que genera la vista del calendario mensual
-            updateCalendar();
-
-            // Llamar a la nueva función para destacar los días con citas
-            destacarDiasConCita(fechasCitas);
-        })
-        .catch(error => console.error('Error al obtener las fechas de citas:', error));
+//------------------------------------CERRAR POPUP CITAS------------------------------------
+    updateCalendar();
 });
