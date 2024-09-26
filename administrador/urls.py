@@ -16,4 +16,5 @@ urlpatterns = [
     path('administrador/agregar_terapeuta/', views.agregar_terapeuta, name='agregar_terapeuta'),
     path('api/provincias/', views.provincias_api, name='provincias_api'),
     path('api/comunas/', views.comunas_api, name='comunas_api'),
+    path('mostrar_paciente/<int:paciente_id>', views.mostrar_paciente, name='mostrar_paciente')
 ]
