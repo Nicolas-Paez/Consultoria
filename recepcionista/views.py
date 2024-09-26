@@ -68,11 +68,8 @@ def listar_terapeutas_activos(request):
 
 @role_required('Recepcionista')
 def calendar_asignar_paciente(request, terapeuta_id, paciente_id):
-    terapeuta = Terapeuta.objects.all()
-    paciente = Paciente.objects.filter(is_active=True)
-    terapeuta_original = Terapeuta.objects.get(id=terapeuta_id)
-    paciente_original = Paciente.objects.get(id=paciente_id)
-    print(paciente)
+    terapeuta = Terapeuta.objects.get(id=terapeuta_id)
+    paciente = Paciente.objects.get(id=paciente_id)
     cita = Cita.objects.all()
     horario_terapeuta = {
         'lunes': {'inicio': 8, 'fin': 13},
@@ -84,8 +81,7 @@ def calendar_asignar_paciente(request, terapeuta_id, paciente_id):
         'domingo': None,
     }
     return render(request, 'calendar_asignar_paciente.html', {'horario_terapeuta': horario_terapeuta, 'cita': cita,
-                                                              'paciente':paciente, 'terapeuta':terapeuta,
-                                                              'paciente_original':paciente_original, 'terapeuta_original':terapeuta_original})
+                                                              'paciente':paciente, 'terapeuta':terapeuta})
 @role_required('Recepcionista')
 def agendar_cita_recepcionista(request):
     

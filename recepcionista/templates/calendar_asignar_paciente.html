@@ -38,20 +38,15 @@
                 <input type="text" id="titulo" name="titulo" required placeholder="Ingrese el título de la cita"><br><br>
 
                 <label for="terapeuta">Terapeuta:</label>
-                <select id="terapeuta" name="terapeuta" required>
-                    <option value="{{terapeuta_original.id}}" >{{terapeuta_original.user.first_name}} {{terapeuta_original.user.last_name}}</option>
-                    {% for terapeuta in terapeuta %}
-                        <option value="{{ terapeuta.id }}">{{ terapeuta.user.first_name }} {{terapeuta.user.last_name}}</option> 
-                    {% endfor %}
-                </select><br><br>
+                <input type="text" value="{{ terapeuta.user.first_name }} {{ terapeuta.user.last_name }}" readonly>
+                <input type="hidden" name="terapeuta" value="{{ terapeuta.id }}">
+                <br><br>
 
                 <label for="paciente">Paciente:</label>
-                <select id="paciente" name="paciente" required>
-                    <option value="{{paciente_original.id}}">{{paciente_original.first_name}} {{paciente_original.last_name}}</option>
-                    {% for paciente in paciente %}
-                        <option value="{{ paciente.id }}">{{ paciente.first_name }} {{paciente.last_name}}</option> 
-                    {% endfor %}
-                </select><br><br>
+                <input type="text" value="{{paciente.first_name}} {{paciente.last_name}}" readonly>
+                <input type="hidden" name="paciente" value="{{paciente.id}}">
+                <br><br>
+
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required><br><br>
 

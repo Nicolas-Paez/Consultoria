@@ -30,8 +30,8 @@ def cambiar_estado_paciente(request, id):
             return JsonResponse({"status": "error", "message": "Paciente no encontrado"}, status=404)
     return JsonResponse({"status": "error", "message": "Método no permitido"}, status=405)
 
-def agendar_cita(request):
-    
+@role_required('Terapeuta')
+def agendar_cita(request):    
     if request.user.is_authenticated:
         user_id = request.user.id
         terapeuta = Terapeuta.objects.get(user_id=user_id)
