@@ -1,0 +1,252 @@
+/* Estilos generales */
+main {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0; /* Reduce el margen izquierdo */
+    padding-left: 5px; /* Opcional, ajusta según lo necesario */
+    width: 100%;
+}
+
+/* Estilos del header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px; /* Espacio entre el título y la barra de búsqueda */
+    margin-top: -2px;
+    margin-bottom: 7px; /* Espacio debajo del header */
+    padding-top: 0;
+    padding-left: 20px;
+    position: relative;
+    top: -20px;
+}
+
+.header h1 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: black;
+}
+
+.header h2 {
+    margin: 0;
+    margin-bottom: 0; /* Espacio pequeño debajo de los h2 */
+    font-size: 20px;
+    color: black;
+}
+
+.header .rut {
+    flex-basis: 32%; /* Ancho específico para "Rut" */
+}
+
+.header .edad {
+    flex-basis: 9%; /* Ancho específico para "Edad" */
+}
+
+.header .tratamiento {
+    flex-basis: 36%; /* Ancho específico para "Tratamiento" */
+}
+
+/* Estilos para el contenedor de la búsqueda */
+.search-container {
+    position: relative;
+    width: 700px; /* Ajusta el tamaño según sea necesario */
+}
+
+/* Estilos para la barra de búsqueda */
+.search-bar {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #D9D9D9;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 700px;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: black;
+}
+
+/* Icono de búsqueda */
+.search-icon {
+    position: absolute;
+    right: 10px; /* Ajusta el espacio del icono */
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente el icono */
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px;
+}
+
+/* Estilos para el contenedor de la lista */
+.li-container {
+    margin-bottom: 20px;
+}
+
+.li-container ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 12px;
+}
+
+/* Estilos para cada paciente */
+.paciente {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between; /* Asegura que los datos se alineen de manera uniforme debajo de los h2 */
+    border: 1px solid #ccc;
+    padding: 20px;
+    padding-left: 5px;
+    margin-left: 0;
+    margin-bottom: 7px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Usar flexbox para alinear los datos horizontalmente */
+.paciente-info {
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+    padding-left: 10px;
+}
+
+/* Estilos para los elementos dentro de la información del paciente */
+.paciente-info p {
+    flex: 1; /* Hace que cada elemento ocupe el mismo espacio */
+    margin: 0; /* Margen reducido entre los elementos */
+    margin-top: 2px; /* Agregar un pequeño margen superior */
+    font-size: 16px;
+    min-width: 205px; /* Ancho mínimo para que los textos no se encimen */
+}
+
+/* Estilos para el botón del icono de reportes */
+.report-button {
+    display: inline-block; /* Asegura que el botón se ajuste al tamaño del contenido */
+    background-color: transparent; /* Fondo transparente para que solo se vea el icono */
+    border: none; /* Sin borde para que se vea como un icono */
+    cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el botón */
+    padding: 0; /* Sin relleno adicional */
+    margin-right: 15px; /* Espacio entre el icono y el texto del paciente */
+    align-self: flex-start; /* Asegura que el botón se quede arriba a la izquierda */
+}
+
+/* Estilos para el icono de reportes */
+.report-icon {
+    position: relative;
+    right: 10px; /* Ajusta el espacio del icono */
+    transform: translateX(100%); /* Centra verticalmente el icono */
+    width: 28px; /* Ajusta el tamaño del icono */
+    height: 28px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    position: relative; /* Posiciona la paginación de manera relativa */
+    top: -10px; /* Desplaza la paginación hacia arriba */
+    margin: 0; /* Elimina el margen para evitar separación extra */
+}
+
+.prev-button, .next-button {
+    display: inline-block;
+    margin: 0 5px; /* Reduce el espacio entre los botones */
+    cursor: pointer;
+    font-size: 14px; /* Disminuye el tamaño de la fuente para los botones */
+}
+
+.previous-icon, .next-icon {
+    width: 0.8em; /* Reduce el tamaño del ícono */
+    height: auto; /* Mantiene la proporción del ícono */
+    vertical-align: middle; /* Alinea el ícono verticalmente en el centro */
+}
+
+
+/* Efecto hover para los íconos */
+.prev-button:hover .previous-icon, 
+.next-button:hover .next-icon {
+    transform: scale(1.1); /* Aumenta el tamaño del ícono al pasar el mouse */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Colocar header en columna */
+        align-items: flex-start; /* Alinear a la izquierda */
+    }
+
+    .paciente {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    }
+
+    .paciente-info {
+        flex-direction: column; /* Colocar paciente info en columna */
+    }
+
+    .paciente-info p {
+        min-width: 100%; /* Asegura que los textos ocupen todo el ancho */
+    }
+}
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header {
+        gap: 30px; /* Espacio entre elementos */
+    }
+
+    .header h1 {
+        font-size: 36px; /* Tamaño de fuente más grande */
+    }
+
+    .header h2 {
+        font-size: 18px; /* Tamaño de fuente más grande */
+    }
+
+    .search-bar {
+        font-size: 16px; /* Tamaño de fuente más grande */
+    }
+
+    .paciente-info p {
+        font-size: 15px; /* Tamaño de fuente ajustado */
+    }
+}
+
+/* Ajustes para pantallas grandes (escritorios) */
+@media (min-width: 1025px) {
+    .header {
+        gap: 40px; /* Espacio más amplio entre elementos */
+    }
+
+    .header h1 {
+        font-size: 40px; /* Tamaño de fuente aún más grande */
+    }
+
+    .header h2 {
+        font-size: 20px; /* Tamaño de fuente aún más grande */
+    }
+
+    .search-bar {
+        font-size: 18px; /* Tamaño de fuente más grande */
+        width: 700px; /* Tamaño específico para pantallas grandes */
+    }
+
+    .paciente {
+        flex-direction: row; /* Asegura la alineación horizontal */
+    }
+
+    .paciente-info {
+        flex-direction: row; /* Asegura la alineación horizontal */
+    }
+
+    .paciente-info p {
+        font-size: 16px; /* Tamaño de fuente ajustado */
+    }
+}

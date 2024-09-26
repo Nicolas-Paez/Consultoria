@@ -18,9 +18,11 @@ def base_admin_view(request):
 def admin_pacientes(request):
     pacientes = Paciente.objects.all() 
     return render(request, 'admin_pacientes.html',{'pacientes': pacientes})
+
 def agregar_paciente_admin(request):
     # lógica de la vista
     return render(request, 'agregar_paciente_admin.html')
+
 def listar_pacientes_activos(request):
     # Obtener todos los pacientes activos
     pacientes_activos = Paciente.objects.filter(is_active=True)
