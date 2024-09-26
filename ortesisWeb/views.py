@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from terapeuta.models import Paciente
 
-def calendar_view(request):
+'''def calendar_view(request):
     # Lógica para el calendario
-    return render(request, 'calendar.html')
+    paciente = Paciente.objects.all()
+    return render(request, 'calendar.html', {'paciente': paciente})'''
 
 def calendar_view2(request):
     # Lógica para el calendario

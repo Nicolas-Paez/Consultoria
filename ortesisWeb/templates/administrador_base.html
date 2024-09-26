@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OrtesisWeb{% endblock %}</title>
+    <!--     Fuente JOST    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="{% static 'css/base/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    
+    <!-- Bloque adicional para cargar estilos CSS o meta tags específicos -->
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="contenedor-grid">
+        <!-- Sidebar -->
+        <aside class="sidebar_administrador">
+            <div class="logos">
+                <img class="logo_hospital" src="{% static 'images/logo_hospital_blanco.svg' %}" alt="Logo logo_hospital">
+                <img class="logo_u" src="{% static 'images/logo_universidad_blanco.svg' %}" alt="Logo UA">
+            </div>
+            <hr class="divider">
+            <div class="profile">
+                <img src="{% static 'icons/therapist.svg' %}" alt="Icono terapeuta">
+                <div class="nombre_usuario">
+                    <p>{{ user.first_name|upper }} </p> <p>{{ user.last_name|upper }}</p>
+                </div>
+            </div>
+            <hr class="divider">
+            <ul class="menu">
+                <li>
+                    <a href="{% url 'listar_pacientes_activos' %}" class="{% if request.path == '/pacientes/' %}active{% endif %}">
+                            <img src="{% static 'icons/patient_list.svg' %}" alt="Listado Pacientes">
+                            Pacientes
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'gestion_terapeutas' %}" class="{% if request.path == '/terapeutas/' %}active{% endif %}">
+                            <img src="{% static 'icons/therapist.svg' %}" alt="Listado Terapeutas">
+                            Terapeutas
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_recepcionistas' %}" class="{% if request.path == '/recepcionistas/' %}active{% endif %}">
+                            <img src="{% static 'icons/Vector.svg' %}" alt="Listado Recepcionistas">
+                            Recepcionistas
+                    </a>
+                </li>
+            </ul>
+            <hr class="divider divider_logout">
+            <div class="logout">
+                <a href="{% url 'logout' %}">
+                    <img src="{% static 'icons/log-out.svg' %}" alt="Cerrar sesión">
+                    Salir
+                </a>
+            </div>
+        </aside>
+
+        <!-- Header -->
+        <header class="header">
+            {% block header %}
+            <!-- Aquí se cargará el contenido específico del header de cada página -->
+            {% endblock %}
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            {% block content %}
+            <!-- Aquí se cargará el contenido específico de cada página -->
+            {% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 OrtesisWeb</p>
+        </footer>
+    </div>
+    
+
+    <!-- JavaScript general -->
+    <script src="{% static 'js/activeMenu.js' %}"></script>
+    
+    <!-- Bloque adicional para cargar scripts JS específicos -->
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

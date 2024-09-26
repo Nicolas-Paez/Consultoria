@@ -248,3 +248,10 @@ button {
     display: block;
     margin-top: 5px;
 }
+
+/*calendar_asignar_paciente*/
+.week-hour.working-hour {
+    background-color: rgba(0, 128, 0, 0.2); /* Color de fondo para las horas de trabajo */
+    border: 1px solid #008000; /* Borde para destacar más */
+}
+

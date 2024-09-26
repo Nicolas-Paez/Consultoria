@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('autenticacion.urls')),
     path('', include('administrador.urls')),
     path('', include('terapeuta.urls')),
+    path('', include('recepcionista.urls')),
     path("admin/", admin.site.urls),
     path('perfil/', perfil_view, name='perfil'),
     path('pacientes/', pacientes_view, name='pacientes'),

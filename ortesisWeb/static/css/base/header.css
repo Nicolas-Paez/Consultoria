@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center; /*alinear verticalmente los elementos*/
+    padding: 10px 20px;
+}
+
+.notification-icon {
+    position: relative;
+    margin-left: auto;
+}
+
+.notification-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.notification-icon a {
+    top: 15px;
+    right: 20px;
+    text-decoration: none;
+    color: white;
+}

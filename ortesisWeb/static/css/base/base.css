@@ -50,3 +50,38 @@ body {
     padding: 20px;
     background-color: #fff;
 }
+
+.header_right {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 5px;
+    background-color: #ffffff;
+}
+
+/* Estilo del botón */
+.agregar-paciente-btn {
+    background-color: #373D58; /* Ajusta el color del botón */
+    color: white;
+    border: none;
+    outline: none; /* Elimina cualquier contorno del botón */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Para alinear el ícono y el texto */
+    gap: 10px; /* Espacio entre el ícono y el texto */
+    transition: background-color 0.3s ease;
+}
+
+.agregar-paciente-btn:hover {
+    background-color: #2b2b70; /* Efecto hover */
+}
+
+
+/* Estilo del ícono */
+.icono {
+    font-size: 20px;
+    font-weight: bold;
+}
+

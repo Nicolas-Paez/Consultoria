@@ -1,14 +1,67 @@
+import json
 from django.shortcuts import render, redirect
 from django.db import transaction
 from autenticacion.decorators import role_required
 from .forms import CrearTerapeutaForm, HorarioFormSet
 from autenticacion.models import Provincia, Comuna
 from django.http import JsonResponse
+from terapeuta.models import Paciente
 
 # Create your views here.
 @role_required('Administrador')
 def gestion_terapeutas(request):
     return render(request, 'gestion_terapeutas.html')
+
+def base_admin_view(request):
+    return render(request, 'base_admin.html')
+################### ADMIN PACIENTES ##################
+def admin_pacientes(request):
+    pacientes = Paciente.objects.all() 
+    return render(request, 'admin_pacientes.html',{'pacientes': pacientes})
+def agregar_paciente_admin(request):
+    # lógica de la vista
+    return render(request, 'agregar_paciente_admin.html')
+def listar_pacientes_activos(request):
+    # Obtener todos los pacientes activos
+    pacientes_activos = Paciente.objects.filter(is_active=True)
+    return render(request, 'admin_pacientes.html', {
+        'pacientes': pacientes_activos,
+        'estado': 'activos',
+    })
+def cambiar_estado_inactivo(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        pacientes_ids = data.get('pacientes_ids', [])
+        Paciente.objects.filter(id__in=pacientes_ids).update(is_active=False)
+        return JsonResponse({'status': 'success'})
+
+def restaurar_paciente(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        pacientes_ids = data.get('pacientes_ids', [])
+        Paciente.objects.filter(id__in=pacientes_ids).update(is_active=True)
+        return JsonResponse({'status': 'success'})
+        
+def listar_pacientes_inactivos(request):
+    # Obtener todos los pacientes inactivos
+    pacientes_inactivos = Paciente.objects.filter(is_active=False)
+    return render(request, 'admin_pacientes.html', {
+        'pacientes': pacientes_inactivos,
+        'estado': 'inactivos',
+    })
+########################################################
+def admin_recepcionistas(request):
+    # Lógica para listar o gestionar recepcionistas desde la vista del administrador
+    return render(request, 'admin_recepcionistas.html')
+def admin_terapeutas(request):
+    return render (request,'admin_terapeutas.html')
+
+def logout_view(request):
+    # Lógica para cerrar la sesión
+    # Puedes usar Django's auth logout
+    from django.contrib.auth import logout
+    logout(request)
+    return redirect('login')  # Redirigir al login después de cerrar sesión
 
 @role_required('Administrador')
 def agregar_terapeuta(request):

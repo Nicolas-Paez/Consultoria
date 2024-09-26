@@ -1,34 +1,126 @@
-body {
+html, body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
+    padding: 0;
+    height: 100%; /* Asegura que el cuerpo tenga una altura del 100% */
 }
 
-.sidebar_terapeuta {
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: row; /* Coloca las sidebars y el contenido en una fila */
+    min-height: 100vh; /* Asegura que el cuerpo tenga al menos la altura del viewport */
+    overflow: hidden; /* Oculta el scroll del body */
+}
+
+.sidebar_terapeuta,
+.sidebar_administrador,
+.sidebar_recepcionista {
     width: 250px;
-    background-color: #008CAB;
+    background-color: #008CAB; /* Cambiar el color según sea necesario */
     box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    position: relative;
-    z-index: 1
+    position: fixed;
+    top: 0; /* Asegura que la sidebar esté en la parte superior */
+    bottom: 0; /* Asegura que la sidebar se extienda hasta el fondo */
+    z-index: 1;
+    overflow-y: auto; /* Permite el scroll interno si el contenido es más alto que la pantalla */
+}
+
+.sidebar_administrador {
+    background-color: #001058; /* Color específico para la sidebar de administrador */
 }
 
 .sidebar_recepcionista {
-    width: 250px;
-    background-color: #373D58;
-    box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    position: relative;
-    z-index: 1
+    background-color: #373D58; /* Color específico para la sidebar de recepcionista */
 }
 
+.content {
+    margin-left: 250px; /* Espacio para la sidebar */
+    padding: 20px;
+    width: calc(100% - 250px); /* Asegura que el contenido ocupe el espacio restante */
+    box-sizing: border-box;
+    overflow-y: auto; /* Permite el scroll vertical si el contenido excede la altura del viewport */
+}
+
+/* Estado Activo General */
+.menu li a.active {
+    background-color: rgb(25, 100, 79);
+    font-weight: bold;
+}
+
+/* Icon and Text Wrapper */
+.icon-text-wrapper {
+    display: flex;
+    align-items: center;
+    color: inherit; /* Hereda el color del enlace */
+}
+
+.icon-text-wrapper img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    fill: currentColor; /* Usa currentColor para heredar el color */
+}
+
+/* Sidebar Styles - Hover and Active States */
+.sidebar_terapeuta .menu li a:hover {
+    background-color: #ffffff;
+    color: #008CAB; /* Hover - Activo */
+}
+
+.sidebar_terapeuta .menu li a.active {
+    background-color: #ffffff;
+    color: #008CAB;
+}
+
+.sidebar_terapeuta .menu li a:hover img {
+    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
+}
+
+.sidebar_terapeuta .menu li a.active img {
+    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
+}
+
+.sidebar_administrador .menu li a:hover {
+    background-color: #ffffff;
+    color: #001058; /* Hover - Activo */
+}
+
+.sidebar_administrador .menu li a.active {
+    background-color: #ffffff;
+    color: #001058;
+}
+
+.sidebar_administrador .menu li a:hover img {
+    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
+}
+
+.sidebar_administrador .menu li a.active img {
+    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
+}
+
+.sidebar_recepcionista .menu li a:hover {
+    background-color: #ffffff;
+    color: #373D58; /* Hover - Activo */
+}
+
+.sidebar_recepcionista .menu li a.active {
+    background-color: #ffffff;
+    color: #373D58;
+}
+
+.sidebar_recepcionista .menu li a:hover img {
+    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
+}
+
+.sidebar_recepcionista .menu li a.active img {
+    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
+}
+
+/* Divider and Logos */
 .divider {
     border: none;
     border-top: 1px solid rgb(255, 255, 255);
@@ -39,16 +131,17 @@ body {
 .logos {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 80%;
     margin-bottom: 20px;
 }
 
-.logos img{
+.logos img {
     width: 60px;
     height: 60px;
 }
 
+/* Profile Section */
 .profile {
     display: flex;
     align-items: center;
@@ -67,7 +160,7 @@ body {
     color: #ffffff;
 }
 
-
+/* Menu Styles */
 .menu {
     list-style: none;
     padding: 0;
@@ -88,22 +181,14 @@ body {
     align-items: center;
     font-size: 16px;
     border-radius: 12px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, filter 0.3s ease;
 }
 
 .menu li a img {
     width: 25px;
     height: 25px;
     margin-right: 14px;
-}
-
-.menu li a:hover {
-    background-color: rgb(255, 255, 255);
-    color: #008CAB;
-}
-
-.menu li a img:hover {
-    color: #008CAB
+    transition: filter 0.3s ease;
 }
 
 .logout {
@@ -132,14 +217,78 @@ body {
     color: white;
 }
 
-.content {
-    flex-grow: 1;
-    background-color: #fff;
-    padding: 20px;
+/* AGREGAR PACIENTE (RECEPCIONISTA) */
+.container {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
 
-.menu li a.active {
-    background-color:rgb(25, 100, 79);
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+label {
     font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    grid-column: 1 / 3;
+}
+
+.buttons {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar {
+    background-color: #F05454;
+    color: white;
+}
+
+.btn-continuar {
+    background-color: #2E8B57;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.icon-arrow {
+    margin-left: 10px;
+}
+
+.back-arrow {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
 }
