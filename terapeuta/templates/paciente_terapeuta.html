@@ -11,7 +11,7 @@
         <h1>Pacientes</h1>
         <!-- Contenedor para la barra de búsqueda y el icono -->
         <div class="search-container">
-            <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar" id="searchBar">
+            <input type="text" placeholder="Búsqueda por Nombre, Rut o Tratamiento" class="search-bar" id="searchBar" onkeyup="searchPacientes()">
             <img src="{% static 'icons/Lupa.svg' %}" alt="Lupa" class="search-icon" id="searchIcon">
         </div>
     </header>
@@ -22,16 +22,15 @@
         <h2 class="tratamiento">Tratamiento</h2>
     </div>
     <div class="li-container">
-        <ul>
+        <ul id="pacienteList">
             <!-- Lista de pacientes -->
-            <!-- Iterar sobre cada paciente -->
             {% for paciente in pacientes %}
             <li class="paciente">
                 <div class="paciente-info">
-                    <p>{{ paciente.first_name }} {{ paciente.last_name }}</p>
-                    <p>{{ paciente.rut }}</p>
-                    <p>{{ paciente.edad }} años</p>
-                    <p>{{ paciente.patologia }}</p>
+                    <p class="nombre">{{ paciente.first_name }} {{ paciente.last_name }}</p>
+                    <p class="rut">{{ paciente.rut }}</p>
+                    <p class="edad">{{ paciente.edad }} años</p>
+                    <p class="tratamiento">{{ paciente.patologia }}</p>
                     <a href="#" class="report-button">
                         <img src="{% static 'icons/Tabla de reportes.svg' %}" alt="Tabla de reportes" class="report-icon">
                     </a>
@@ -61,6 +60,32 @@
 </div>
 <link rel="stylesheet" href="{% static 'css/paciente_terapeuta.css' %}">
 {% endblock %}
+
 {% block extra_js %}
 <script src="{% static 'js/buscar_paciente.js' %}"></script>
+<script>
+    function searchPacientes() {
+        const input = document.getElementById('searchBar').value.toLowerCase();
+        const pacientes = document.querySelectorAll('.paciente');
+        let found = false;
+
+        pacientes.forEach(paciente => {
+            const nombre = paciente.querySelector('.nombre').textContent.toLowerCase();
+            const rut = paciente.querySelector('.rut').textContent.toLowerCase();
+            const tratamiento = paciente.querySelector('.tratamiento').textContent.toLowerCase();
+
+            if (nombre.includes(input) || rut.includes(input) || tratamiento.includes(input)) {
+                paciente.style.display = ''; // Mostrar el paciente
+                found = true;
+            } else {
+                paciente.style.display = 'none'; // Ocultar el paciente
+            }
+        });
+
+        // Puedes agregar lógica aquí para mostrar un mensaje si no se encuentran resultados
+        if (!found) {
+            console.log('No se encontraron pacientes.');
+        }
+    }
+</script>
 {% endblock %}
