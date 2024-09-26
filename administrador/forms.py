@@ -50,10 +50,10 @@ class CrearTerapeutaForm(forms.ModelForm):
     # Campos del modelo 'Profile'
 
     telefono = forms.CharField(
-        max_length=12, 
+        max_length=11, 
         label='Teléfono', 
         required=True,
-        widget=forms.TextInput(attrs={'class':'campo-formulario','placeholder': 'Ej: +56 9 1234 5678'})
+        widget=forms.TextInput(attrs={'class':'campo-formulario','placeholder': 'Ej: 9 1234 5678'})
     )
     fecha_nacimiento = forms.DateField(
         label='Fecha de nacimiento', 
@@ -290,8 +290,8 @@ class CrearTerapeutaForm(forms.ModelForm):
     def clean_telefono(self):
         telefono = self.cleaned_data['telefono']
         # Validar el formato del teléfono con una expresión regular
-        if not re.match(r'^\+\d{2} \d \d{4} \d{4}$', telefono):
-            raise forms.ValidationError('El formato del teléfono debe ser: +56 9 1234 5678')
+        if not re.match(r'^\d{1} \d{4} \d{4}$', telefono):
+            raise forms.ValidationError('El formato del teléfono debe ser: 9 1234 5678')
         
         return telefono
     
