@@ -1,4 +1,6 @@
-.sidebar_terapeuta{
+.sidebar_terapeuta,
+.sidebar_administrador,
+.sidebar_recepcionista {
     width: 330px;
     background-color: #008CAB; /* Cambiar el color según sea necesario */
     box-shadow: 2px 0 5px rgba(116, 116, 116, 0.5);
@@ -12,11 +14,19 @@
     z-index: 1;
 }
 
+.sidebar_administrador {
+    background-color: #001058; /* Color específico para la sidebar de administrador */
+}
+
+.sidebar_recepcionista {
+    background-color: #373D58; /* Color específico para la sidebar de recepcionista */
+}
+
 .logos {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     margin-bottom: 20px;
 }
 
@@ -43,31 +53,39 @@
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 90%;
 }
 
 .profile img {
     width: 30px;
     height: 30px;
-    margin-right: 13px;
+    margin: 0.5rem;
 }
 
-.profile p {
+.profile .nombre_usuario{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.profile .nombre_usuario p {
     font-size: 20px;
     font-weight: bold;
     color: #ffffff;
+    margin-right: 8px;  /* Espacio entre los dos párrafos */
+    display: inline;  /* Asegura que los párrafos estén en la misma línea */
 }
 
 /* Menu Styles */
 .menu {
     list-style: none;
-    padding: 0;
-    margin-top: 30px;
+    padding: 1rem;
     width: 100%;
     margin-bottom: auto;
 }
 
 .menu li {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .menu li a {
@@ -85,13 +103,13 @@
     width: 40px;
     height: 40px;
     margin-right: 14px;
-    transition: filter 0.3s ease;
 }
 
 /* Sidebar Styles - Hover and Active States */
 .sidebar_terapeuta .menu li a:hover {
     background-color: #ffffff;
     color: #008CAB; /* Hover - Activo */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Sin transición en las imágenes */
 }
 
 .sidebar_terapeuta .menu li a.active {
@@ -99,10 +117,7 @@
     color: #008CAB;
 }
 
-.sidebar_terapeuta .menu li a:hover img {
-    filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
-}
-
+.sidebar_terapeuta .menu li a:hover img,
 .sidebar_terapeuta .menu li a.active img {
     filter: invert(53%) sepia(77%) saturate(317%) hue-rotate(140deg) brightness(100%) contrast(88%);
 }
@@ -115,14 +130,12 @@
 .sidebar_administrador .menu li a.active {
     background-color: #ffffff;
     color: #001058;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Sin transición en las imágenes */
 }
 
-.sidebar_administrador .menu li a:hover img {
-    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
-}
-
+.sidebar_administrador .menu li a:hover img,
 .sidebar_administrador .menu li a.active img {
-    filter: invert(12%) sepia(92%) saturate(5085%) hue-rotate(228deg) brightness(84%) contrast(117%); /* Icono en #001058 */
+    filter: brightness(0) saturate(100%) invert(11%) sepia(25%) saturate(7358%) hue-rotate(221deg) brightness(89%) contrast(117%); /* Icono en #001058 */
 }
 
 .sidebar_recepcionista .menu li a:hover {
@@ -133,14 +146,12 @@
 .sidebar_recepcionista .menu li a.active {
     background-color: #ffffff;
     color: #373D58;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Sin transición en las imágenes */
 }
 
-.sidebar_recepcionista .menu li a:hover img {
-    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
-}
-
+.sidebar_recepcionista .menu li a:hover img,
 .sidebar_recepcionista .menu li a.active img {
-    filter: invert(14%) sepia(7%) saturate(3485%) hue-rotate(217deg) brightness(86%) contrast(88%); /* Icono en #373D58 */
+    filter: brightness(0) saturate(100%) invert(18%) sepia(8%) saturate(3387%) hue-rotate(192deg) brightness(91%) contrast(78%); /* Icono en #373D58 */
 }
 
 .logout {
@@ -155,6 +166,7 @@
     align-items: center;
     font-size: 24px;
     border-radius: 5px;
+    margin: 1rem;
     transition: background-color 0.3s ease;
 }
 
@@ -169,11 +181,47 @@
     color: white;
 }
 
+@media screen and (max-width: 1200px){
+    .sidebar_terapeuta,
+    .sidebar_administrador,
+    .sidebar_recepcionista {
+        width: 230px;
+    }
+    
+    .logo_hospital {
+        width: 63px;
+        height: 63px;
+    }
+    
+    .logo_u{
+        width: 119px;
+        height: 77px;
+    }
+    
+    .profile .nombre_usuario p {
+        font-size: 18px;
+    }
+
+    .menu li a {
+        font-size: 20px;
+    }
+
+    .menu li a img {
+        width: 34px;
+        height: 34px;
+        margin-right: 10px;
+    }
+}
+
+
 @media screen and (max-width:768px){
-    .sidebar_terapeuta {
+    
+    .sidebar_terapeuta,
+    .sidebar_administrador,
+    .sidebar_recepcionista {
         display: flex;
         width: 100%; /* La barra lateral ocupará todo el ancho de la pantalla */
-        height: 150px; /* Reducir la altura para que parezca una barra horizontal */
+        height: 130px; /* Reducir la altura para que parezca una barra horizontal */
         position: fixed;
         flex-direction: row; /* Cambiar la dirección de la barra para que los elementos se alineen horizontalmente */
         justify-content: space-around; /* Espaciado entre los elementos */
@@ -245,13 +293,14 @@
 }
 
 
-
 @media screen and (max-width: 600px){
     
-    .sidebar_terapeuta {
+    .sidebar_terapeuta,
+    .sidebar_administrador,
+    .sidebar_recepcionista {
         display: flex;
         width: 100%; /* La barra lateral ocupará todo el ancho de la pantalla */
-        height: 150px; /* Reducir la altura para que parezca una barra horizontal */
+        height: 130px; /* Reducir la altura para que parezca una barra horizontal */
         position: fixed;
         flex-direction: row; /* Cambiar la dirección de la barra para que los elementos se alineen horizontalmente */
         justify-content: space-around; /* Espaciado entre los elementos */
