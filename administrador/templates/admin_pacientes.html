@@ -49,7 +49,7 @@
                     <td>{{ paciente.terapeuta.nombre }}</td>
                     <td>{{ paciente.date_joined }}</td>
                     <td class="text-end">
-                        <a href="{% url 'mostrar_paciente' paciente.id %}" class="btn btn-outline-primary btn-sm me-2" title="Ver detalles">
+                        <a href="{% url 'mostrar_paciente_administrador' paciente.id %}" class="btn btn-outline-primary btn-sm me-2" title="Ver detalles">
                             Ver detalles
                             <i class="bi bi-file-earmark-text"></i>
                         </a>
