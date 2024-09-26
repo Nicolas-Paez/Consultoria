@@ -60,5 +60,7 @@
     {% endif %}
 </div>
 <link rel="stylesheet" href="{% static 'css/paciente_terapeuta.css' %}">
-<script src="{% static 'js/paciente_terapeuta.js' %}"></script>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/buscar_paciente.js' %}"></script>
 {% endblock %}
