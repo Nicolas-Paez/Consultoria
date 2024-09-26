@@ -21,7 +21,7 @@ main {
     margin-top: -2px;
     margin-bottom: 7px; /* Espacio debajo del header */
     padding-top: 0;
-    padding-left: 5px;
+    padding-left: 20px;
     position: relative;
     top: -20px;
 }
@@ -70,7 +70,7 @@ main {
 
 .search-bar:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: black;
 }
 
 /* Icono de búsqueda */
@@ -92,7 +92,7 @@ main {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    margin-left: 0;
+    margin-left: 12px;
 }
 
 /* Estilos para cada paciente */
@@ -139,11 +139,11 @@ main {
 
 /* Estilos para el icono de reportes */
 .report-icon {
-    position: absolute;
+    position: relative;
     right: 10px; /* Ajusta el espacio del icono */
-    transform: translateY(-50%); /* Centra verticalmente el icono */
-    width: 20px; /* Ajusta el tamaño del icono */
-    height: 20px;
+    transform: translateX(100%); /* Centra verticalmente el icono */
+    width: 28px; /* Ajusta el tamaño del icono */
+    height: 28px;
 }
 
 .pagination {
