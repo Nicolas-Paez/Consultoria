@@ -1,5 +1,5 @@
 /* Estilos generales */
-body {
+main {
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -139,9 +139,11 @@ body {
 
 /* Estilos para el icono de reportes */
 .report-icon {
-    width: 28px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 28px; /* Mantén la proporción del icono con el ancho */
-    padding-right: 10px;
+    position: absolute;
+    right: 10px; /* Ajusta el espacio del icono */
+    transform: translateY(-50%); /* Centra verticalmente el icono */
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px;
 }
 
 .pagination {
