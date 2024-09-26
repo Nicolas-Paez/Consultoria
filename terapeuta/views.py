@@ -15,7 +15,6 @@ def agenda(request):
 def perfil_view(request):
     return render(request, 'perfil.html')
 
-@role_required('Terapeuta')
 def calcular_edad(fecha_nacimiento):
     hoy = date.today()
     return hoy.year - fecha_nacimiento.year - ((hoy.month, hoy.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
