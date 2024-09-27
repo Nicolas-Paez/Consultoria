@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const weekViewButton = document.getElementById('week-view');
     const monthViewButton = document.getElementById('month-view');
     const popup = document.getElementById('popup');
-    const closePopupButton = document.getElementById('closePopup');
     const btnAgendar = document.getElementById('add');
 
     let currentDate = new Date();
@@ -79,16 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         calendarHTML += '</div>';
         calendar.innerHTML = calendarHTML;
-
-        //---------------------- Añadir el evento de clic a cada día ----------------------
-        // document.querySelectorAll(".day").forEach(day => {
-        //     day.addEventListener("click", function () {
-        //         const selectedDate = this.getAttribute("data-fecha");
-        //         document.getElementById("fechaSeleccionada").textContent = selectedDate;
-        //         document.getElementById("fecha").value = selectedDate; // Asigna la fecha al campo de fecha del formulario
-        //         popup.style.display = "block"; // Muestra el popup
-        //     });
-        // });
 
         //---------------------- Añadir el evento de clic a cada día ----------------------
         btnAgendar.addEventListener('click', function() {
@@ -229,29 +218,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-//------------------------------------FUNCION DESTACAR HORAS CON CITA------------------------------------
-    function destacarHorasConCita(citas) {
-        const horasSemana = document.querySelectorAll('.week-hour');
-
-        horasSemana.forEach(celda => {
-            const diaSemana = celda.getAttribute('data-day');
-            const horaDia = celda.getAttribute('data-hour');
-
-            // Calcular la fecha completa del día en la semana
-            const fechaInicioSemana = getStartOfWeek(currentDate);
-            const fechaCeldas = new Date(fechaInicioSemana);
-            fechaCeldas.setDate(fechaInicioSemana.getDate() + parseInt(diaSemana));
-
-            const fechaFormateada = `${fechaCeldas.getFullYear()}-${(fechaCeldas.getMonth() + 1).toString().padStart(2, '0')}-${fechaCeldas.getDate().toString().padStart(2, '0')}`;
-
-            // Comparar la fecha y la hora con las citas
-            citas.forEach(cita => {
-                if (cita.fecha === fechaFormateada && cita.hora.startsWith(horaDia)) {
-                    celda.classList.add('celda-con-cita');
-                }
-            });
-        });
-    }
 
 //------------------------------------EVENTOS DE LOS BOTONES------------------------------------
     prevButton.addEventListener('click', function () {
@@ -287,10 +253,6 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCalendar();
     });
 
-//------------------------------------CERRAR POPUP------------------------------------
-    closePopupButton.addEventListener("click", function () {
-        popup.style.display = "none";
-    });
 
 //------------------------------------CERRAR POPUP CITAS------------------------------------
     window.addEventListener("click", function (event) {
