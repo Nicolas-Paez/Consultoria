@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const monthViewButton = document.getElementById('month-view');
     const popup = document.getElementById('popup');
     const closePopupButton = document.getElementById('closePopup');
+    const btnAgendar = document.getElementById('add');
 
     let currentDate = new Date();
     let currentView = 'month';  // 'month' o 'week'
@@ -90,6 +91,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // });
 
         //---------------------- Añadir el evento de clic a cada día ----------------------
+        btnAgendar.addEventListener('click', function() {
+            popup.style.display = "block";
+        });
+
         document.querySelectorAll(".day").forEach(day => {
             day.addEventListener("click", function () {
                 const selectedDate = this.getAttribute("data-fecha");
@@ -129,9 +134,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const citaElement = document.createElement('div');
                 citaElement.classList.add('cita-item');
                 citaElement.innerHTML = `
-                    <p><strong>Título:</strong> ${cita.titulo}</p>
-                    <p><strong>Hora:</strong> ${cita.hora}</p>
-                    <p><strong>Descripción:</strong> ${cita.descripcion}</p>
+                    <p>${cita.titulo}</p>
+                    <p>${cita.hora}<strong> hrs</strong> </p>
                 `;
                 popupCitasContent.appendChild(citaElement);
             });
@@ -181,18 +185,6 @@ document.addEventListener('DOMContentLoaded', function () {
         calendarHTML += '</tbody></table></div>';
         calendar.innerHTML = calendarHTML;
 
-        // Añadir evento para que al hacer clic en una celda de hora se abra el popup
-        document.querySelectorAll(".week-hour").forEach(hourCell => {
-            hourCell.addEventListener("click", function () {
-                const selectedHour = this.getAttribute("data-hour");
-                const selectedDay = this.getAttribute("data-day");
-
-                // Asigna la fecha y la hora seleccionadas al popup
-                document.getElementById("fechaSeleccionada").textContent = `${selectedHour}, Día ${parseInt(selectedDay) + 1}`;
-                document.getElementById("hora").value = selectedHour; // Asigna la hora al campo del formulario
-                popup.style.display = "block"; // Muestra el popup
-            });
-        });
     }
 
 //------------------------------------FUNCIONES AUXILIARES------------------------------------
@@ -306,6 +298,5 @@ document.addEventListener('DOMContentLoaded', function () {
             popup.style.display = "none";
         }
     });
-//------------------------------------CERRAR POPUP CITAS------------------------------------
     updateCalendar();
 });

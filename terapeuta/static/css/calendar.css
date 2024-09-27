@@ -34,6 +34,11 @@
     justify-content: center;
     width: 130px;
 }
+.view-options {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+}
 
 /* Botones de navegación */
 .nav-button {
@@ -46,6 +51,7 @@
     transition: background-color 0.3s ease;
     margin: 2px;
 }
+
 
 .nav-button:hover {
     background-color: #399fb6;
@@ -84,7 +90,7 @@
 }
 
 .today {
-    background-color: #008CAB;
+    background-color: #82b2bd;
     color: white;
 }
 
@@ -238,15 +244,19 @@ button {
 
 /* Resaltar días y horas con citas */
 .dia-con-cita {
-    background-color: #FFD700;
-    border: 2px solid #FFA500;
-    font-weight: bold;
+    position: relative;
 }
 
-.celda-con-cita {
-    background-color: #FFD700;
-    border: 2px solid #FFA500;
-    font-weight: bold;
+.dia-con-cita::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 4px;
+    height: 4px;
+    background-color: #008CAB;
+    border: 2px solid #008CAB;
+    border-radius: 50%;
 }
 
 /* Ajustes para la vista semanal con citas */
@@ -263,4 +273,30 @@ button {
 .week-hour.working-hour {
     background-color: rgba(0, 128, 0, 0.2);
     border: 1px solid #008000;
+}
+
+/* Estilo para el popup */
+#popupCitas {
+    background-color: #008CAB;
+    border: 2px #008CAB;
+    padding: 10px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para el contenido de las citas */
+.cita-item {
+    background-color: #ffffff;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+#closePopupCitas {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 24px;
+    cursor: pointer;
 }
