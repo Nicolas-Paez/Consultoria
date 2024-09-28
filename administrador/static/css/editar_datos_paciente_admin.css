@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px 0 50px 20px;
+    padding: 20px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Clase base para todos los campos de entrada */
+.campo {
+    flex: 1;
+    text-align: left;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select,
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+input[type="number"]{
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    height: 140px;
+    width: 87%;
+    border: 1px solid #ccc;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    width: 200px;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 25px;
+}
+
+.cancel {
+    background-color: #FF6161;
+    color: white;
+}
+
+.confirm {
+    background-color: #006A60;
+    color: white;
+}

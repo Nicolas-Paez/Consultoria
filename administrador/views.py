@@ -167,3 +167,20 @@ def agendar_cita_administrador(request):
         return redirect('mostrar_paciente_administrador', paciente_instance.id)
     return render(request, 'mostrar_paciente_administrador.html', {'paciente': paciente_instance})
 
+def editar_datos_paciente_admin(request, id):
+    paciente = get_object_or_404(Paciente, id=id)
+    # guarda cambios
+    if request.method == 'POST':
+        paciente.first_name = request.POST.get('first_name')
+        paciente.last_name = request.POST.get('last_name')
+        paciente.rut = request.POST.get('rut')
+        paciente.telefono = request.POST.get('telefono')
+        paciente.correo = request.POST.get('correo')
+        paciente.sexo = request.POST.get('sexo')
+        paciente.date = request.POST.get('date')
+        paciente.patologia = request.POST.get('patologia')
+        paciente.terapeuta = request.POST.get('terapeuta')
+        paciente.save()
+        return redirect('admin_pacientes')
+
+    return render(request, 'editar_datos_paciente_admin.html', {'paciente': paciente})
